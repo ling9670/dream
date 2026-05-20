@@ -147,6 +147,32 @@ sharp face close-up, photorealistic face, blonde hair, light hair
 
 ---
 
+## 8.4 ⚠️ Prompt 簡化原則（2026-05-20 學到）
+
+**MJ 對過長 prompt 反應不好。** 過 200 字 + 多層大寫 + 多個分段 = 元素丟失或混淆。
+
+### 失敗症狀
+- 主體沒出現（人、怪獸）
+- 環境變調（暗變亮、室內變室外）
+- 構圖混亂
+
+### 修法
+1. **一句連貫的場景描述**（不用 NEAR/MID/FAR 大寫分段）
+2. **80-150 字內** 比 200+ 字穩定
+3. **少用大寫強調**（MJ 不會因大寫提高權重）
+4. **`--no` 列只保留核心衝突**（不是把所有可能性都列）
+5. **POV/構圖描述放在 `--ar` 之外的位置**（不要在描述裏重複「vertical 9:16」）
+
+### 例子對比
+❌ 過複雜：
+> Vertical 9:16 composition with three layers of depth: CLOSE FOREGROUND...
+> MIDDLE GROUND... FAR BACKGROUND... [200+ 字]
+
+✅ 簡單直接：
+> A dim corridor at night. A young woman hides at one end, a closed door in the middle, a monster walks away at the far end. [80 字]
+
+---
+
 ## 8.5 ⚠️ MJ AI Moderator 觸發詞庫（從實際失敗學到，2026-05-19）
 
 **MJ 會在生成前掃描 prompt + 預期輸出，認為「可能違規」就拒絕。** 以下是已驗證會觸發 moderator 的組合與替代詞。

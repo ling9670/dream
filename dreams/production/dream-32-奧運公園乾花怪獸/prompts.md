@@ -61,23 +61,11 @@ The mood: the dreamlike surreal transformation of a familiar place into an alien
 
 ---
 
-## Panel 5 v5 — 室內 condo 走廊（女主躲角落、家門中段、怪獸走遠）
+## Panel 5 v6 — 簡單直接描述
 ```
-A long dim INDOOR condo apartment building corridor at night — normal residential interior with carpet or tiled floor, painted walls in muted neutral colors, recessed ceiling lights providing dim institutional glow, multiple apartment unit doors lining both sides of the corridor.
+A dim long indoor condo apartment corridor at night, dark institutional palette. A young woman hides in the corner at the near end of the corridor, peeking out cautiously. In the middle of the corridor on one side, a closed apartment door. At the far end, a Godzilla-style dinosaur monster with greenish-grey scaly skin, spiked plates and a long tail, walking away with its back to the camera — the monster is only 1.5 times the woman's height, not a giant kaiju. Painterly oil on aged surface, soft brushwork, vintage storybook quality, page from an old fairytale book.
 
-Vertical 9:16 composition with deep horizontal corridor layout:
-
-NEAR END (lower part of frame, foreground): the dreamer is HIDING IN THE CORNER at the near end — partially tucked behind a wall recess or corridor corner, only her shoulder and side of her body partly visible as she leans against the wall, waiting and watching. She holds her bouquet of dried flowers (white lotus visible).
-
-MIDDLE OF CORRIDOR (center of frame): A CLOSED APARTMENT DOOR clearly visible in the middle of the corridor on one side — HER HOME, the safe destination, plainly shut.
-
-FAR END (upper part of frame, deep background): the GODZILLA-STYLE CREATURE seen FROM BEHIND, its full back visible — bipedal reptilian dinosaur-monster with greenish-grey scaly skin, spiked plates down its back, long thick tail trailing on the corridor floor behind it, only 1.5x the dreamer's height (about 2.4m). It is WALKING AWAY from the dreamer toward the OPPOSITE FAR END of the corridor, its back to her, unaware.
-
-Normal indoor condo corridor atmosphere, dim ambient overhead lighting, muted neutral palette with cool institutional shadows.
-
-The mood: the held breath of hiding in the corner, the monster's back receding, the closed door waiting in between, sacred-strange. Painterly oil on subtly aged surface, soft brushwork, page from an old fairytale book.
-
---ar 9:16 --v 7 --style raw --stylize 350 --chaos 10 --sref https://cdn.midjourney.com/9cb73c88-6bdd-45ad-9c22-f46c32bcb1e0/0_3.png --sw 80 --no clouds, sky scene, daylight, bright sunny, eagle, bird, photorealism, sharp face close-up, dramatic theatrical lighting, vibrant neon colors, magical sparkles, cosmic stars overhead, alien architecture, outdoor walkway, sky visible, humanoid alien, blood, gore, weapon, gun, knife, massive Godzilla, giant kaiju, tiny lizard, T-rex, monster facing camera, monster running toward camera, monster facing girl, monster looking at girl, text, letters, words, signs
+--ar 9:16 --v 7 --style raw --stylize 350 --chaos 10 --sref https://cdn.midjourney.com/9cb73c88-6bdd-45ad-9c22-f46c32bcb1e0/0_3.png --sw 80 --no daylight, sunny, eagle, bird, photorealism, vibrant neon, cosmic stars, outdoor walkway, sky visible, alien architecture, giant kaiju, T-rex, tiny lizard, monster facing camera, multiple monsters, text, letters, signs
 ```
 
 ---
