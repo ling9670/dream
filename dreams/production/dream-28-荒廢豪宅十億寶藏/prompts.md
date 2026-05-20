@@ -65,19 +65,19 @@ The mood: the impossible wealth pulled from below, the surreal abundance, sacred
 
 ---
 
-## Panel 5 — 分賄賂、人物外貌一致
+## Panel 5 v3 — 中性語言（避開 moderator）
 ```
-Medium shot in the abandoned mansion — three figures present, MATCHING THE SAME APPEARANCE as in Panel 2:
+Medium shot in the abandoned mansion — three figures sharing items:
 
-The MIDDLE-AGED WORKER (worn brown work clothes, work cap, work boots, tool belt — same outfit as previous panels) handing a small portion of the treasures (a small bundle of cash and one gold bar) to the YOUNG POLICE OFFICER (same uniform as previous panels) who accepts quietly with his face turned away, in a gesture of bribery understood.
+The MIDDLE-AGED WORKER (worn brown work clothes, work cap, work boots — same outfit as previous panels) holds out a small bundle of items including a few golden objects toward the YOUNG POLICE OFFICER (same uniform as previous panels). The police officer accepts quietly, his face turned slightly aside.
 
-The police officer in turn passes a SMALLER portion (a few bills, a small valuable item) toward the YOUNG WOMAN dreamer (same appearance and clothing as in Panel 2) standing slightly behind him. The woman's posture shows quiet receiving — both grateful and a little ashamed.
+The police officer then turns toward the YOUNG WOMAN dreamer (same appearance as previous panels) standing slightly behind him, offering her a small object from the items — a single piece, smaller than what the worker gave him. The woman's posture shows quiet receiving — both grateful and a little uncertain.
 
-The piles of remaining treasure visible beside the worker — cash bundles, gold bars, jewelry.
+Beside them: a modest pile of the worker's recovered items including stacks and golden objects, visible but not the focus. Dim ambient mansion light, muted brown-gold-grey palette.
 
-The mood: the moral economics of inheritance, sacred-strange. Painterly oil on subtly aged surface, soft brushwork, page from an old fairytale book.
+The mood: the quiet sharing of recovered things in a ruined place, sacred-strange. Painterly oil on subtly aged surface, soft brushwork, page from an old fairytale book.
 
---ar 9:16 --v 7 --style raw --stylize 350 --chaos 10 --sref https://cdn.midjourney.com/9cb73c88-6bdd-45ad-9c22-f46c32bcb1e0/0_3.png --sw 80 --no clouds, sky scene, daylight, bright sunny, eagle, bird, photorealism, sharp face close-up, modern setting, dramatic theatrical lighting, vibrant colors, magical glow, sparkles, romantic embrace, different characters from previous panels, different clothing, text, letters, words, signs, brand logos
+--ar 9:16 --v 7 --style raw --stylize 350 --chaos 10 --sref https://cdn.midjourney.com/9cb73c88-6bdd-45ad-9c22-f46c32bcb1e0/0_3.png --sw 80 --no clouds, sky scene, daylight, bright sunny, eagle, bird, photorealism, sharp face close-up, modern setting, dramatic theatrical lighting, vibrant colors, magical glow, sparkles, romantic embrace, different characters from previous panels, different clothing, text, letters, words, signs, brand logos, gun, weapon
 ```
 
 ---
