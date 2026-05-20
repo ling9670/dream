@@ -1,0 +1,19 @@
+# Image panels — stored locally, not in repo (too large, also personal content)
+**/panels/
+*.png
+*.jpg
+*.jpeg
+*.heic
+*.webp
+
+# macOS
+.DS_Store
+._*
+
+# Editor
+.vscode/
+.idea/
+
+# Temp
+*.tmp
+.tmp/
