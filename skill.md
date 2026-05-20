@@ -147,7 +147,9 @@ sharp face close-up, photorealistic face, blonde hair, light hair
 
 ---
 
-## 8.4 ⚠️ Prompt 簡化原則（2026-05-20 學到）
+## 8.4 ⚠️ Prompt 簡化原則 — **MANDATORY 鐵則**（2026-05-20 強制執行）
+
+**所有未來 prompt（剩餘 10 個夢、全部 panel）必須遵守此規則。**
 
 **MJ 對過長 prompt 反應不好。** 過 200 字 + 多層大寫 + 多個分段 = 元素丟失或混淆。
 
@@ -170,6 +172,18 @@ sharp face close-up, photorealistic face, blonde hair, light hair
 
 ✅ 簡單直接：
 > A dim corridor at night. A young woman hides at one end, a closed door in the middle, a monster walks away at the far end. [80 字]
+
+### 標準 prompt 模板（強制套用）
+```
+[一句場景描述：地點+時間+主要動作]. [主體描述：人物姿態+表情]. [次要元素：物件、其他角色]. [質地：painterly oil on aged surface, soft brushwork, vintage storybook quality, page from an old fairytale book].
+
+--ar 9:16 --v 7 --style raw --stylize 350 --chaos 10 --sref [URL] --sw [60-100] --no [核心衝突關鍵字 + 必加 text/letters/words/signs]
+```
+
+**字數目標：80-150 字（不含參數）。**
+
+### 之前的 Dream #28-#32 prompts
+舊版本太複雜（200+ 字）。**未來再回去重做這些夢的某 panel 時，要簡化重寫。** 已完成存圖的不動。
 
 ---
 
