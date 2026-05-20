@@ -1,8 +1,8 @@
-<!-- 2026-05-19 | Dream 32 prompts -->
+<!-- 2026-05-19 | Dream 32 prompts v2 — restructured to 8 panels with new hiding scene -->
 
-# Dream #32 — 奧運公園乾花怪獸 / 8 Prompts
+# Dream #32 — 奧運公園乾花怪獸 / 8 Prompts v2
 
-**色調：** 重建階段 — 乾燥植物色、磚紅、暖琥珀（家中）/ 冷異星色（怪獸走廊）
+**色調：** 重建階段 — 乾燥植物色、磚紅、暖琥珀（家中）/ 冷宇宙色（走廊+怪獸）
 **比例：** 9:16
 
 ## 🔒 角色
@@ -10,7 +10,10 @@
 - 兩個陌生女生（問路）
 - 乾花店店主
 - 黑長毛貓（Eve 真貓）
-- 怪獸（人形大小、奇異、灰皮膚或半透明，跪姿溫順）
+- 怪獸（人形大小、灰皮膚、奇異但不恐怖）
+
+## 結構更新（v2）
+原 Panel 4「電梯」已刪除，加入新 Panel 5「躲怪獸看家門」。
 
 ---
 
@@ -47,24 +50,28 @@ The mood: the moment of being given more than asked for, the small gift of beaut
 
 ---
 
-## Panel 4 — 大廈電梯只到4樓
+## Panel 4 — 宇宙星球走廊（遠處怪獸）
 ```
-Medium shot inside an old residential apartment building elevator at evening, the dreamer standing in the elevator holding her bouquet of dried flowers (large white lotus visible). The elevator floor button panel shows numbers — the button for floor 5 appears DARKENED OR DISABLED, while the floor 4 button is highlighted as the current destination. Slippers placed on the elevator floor in an unusual arrangement (a quirky detail from the dream's "Korean management" change). Muted brown-grey institutional palette.
-
-The mood: the small wrongness of an everyday thing now changed, sacred-strange. Painterly oil on subtly aged surface, soft brushwork, page from an old fairytale book.
-
---ar 9:16 --v 7 --style raw --stylize 350 --chaos 10 --sref https://cdn.midjourney.com/9cb73c88-6bdd-45ad-9c22-f46c32bcb1e0/0_3.png --sw 80 --no clouds, sky scene, night, dark, eagle, bird, photorealism, sharp face close-up, modern luxury elevator, dramatic theatrical lighting, vibrant colors, text, letters, words, readable numbers everywhere, signs with text, brand logos
-```
-
----
-
-## Panel 5 — 4樓變宇宙星球走廊
-```
-Wide shot of an impossible outdoor walkway that should not exist in a residential building — the 4th floor of the apartment has transformed into a SURREAL COSMIC-PLANETARY OUTDOOR CORRIDOR with strange star-strewn dark sky overhead, alien architecture, foldable strange ladders or stairs going in odd directions, distant strange CREATURE SILHOUETTES (monsters) in the shadows. The dreamer stands in this corridor holding her bouquet of dried flowers, alongside a small group of OTHER PEOPLE also looking confused, all trying to figure out how to ascend. Cold purple-grey-cosmic palette mixed with deep night.
+Wide shot of an impossible outdoor walkway that should not exist in a residential building — the 4th floor of an apartment has transformed into a SURREAL COSMIC-PLANETARY OUTDOOR CORRIDOR with strange star-strewn dark sky overhead, alien architecture, foldable strange ladders or stairs going in odd directions, distant strange CREATURE SILHOUETTES (monsters) in the shadows. The dreamer stands in this corridor holding her bouquet of dried flowers, alongside a small group of OTHER PEOPLE also looking confused, all trying to figure out how to ascend. Cold purple-grey-cosmic palette mixed with deep night.
 
 The mood: the dreamlike surreal transformation of a familiar place into an alien threat, sacred-strange. Painterly oil on subtly aged surface, soft brushwork, page from an old fairytale book.
 
 --ar 9:16 --v 7 --style raw --stylize 350 --chaos 12 --sref https://cdn.midjourney.com/9cb73c88-6bdd-45ad-9c22-f46c32bcb1e0/0_3.png --sw 70 --no clouds dominating, sky-only scene, daylight, bright sunny, eagle, bird, photorealism, sharp face close-up, dramatic theatrical lighting, vibrant neon colors, magical sparkles, fairy magic, ordinary indoor hallway, normal apartment corridor, text, letters, words, signs
+```
+
+---
+
+## Panel 5 — NEW 躲怪獸 + 看家門
+```
+Medium-wide shot of a dim institutional outdoor walkway/corridor at night with surreal cosmic elements above. The dreamer is in the foreground HIDING behind the corner of a concrete pillar or wall, her body pressed flat against it, peering carefully around the edge. She holds the bouquet of dried flowers (large white lotus visible) clutched against her chest. Her eyes are fixed on HER APARTMENT DOOR visible in the middle distance — a normal-looking modest doorway some distance away, the safe destination she needs to reach.
+
+Between her and the door, near the corridor's path: a MONSTER (vaguely humanoid creature, grey-pale skin, otherworldly form, not horrific but clearly wrong) moves slowly along the corridor, not yet aware of her presence. The cosmic-strange architecture surrounds them: foldable strange stairs nearby, distant alien stars overhead.
+
+Her body language: tense, holding her breath, calculating whether to make the run to her door. Cold purple-grey-cosmic palette, very dim ambient light.
+
+The mood: the tense moment of needing to reach safety, the door visible but a creature between, sacred-strange threat. Painterly oil on subtly aged surface, soft brushwork, page from an old fairytale book.
+
+--ar 9:16 --v 7 --style raw --stylize 350 --chaos 10 --sref https://cdn.midjourney.com/9cb73c88-6bdd-45ad-9c22-f46c32bcb1e0/0_3.png --sw 70 --no clouds dominating, sky-only scene, daylight, bright sunny, eagle, bird, photorealism, sharp face close-up, dramatic theatrical lighting, vibrant neon colors, magical sparkles, horror movie monster, demon close-up, blood, gore, weapon, gun, knife, text, letters, words, signs
 ```
 
 ---
