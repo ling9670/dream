@@ -37,13 +37,13 @@ The mood: the small wedge of misaligned attention, sacred-strange quiet. Painter
 
 ---
 
-## Panel 3 — 商場外、男友亮出偷的錢包
+## Panel 3 — 商場外、男友亮出偷的錢包、女主驚訝 v2
 ```
-Medium shot outside the closed shopping mall at evening, dim ambient street light. The young woman and her boyfriend stand together on the pavement just outside, the closed shop fronts darkened behind them. The boyfriend holds up TWO WHITE WALLETS in his hands toward the dreamer, his posture casual, slightly proud — he has just revealed he stole them. The woman stands beside him in profile, taking one of the wallets from his hand, her expression neutral, almost detached. Muted dusk palette, cool grey-blue with hints of warm streetlight amber.
+Medium shot outside the closed shopping mall at evening, dim ambient street light. The young woman and her boyfriend stand together on the pavement just outside, the closed shop fronts darkened behind them. The boyfriend holds up TWO WHITE WALLETS in his hands toward the dreamer, his posture casual, slightly proud — he has just revealed he stole them. The young woman stands beside him, her face turned toward the wallets with a SHOCKED expression — eyes wide and round, mouth slightly open in stunned realization, eyebrows raised, body slightly leaning back in surprise. She is clearly NOT taking it calmly — the moment of "wait, you STOLE them?" Muted dusk palette, cool grey-blue with hints of warm streetlight amber.
 
-The mood: the quiet moral compromise, the moment of accepting something taken, sacred-strange. Painterly oil on subtly aged surface, soft brushwork, page from an old fairytale book.
+The mood: the moment of moral shock, the small wedge of disbelief at a partner's act, sacred-strange. Painterly oil on subtly aged surface, soft brushwork, page from an old fairytale book.
 
---ar 9:16 --v 7 --style raw --stylize 350 --chaos 10 --sref https://cdn.midjourney.com/9cb73c88-6bdd-45ad-9c22-f46c32bcb1e0/0_3.png --sw 70 --no clouds dominating, sky-only scene, full daylight, bright sunny, eagle, bird, photorealism, sharp face close-up, modern luxury mall, dramatic theatrical lighting, vibrant colors, crowd, multiple figures, text, letters, words, brand names, store signs with text
+--ar 9:16 --v 7 --style raw --stylize 350 --chaos 10 --sref https://cdn.midjourney.com/9cb73c88-6bdd-45ad-9c22-f46c32bcb1e0/0_3.png --sw 70 --no clouds dominating, sky-only scene, full daylight, bright sunny, eagle, bird, photorealism, sharp face close-up, modern luxury mall, dramatic theatrical lighting, vibrant colors, crowd, multiple figures, calm neutral expression, smiling, romantic, text, letters, words, brand names, store signs with text
 ```
 
 ---
@@ -94,11 +94,11 @@ The mood: the silent moment of the breakup, the climbing-up-and-leaving, the par
 
 ---
 
-## Panel 8 — 兩隻黑白貓現身
+## Panel 8 — 一隻純黑貓 + 一隻純白貓 v2
 ```
-Wide shot of a quiet patch of dry urban grass at the edge of a residential area, evening light. Emerging from the tall grass: TWO BLACK-AND-WHITE CATS — one is UNUSUALLY LARGE, almost twice the size of a normal cat, standing solidly; the other is a NORMAL-SIZED black-and-white cat beside it. Both cats have similar coloring (white chest and paws, black back and head pattern), both faces turned toward the viewer's general direction but NOT directly at camera, their eyes calm and knowing — they have appeared, they have been seen, they will leave. The grass moves slightly. No human figures present in this panel.
+Wide shot of a quiet patch of dry urban grass at the edge of a residential area, evening light. Emerging from the tall grass: TWO CATS of contrasting colors — one is UNUSUALLY LARGE, almost twice the size of a normal cat, with a PURE SOLID BLACK coat, standing solidly with golden-amber eyes; the other is a NORMAL-SIZED cat beside it with a PURE SOLID WHITE coat, smaller in scale. The black cat and the white cat side by side, opposite colors against the muted grass background. Both faces turned toward the viewer's general direction but NOT directly at camera, their eyes calm and knowing — they have appeared, they have been seen, they will leave. The grass moves slightly. No human figures present.
 
-The mood: the mysterious sacred presence of impossible cats at the end of a difficult day, the spiritual mark of "I see you", sacred-strange devotional. Painterly oil on subtly aged surface, soft brushwork, page from an old fairytale book.
+The mood: the mysterious sacred presence of impossible cats — opposite in color, paired in arrival — at the end of a difficult day, sacred-strange devotional. Painterly oil on subtly aged surface, soft brushwork, page from an old fairytale book.
 
---ar 9:16 --v 7 --style raw --stylize 350 --chaos 10 --sref https://cdn.midjourney.com/9cb73c88-6bdd-45ad-9c22-f46c32bcb1e0/0_3.png --sw 80 --no clouds, sky scene, daylight, bright sunny, eagle, bird, photorealism, people, person, human figure, sharp animal close-up, dramatic theatrical lighting, vibrant colors, dog, multiple cats more than two, ginger cat, tabby cat, solid color cat, single cat, magical glowing eyes, sparkles, fairy lights, text, letters, words, signs
+--ar 9:16 --v 7 --style raw --stylize 350 --chaos 10 --sref https://cdn.midjourney.com/9cb73c88-6bdd-45ad-9c22-f46c32bcb1e0/0_3.png --sw 80 --no clouds, sky scene, daylight, bright sunny, eagle, bird, photorealism, people, person, human figure, sharp animal close-up, dramatic theatrical lighting, vibrant colors, dog, multiple cats more than two, ginger cat, tabby cat, black and white pattern cat, tuxedo cat, single cat, magical glowing eyes, sparkles, fairy lights, text, letters, words, signs
 ```
