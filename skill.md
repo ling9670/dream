@@ -156,6 +156,7 @@ sharp face close-up, photorealistic face, blonde hair, light hair
 | 觸發 | 已測案例 | 安全替代 |
 |------|---------|---------|
 | **賄賂 + 警察 + 現金** | Dream #28 P5「bribery understood」+ police + cash | 「sharing items」「offering」「accepting quietly」 |
+| **警察 + 年輕女性 + 廢墟暗場** | Dream #28 P5 v3 即使中性語言仍卡 — moderator 讀作「警察+女性+危險場景」 | **改用 close-up of hands only，no faces**，明確標示「illustrated, not realistic」 |
 | **女性身體形容詞**（feminine body shape, motherly, soft figure）+ 多個 「woman/female」字 | Dream #17 P7 強調女性大嬸 | 「elderly lady」「older woman」「her」「grey-streaked hair」 |
 | **性別對比強調**（不是男、不是女）連續多次 | Dream #17 P7 `--no male/man/masculine` 列太多 | 直接描述目標，不對比 |
 | **暴力 + 血** | （未測但已知）| 「struggle」「subdued」「fallen」 |

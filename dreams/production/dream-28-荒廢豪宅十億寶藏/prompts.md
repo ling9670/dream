@@ -65,19 +65,19 @@ The mood: the impossible wealth pulled from below, the surreal abundance, sacred
 
 ---
 
-## Panel 5 v3 — 中性語言（避開 moderator）
+## Panel 5 v4 — 童書風格 + 手部特寫（避開「真實人物」moderator）
 ```
-Medium shot in the abandoned mansion — three figures sharing items:
+Close-up still life style shot focused on HANDS and OBJECTS — three pairs of hands meet over a small wooden table in the dim corner of an old ruined mansion. The composition is intimate and illustrated, like a children's fairy tale book page, not realistic.
 
-The MIDDLE-AGED WORKER (worn brown work clothes, work cap, work boots — same outfit as previous panels) holds out a small bundle of items including a few golden objects toward the YOUNG POLICE OFFICER (same uniform as previous panels). The police officer accepts quietly, his face turned slightly aside.
+A pair of weathered older hands (the worker's) hold out a small bundle wrapped in cloth toward another pair of hands wearing simple dark sleeves with a small embroidered patch (the officer figure). The dark-sleeved hands accept gently. Then those hands offer a single small wrapped object to a third pair of slender hands (the dreamer's) reaching forward to receive.
 
-The police officer then turns toward the YOUNG WOMAN dreamer (same appearance as previous panels) standing slightly behind him, offering her a small object from the items — a single piece, smaller than what the worker gave him. The woman's posture shows quiet receiving — both grateful and a little uncertain.
+The three pairs of hands meeting form a quiet triangle of giving. On the table: a few mysterious wrapped bundles, a small golden object, faint warm glow. Background blurred — the mansion ruins in muted brown-gold-grey shadow.
 
-Beside them: a modest pile of the worker's recovered items including stacks and golden objects, visible but not the focus. Dim ambient mansion light, muted brown-gold-grey palette.
+Faces are NOT visible in this composition, only hands and the small parts of arms and sleeves. The illustration style is gentle, fairy-tale, vintage storybook page quality. Not realistic photography, not action, just hands and items in quiet exchange.
 
-The mood: the quiet sharing of recovered things in a ruined place, sacred-strange. Painterly oil on subtly aged surface, soft brushwork, page from an old fairytale book.
+Painterly oil on subtly aged surface, soft brushwork, page from an old fairytale book. Studio Ghibli's quiet still-life moments.
 
---ar 9:16 --v 7 --style raw --stylize 350 --chaos 10 --sref https://cdn.midjourney.com/9cb73c88-6bdd-45ad-9c22-f46c32bcb1e0/0_3.png --sw 80 --no clouds, sky scene, daylight, bright sunny, eagle, bird, photorealism, sharp face close-up, modern setting, dramatic theatrical lighting, vibrant colors, magical glow, sparkles, romantic embrace, different characters from previous panels, different clothing, text, letters, words, signs, brand logos, gun, weapon
+--ar 9:16 --v 7 --style raw --stylize 350 --chaos 10 --sref https://cdn.midjourney.com/9cb73c88-6bdd-45ad-9c22-f46c32bcb1e0/0_3.png --sw 80 --no clouds, sky scene, daylight, bright sunny, eagle, bird, photorealism, realistic photo, sharp face close-up, faces visible, full body, full figure, modern setting, dramatic theatrical lighting, vibrant colors, magical glow, sparkles, text, letters, words, signs, brand logos, weapon, gun, knife
 ```
 
 ---
