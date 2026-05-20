@@ -61,17 +61,21 @@ The mood: the dreamlike surreal transformation of a familiar place into an alien
 
 ---
 
-## Panel 5 v2 — Godzilla 風怪獸（1.5 倍人高）
+## Panel 5 v3 — 走廊縱深構圖（女主一端、家門中段、怪獸走向另一端）
 ```
-Medium-wide shot of a dim institutional outdoor walkway/corridor at night with surreal cosmic elements above. The dreamer is in the foreground HIDING behind the corner of a concrete pillar or wall, her body pressed flat against it, peering carefully around the edge. She clutches the bouquet of dried flowers (large white lotus visible) against her chest. Her eyes are fixed on HER APARTMENT DOOR visible in the middle distance — a normal-looking modest doorway some distance away, the safe destination.
+Wide shot, deep one-point perspective view down a long dim institutional outdoor corridor at night with surreal cosmic elements (alien stars above, strange architecture). The corridor recedes into depth:
 
-Between her and the door, walking slowly along the corridor: a GODZILLA-LIKE CREATURE — a bipedal reptilian dinosaur-like monster with rough greenish-grey scaly skin, prominent spiked plates running down its back to a long thick tail, powerful clawed arms, large head with sharp teeth, the iconic Godzilla silhouette. CRITICAL SIZE: the creature is ONLY 1.5 TIMES the height of the dreamer — roughly 2.4 meters tall, NOT the massive movie-Godzilla size. It is a smaller scaled-down Godzilla-style creature, just bigger than her, not towering.
+In the FOREGROUND of the frame: the dreamer HIDING at the near end behind a pillar, body pressed flat against it, peering carefully down the corridor. She clutches her bouquet of dried flowers (white lotus visible) against her chest.
 
-The creature is moving slowly, not yet aware of her presence. Cosmic-strange architecture surrounds them: foldable strange stairs nearby, distant alien stars overhead. Cold purple-grey-cosmic palette, dim ambient light.
+In the MIDDLE DISTANCE down the corridor: HER APARTMENT DOOR clearly visible on the side of the corridor — a normal modest doorway, the safe destination.
 
-The mood: the tense moment of needing to reach safety, a dinosaur-monster between her and the door, sacred-strange threat. Painterly oil on subtly aged surface, soft brushwork, page from an old fairytale book.
+In the FAR DISTANCE at the opposite end of the corridor: the GODZILLA-STYLE CREATURE walking AWAY from camera toward the far end, its BACK TO THE CAMERA, moving away from both her and her home. The creature is bipedal reptilian dinosaur-like, greenish-grey scaly skin, spiked plates down its back, long tail, only 1.5 times the height of the dreamer (about 2.4m), not a giant kaiju.
 
---ar 9:16 --v 7 --style raw --stylize 350 --chaos 10 --sref https://cdn.midjourney.com/9cb73c88-6bdd-45ad-9c22-f46c32bcb1e0/0_3.png --sw 70 --no clouds dominating, sky-only scene, daylight, bright sunny, eagle, bird, photorealism, sharp face close-up, dramatic theatrical lighting, vibrant neon colors, magical sparkles, humanoid monster, grey skinned alien, blood, gore, weapon, gun, knife, massive city-destroying Godzilla, giant kaiju larger than buildings, tiny lizard, small dinosaur, T-rex, text, letters, words, signs
+The deep perspective creates the spatial triangle: girl hidden close, door in middle of corridor, monster walking away to the far end. Cold purple-grey-cosmic dim palette, very dark institutional ambient light.
+
+The mood: the moment of calculating the dash to her door while the creature moves away, sacred-strange. Painterly oil on subtly aged surface, soft brushwork, page from an old fairytale book.
+
+--ar 9:16 --v 7 --style raw --stylize 350 --chaos 10 --sref https://cdn.midjourney.com/9cb73c88-6bdd-45ad-9c22-f46c32bcb1e0/0_3.png --sw 70 --no clouds dominating, sky-only scene, daylight, bright sunny, eagle, bird, photorealism, sharp face close-up, dramatic theatrical lighting, vibrant neon colors, magical sparkles, humanoid monster, grey skinned alien, blood, gore, weapon, gun, knife, massive city-destroying Godzilla, giant kaiju larger than buildings, tiny lizard, small dinosaur, T-rex, monster facing the girl, monster looking at girl, monster running toward girl, monster near girl, text, letters, words, signs
 ```
 
 ---
@@ -98,13 +102,17 @@ The mood: the absurd quiet preparation, the tension of trying to make NO sound, 
 
 ---
 
-## Panel 8 v2 — Godzilla 怪獸跪著、被綁
+## Panel 8 v3 — 怪獸跪地、女主站著、只有她喝酒
 ```
-Medium-wide shot inside a warm apartment interior at evening, the dreamer sits casually on a chair holding a wine glass, drinking calmly. In front of her on the floor: a GODZILLA-LIKE CREATURE kneeling submissively — a bipedal dinosaur-monster with greenish-grey scaly skin, spiked plates down its back, long tail trailing behind it on the floor, clawed arms now bound behind its back with sturdy rope, powerful body folded into kneeling posture. CRITICAL SIZE: the creature is ONLY 1.5 TIMES the height of the seated dreamer — roughly 2.4 meters when standing, but kneeling it is barely taller than her — a SCALED-DOWN Godzilla-style creature, not a building-sized kaiju.
+Medium-wide shot inside a warm cozy apartment interior at evening. The dreamer is STANDING upright in the middle ground of the frame, holding a single wine glass in one hand, drinking calmly. She is the ONLY ONE with wine — no second glass anywhere. She stands at a comfortable distance away from the creature (about 1-2 meters), not too close.
 
-The creature's expression is utterly gentle and submissive, head slightly tilted as if subtly TEACHING the dreamer how the ropes could be tied more tightly. The dreamer is calm and unafraid. The black long-haired cat watches from a corner. Warm amber lamp light fills the cozy apartment. A bottle of wine and another glass on a side table.
+On the floor in front of her: a GODZILLA-STYLE CREATURE KNEELING ON THE GROUND — body clearly on the floor in a submissive kneeling posture, bipedal dinosaur-monster with greenish-grey scaly skin, spiked plates down its back, long tail trailing on the floor behind it, clawed arms bound behind its back with sturdy rope. CRITICAL SIZE: only 1.5x the dreamer's height when standing — kneeling it is BELOW her shoulder height.
 
-The mood: the surreal reversal — the captive dinosaur-monster teaching the captor while she drinks wine, sacred-strange dreamlike absurdity. Painterly oil on subtly aged surface, soft brushwork, page from an old fairytale book.
+The creature's posture is utterly gentle and submissive, head slightly tilted as if subtly TEACHING her how the ropes could be tied more tightly. The dreamer watches it calmly while sipping her wine, body upright, slightly looking down at it.
 
---ar 9:16 --v 7 --style raw --stylize 350 --chaos 12 --sref https://cdn.midjourney.com/9cb73c88-6bdd-45ad-9c22-f46c32bcb1e0/0_3.png --sw 80 --no clouds, sky scene, night sky outside, eagle, bird, photorealism, sharp face close-up, modern luxury, dramatic theatrical lighting, vibrant colors, horror movie monster, scary demon, fanged growling expression, blood, gore, violence, weapon, gun, massive Godzilla destroying room, giant kaiju, tiny lizard, small dinosaur, T-rex, text, letters, words, signs, brand logos
+The black long-haired cat watches from a corner. Warm amber lamp light fills the cozy apartment. A bottle of wine on a side table — ONE bottle, ONE glass (hers).
+
+The mood: the surreal calm reversal — the dreamer standing watching her tamed dinosaur captive while sipping wine, sacred-strange dreamlike absurdity. Painterly oil on subtly aged surface, soft brushwork, page from an old fairytale book.
+
+--ar 9:16 --v 7 --style raw --stylize 350 --chaos 12 --sref https://cdn.midjourney.com/9cb73c88-6bdd-45ad-9c22-f46c32bcb1e0/0_3.png --sw 80 --no clouds, sky scene, night sky outside, eagle, bird, photorealism, sharp face close-up, modern luxury, dramatic theatrical lighting, vibrant colors, horror movie monster, scary demon, fanged growling, blood, gore, violence, weapon, gun, massive Godzilla destroying room, giant kaiju, tiny lizard, small dinosaur, T-rex, monster drinking wine, monster holding glass, two wine glasses, multiple glasses, girl sitting on chair, girl seated, monster standing tall, monster floating, monster on ceiling, girl very close to monster, girl touching monster, text, letters, words, signs, brand logos
 ```
