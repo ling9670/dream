@@ -61,21 +61,21 @@ The mood: the dreamlike surreal transformation of a familiar place into an alien
 
 ---
 
-## Panel 5 v3 — 走廊縱深構圖（女主一端、家門中段、怪獸走向另一端）
+## Panel 5 v4 — 女主 POV 視角（從她肩膀後看出去）
 ```
-Wide shot, deep one-point perspective view down a long dim institutional outdoor corridor at night with surreal cosmic elements (alien stars above, strange architecture). The corridor recedes into depth:
+A dim narrow outdoor institutional corridor at night, surreal cosmic stars visible through open sections above. Vertical 9:16 composition with three layers of depth:
 
-In the FOREGROUND of the frame: the dreamer HIDING at the near end behind a pillar, body pressed flat against it, peering carefully down the corridor. She clutches her bouquet of dried flowers (white lotus visible) against her chest.
+CLOSE FOREGROUND (lower edge of frame): the back of the dreamer pressed against a rough concrete pillar, only her shoulder and the back of her head partly visible at the edge of frame — she is hiding here, the camera shows her POV from just behind her shoulder looking out into the corridor.
 
-In the MIDDLE DISTANCE down the corridor: HER APARTMENT DOOR clearly visible on the side of the corridor — a normal modest doorway, the safe destination.
+MIDDLE GROUND (center of frame, down the corridor): a normal modest apartment doorway clearly visible on one side of the corridor — her home, the safe destination. The door is at a reachable distance but a short dash away.
 
-In the FAR DISTANCE at the opposite end of the corridor: the GODZILLA-STYLE CREATURE walking AWAY from camera toward the far end, its BACK TO THE CAMERA, moving away from both her and her home. The creature is bipedal reptilian dinosaur-like, greenish-grey scaly skin, spiked plates down its back, long tail, only 1.5 times the height of the dreamer (about 2.4m), not a giant kaiju.
+FAR BACKGROUND (upper third of frame, far end of corridor): the GODZILLA-STYLE CREATURE seen FROM BEHIND, walking AWAY from camera toward the far end — a bipedal reptilian dinosaur-monster with greenish-grey scaly skin, spiked plates down its back, long tail trailing, only 1.5x the dreamer's height (about 2.4m), NOT a giant kaiju. It is walking away with its back turned, unaware of her presence.
 
-The deep perspective creates the spatial triangle: girl hidden close, door in middle of corridor, monster walking away to the far end. Cold purple-grey-cosmic dim palette, very dark institutional ambient light.
+The corridor is cold purple-grey-cosmic, very dim institutional ambient light. Sparse alien stars overhead through open air sections of the strange architecture.
 
-The mood: the moment of calculating the dash to her door while the creature moves away, sacred-strange. Painterly oil on subtly aged surface, soft brushwork, page from an old fairytale book.
+The mood: a private moment of hidden watching, the dinosaur-monster fortunately moving away, the door visible and reachable, sacred-strange held breath. Painterly oil on subtly aged surface, soft brushwork, page from an old fairytale book.
 
---ar 9:16 --v 7 --style raw --stylize 350 --chaos 10 --sref https://cdn.midjourney.com/9cb73c88-6bdd-45ad-9c22-f46c32bcb1e0/0_3.png --sw 70 --no clouds dominating, sky-only scene, daylight, bright sunny, eagle, bird, photorealism, sharp face close-up, dramatic theatrical lighting, vibrant neon colors, magical sparkles, humanoid monster, grey skinned alien, blood, gore, weapon, gun, knife, massive city-destroying Godzilla, giant kaiju larger than buildings, tiny lizard, small dinosaur, T-rex, monster facing the girl, monster looking at girl, monster running toward girl, monster near girl, text, letters, words, signs
+--ar 9:16 --v 7 --style raw --stylize 350 --chaos 10 --sref https://cdn.midjourney.com/9cb73c88-6bdd-45ad-9c22-f46c32bcb1e0/0_3.png --sw 70 --no clouds dominating, sky-only scene, daylight, bright sunny, eagle, bird, photorealism, sharp face close-up, dramatic theatrical lighting, vibrant neon colors, magical sparkles, humanoid monster, grey skinned alien, blood, gore, weapon, gun, knife, massive Godzilla, giant kaiju larger than buildings, tiny lizard, T-rex, monster facing camera, monster running toward camera, monster looking at girl, normal hospital corridor, school corridor, text, letters, words, signs
 ```
 
 ---
