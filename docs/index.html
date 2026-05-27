@@ -8,478 +8,520 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
+/* ── RESET ──────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; }
 
+/* ── TOKENS ─────────────────────────────────────────── */
 :root {
-  --bg:          #F7F4EF;
-  --text:        #2C2A27;
-  --text-muted:  #7A7670;
-  --border:      #DDD9D0;
-  --font-serif:  'Noto Serif TC', 'Songti SC', serif;
+  --bg:      #F7F4EF;
+  --text:    #2C2A27;
+  --muted:   #7A7670;
+  --border:  #DDD9D0;
+  --page-l:  #FDFAF5;
+  --page-r:  #FAF7F0;
+  --serif:   'Noto Serif TC', 'Songti SC', serif;
+  --shadow:  0 16px 56px rgba(0,0,0,0.24), 0 2px 8px rgba(0,0,0,0.12);
 
-  --phase-departure: #C4B49A;
-  --phase-loss:      #8B9EA8;
-  --phase-violence:  #A8896C;
-  --phase-heartdead: #6B7280;
-  --phase-rebuild:   #7A9E87;
-  --phase-action:    #9B7B9E;
-  --phase-fly:       #B8A9C9;
-  --phase-float:     #A9C4C0;
+  --c-departure: #C4B49A;
+  --c-loss:      #8B9EA8;
+  --c-violence:  #A8896C;
+  --c-heartdead: #6B7280;
+  --c-rebuild:   #7A9E87;
+  --c-action:    #9B7B9E;
+  --c-fly:       #B8A9C9;
+  --c-float:     #A9C4C0;
 }
 
-html, body {
-  height: 100%;
-  overflow: hidden;
+body {
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font-serif);
-  touch-action: pan-y;
+  font-family: var(--serif);
 }
 
-/* ── FLIPBOOK SHELL ─────────────────────────────────── */
-#flipbook {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  position: relative;
-}
-
-/* ── HEADER BAR ─────────────────────────────────────── */
-#header {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 16px;
-  height: 48px;
-  border-bottom: 1px solid var(--border);
-  background: var(--bg);
-  z-index: 20;
-  position: relative;
-}
-
-.hdr-dream-nav {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.hdr-btn {
-  background: none;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  color: var(--text-muted);
-  font-family: var(--font-serif);
-  font-size: 0.75rem;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.12s, color 0.12s;
-  flex-shrink: 0;
-}
-.hdr-btn:hover { background: var(--border); color: var(--text); }
-.hdr-btn:disabled { opacity: 0.3; cursor: default; }
-
-#dream-label {
-  font-size: 0.75rem;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
-  cursor: pointer;
-  white-space: nowrap;
-  text-decoration: underline dotted;
-  text-underline-offset: 2px;
-  user-select: none;
-}
-#dream-label:hover { color: var(--text); }
-
-.hdr-phase-chip {
-  font-size: 0.65rem;
-  padding: 2px 8px;
-  border-radius: 20px;
-  color: #fff;
-  letter-spacing: 0.06em;
-  flex-shrink: 0;
-  opacity: 0.9;
-}
-
-/* ── PAGE STAGE ─────────────────────────────────────── */
-#stage {
-  flex: 1 1 0;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  perspective: 1200px;
-}
-
-/* ── PAGE CARD ──────────────────────────────────────── */
-.page-card {
-  position: absolute;
-  width: min(320px, calc(100vw - 96px));
-  max-height: calc(100vh - 120px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  backface-visibility: hidden;
-  will-change: transform;
-  transform-origin: center center;
-  transition: transform 0.5s ease;
-}
-
-/* ── PANEL IMAGE ────────────────────────────────────── */
-.panel-img-wrap {
-  width: 100%;
-  position: relative;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #E8E4DC;
-  flex-shrink: 0;
-}
-.panel-img-wrap::before {
-  content: '';
-  display: block;
-  padding-top: 177.78%; /* 9:16 */
-}
-.panel-img-wrap img,
-.panel-img-wrap .img-placeholder {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  border-radius: 8px;
-}
-.img-placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #B0ABA2;
-  font-size: 0.6rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  background: #E8E4DC;
-}
-
-/* Cap image height to 65vh */
-@media (min-height: 600px) {
-  .panel-img-wrap {
-    max-height: 65vh;
-    overflow: hidden;
-  }
-  .panel-img-wrap::before { display: none; }
-  .panel-img-wrap img,
-  .panel-img-wrap .img-placeholder {
-    position: relative;
-    height: 65vh;
-    width: auto;
-    max-width: 100%;
-    margin: 0 auto;
-    display: block;
-  }
-}
-
-/* ── PANEL TEXT ─────────────────────────────────────── */
-.panel-text-wrap {
-  width: 100%;
-  margin-top: 12px;
-  padding: 0 4px;
-  font-size: 0.9rem;
-  line-height: 1.75;
-  color: var(--text);
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  overflow: hidden;
-}
-
-/* ── DOT INDICATOR ──────────────────────────────────── */
-#dots {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  padding: 8px 16px 6px;
-  flex-wrap: wrap;
-}
-.dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--border);
-  flex-shrink: 0;
-  transition: background 0.2s;
-}
-.dot.active { background: var(--text-muted); }
-
-/* ── NAV ARROWS ─────────────────────────────────────── */
-.nav-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 10;
-  transition: background 0.12s, box-shadow 0.12s;
-  color: var(--text-muted);
-  font-size: 1.2rem;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-}
-.nav-arrow:hover { background: var(--border); color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-.nav-arrow:active { transform: translateY(-50%) scale(0.95); }
-.nav-arrow:disabled { opacity: 0.25; cursor: default; }
-#btn-prev { left: 8px; }
-#btn-next { right: 8px; }
-
-/* ── COVER PAGE ─────────────────────────────────────── */
-.cover-page {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg);
-  text-align: center;
-  padding: 32px 24px;
-  gap: 12px;
-}
-.cover-title {
-  font-size: 2.2rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  line-height: 1.2;
-}
-.cover-subtitle {
-  font-size: 0.8rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-top: 4px;
-}
-.cover-author {
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  letter-spacing: 0.12em;
-  margin-top: 8px;
-}
-.cover-divider {
-  width: 48px;
-  height: 1px;
-  background: var(--border);
-  margin: 8px auto;
-}
-.cover-hint {
-  font-size: 0.65rem;
-  color: var(--text-muted);
-  letter-spacing: 0.1em;
-  margin-top: 16px;
-  opacity: 0.7;
-}
-
-/* ── BACK COVER ─────────────────────────────────────── */
-.back-cover-page {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg);
-}
-.fin-text {
-  font-size: 1.4rem;
-  color: var(--text-muted);
-  letter-spacing: 0.18em;
-  font-style: italic;
-}
-
-/* ── DREAM LIST OVERLAY ─────────────────────────────── */
-#dream-list-overlay {
+/* ── VIEWS ──────────────────────────────────────────── */
+.view {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(44,42,39,0.55);
-  z-index: 100;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 56px;
+  overflow: hidden;
 }
-#dream-list-overlay.open {
-  display: flex;
-}
-#dream-list-panel {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  width: min(380px, calc(100vw - 32px));
-  max-height: calc(100vh - 80px);
-  overflow-y: auto;
-  padding: 0;
-}
-.overlay-header {
-  display: flex;
+.view.active { display: flex; flex-direction: column; }
+
+/* ── PHASE COLOURS ──────────────────────────────────── */
+.ph-departure  { background: var(--c-departure); }
+.ph-loss       { background: var(--c-loss); }
+.ph-violence   { background: var(--c-violence); }
+.ph-heartdead  { background: var(--c-heartdead); }
+.ph-rebuild    { background: var(--c-rebuild); }
+.ph-action     { background: var(--c-action); }
+.ph-fly        { background: var(--c-fly); }
+.ph-float      { background: var(--c-float); }
+
+/* ══════════════════════════════════════════════════════
+   VIEW 1 — COVER
+   ══════════════════════════════════════════════════════ */
+#view-cover {
   align-items: center;
-  justify-content: space-between;
-  padding: 14px 18px 12px;
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
+  justify-content: center;
   background: var(--bg);
-  z-index: 1;
+  cursor: pointer;
 }
-.overlay-title {
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  color: var(--text-muted);
+.cover-inner {
+  text-align: center;
+  user-select: none;
+  padding: 32px;
+}
+.cover-rule-top {
+  width: 1px;
+  height: 48px;
+  background: var(--border);
+  margin: 0 auto 28px;
+}
+.cover-zh {
+  font-size: clamp(2.6rem, 9vw, 4.4rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  line-height: 1.1;
+}
+.cover-en {
+  margin-top: 14px;
+  font-size: clamp(0.68rem, 2vw, 0.82rem);
+  letter-spacing: 0.26em;
+  color: var(--muted);
   text-transform: uppercase;
 }
-.overlay-close {
-  background: none;
-  border: none;
-  font-size: 1.1rem;
-  cursor: pointer;
-  color: var(--text-muted);
-  padding: 4px;
-  line-height: 1;
-}
-.overlay-close:hover { color: var(--text); }
-
-.dream-list-item {
+.cover-mid {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 18px;
-  cursor: pointer;
-  border-bottom: 1px solid var(--border);
-  transition: background 0.1s;
+  gap: 12px;
+  margin: 28px auto;
+  width: fit-content;
 }
-.dream-list-item:last-child { border-bottom: none; }
-.dream-list-item:hover { background: #F0EDE7; }
-.dream-list-item.current { background: #EDEAE4; }
-.dli-num {
-  font-size: 0.6rem;
+.cover-line { flex: 1; width: 36px; height: 1px; background: var(--border); }
+.cover-dot  { width: 4px; height: 4px; border-radius: 50%; background: var(--border); }
+.cover-author {
+  font-size: 0.72rem;
+  color: var(--muted);
   letter-spacing: 0.1em;
-  color: var(--text-muted);
-  width: 32px;
+}
+.cover-hint {
+  margin-top: 44px;
+  font-size: 0.66rem;
+  color: var(--border);
+  letter-spacing: 0.16em;
+}
+
+/* ══════════════════════════════════════════════════════
+   VIEW 2 — TABLE OF CONTENTS
+   ══════════════════════════════════════════════════════ */
+#view-toc { background: var(--bg); }
+
+.toc-header {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  height: 52px;
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+}
+.toc-back {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: var(--serif);
+  font-size: 0.72rem;
+  color: var(--muted);
+  padding: 4px 10px;
+  cursor: pointer;
+  white-space: nowrap;
   flex-shrink: 0;
 }
-.dli-title {
-  font-size: 0.85rem;
+.toc-back:hover { color: var(--text); border-color: var(--muted); }
+.toc-heading {
   flex: 1;
-  line-height: 1.3;
+  text-align: center;
+  font-size: 0.88rem;
+  letter-spacing: 0.14em;
+  font-weight: 600;
 }
-.dli-chip {
+.toc-spacer { width: 58px; flex-shrink: 0; }
+
+.toc-grid {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 16px 48px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  gap: 10px;
+  align-content: start;
+}
+
+.toc-card {
+  background: var(--page-l);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.toc-card:hover {
+  box-shadow: 0 4px 18px rgba(0,0,0,0.11);
+  transform: translateY(-2px);
+}
+.toc-stripe { height: 4px; }
+.toc-body   { padding: 10px 12px 12px; }
+.toc-num    { font-size: 0.58rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 5px; }
+.toc-title  { font-size: 0.8rem; line-height: 1.45; margin-bottom: 8px; min-height: 2.3em; }
+.toc-chip   {
+  display: inline-block; font-size: 0.58rem;
+  padding: 2px 7px; border-radius: 20px;
+  color: #fff; letter-spacing: 0.04em; opacity: 0.9;
+}
+
+/* ══════════════════════════════════════════════════════
+   VIEW 3 — BOOK SPREAD
+   ══════════════════════════════════════════════════════ */
+#view-book { background: var(--bg); }
+
+/* ── Header ──────────────────────────────────────── */
+.book-hdr {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  height: 48px;
+  border-bottom: 1px solid var(--border);
+  gap: 6px;
+}
+.bh-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: var(--serif);
+  font-size: 0.7rem;
+  color: var(--muted);
+  padding: 3px 9px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.bh-btn:hover { color: var(--text); border-color: var(--muted); }
+.bh-btn:disabled { opacity: 0.28; cursor: default; }
+.bh-info {
+  flex: 1;
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bh-phase {
   font-size: 0.6rem;
-  padding: 2px 7px;
+  padding: 2px 8px;
   border-radius: 20px;
   color: #fff;
-  opacity: 0.85;
-  flex-shrink: 0;
   letter-spacing: 0.04em;
+  opacity: 0.9;
+  flex-shrink: 0;
 }
 
-/* ── PHASE COLORS ───────────────────────────────────── */
-.phase-departure  { background-color: var(--phase-departure); }
-.phase-loss       { background-color: var(--phase-loss); }
-.phase-violence   { background-color: var(--phase-violence); }
-.phase-heartdead  { background-color: var(--phase-heartdead); }
-.phase-rebuild    { background-color: var(--phase-rebuild); }
-.phase-action     { background-color: var(--phase-action); }
-.phase-fly        { background-color: var(--phase-fly); }
-.phase-float      { background-color: var(--phase-float); }
+/* ── Stage (centres the book) ─────────────────────── */
+.book-stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 16px 8px;
+  min-height: 0;
+}
 
-/* ── FLIP ANIMATION CLASSES ─────────────────────────── */
-.flip-exit-left  { animation: flipExitLeft  0.5s ease forwards; }
-.flip-exit-right { animation: flipExitRight 0.5s ease forwards; }
-.flip-enter-left { animation: flipEnterLeft  0.5s ease forwards; }
-.flip-enter-right{ animation: flipEnterRight 0.5s ease forwards; }
+/* ── Book spread container ────────────────────────── */
+.book-spread {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 860px;
+  height: min(72vh, 600px);
+  box-shadow: var(--shadow);
+  border-radius: 2px 5px 5px 2px;
+}
 
-@keyframes flipExitLeft {
-  from { transform: rotateY(0deg);    opacity: 1; }
-  50%  { transform: rotateY(-90deg);  opacity: 0; }
-  to   { transform: rotateY(-90deg);  opacity: 0; visibility: hidden; }
+/* ── Pages ────────────────────────────────────────── */
+.book-page { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.page-left  { background: var(--page-l); border-radius: 2px 0 0 2px; }
+.page-right { background: var(--page-r); border-radius: 0 5px 5px 0; position: relative; }
+
+.book-spine {
+  flex: 0 0 6px;
+  background: linear-gradient(to right, #AEA9A0 0%, #E2DDD6 45%, #E2DDD6 55%, #AEA9A0 100%);
+  position: relative;
+  z-index: 2;
 }
-@keyframes flipExitRight {
-  from { transform: rotateY(0deg);   opacity: 1; }
-  50%  { transform: rotateY(90deg);  opacity: 0; }
-  to   { transform: rotateY(90deg);  opacity: 0; visibility: hidden; }
+
+/* ── Left page inner ──────────────────────────────── */
+.pl-inner {
+  height: 100%;
+  padding: 26px 22px 18px;
+  display: flex;
+  flex-direction: column;
 }
-@keyframes flipEnterLeft {
-  from { transform: rotateY(90deg);  opacity: 0; }
-  50%  { transform: rotateY(90deg);  opacity: 0; }
-  to   { transform: rotateY(0deg);   opacity: 1; }
+.pl-num   { font-size: 0.58rem; letter-spacing: 0.14em; color: var(--muted); margin-bottom: 5px; }
+.pl-title { font-size: clamp(0.8rem, 1.7vw, 0.98rem); font-weight: 600; line-height: 1.35; margin-bottom: 8px; }
+.pl-chip  {
+  display: inline-block; font-size: 0.58rem; padding: 2px 8px; border-radius: 20px;
+  color: #fff; letter-spacing: 0.04em; opacity: 0.88; margin-bottom: 16px; align-self: flex-start;
 }
-@keyframes flipEnterRight {
-  from { transform: rotateY(-90deg); opacity: 0; }
-  50%  { transform: rotateY(-90deg); opacity: 0; }
-  to   { transform: rotateY(0deg);   opacity: 1; }
+.pl-rule  { width: 22px; height: 1px; background: var(--border); margin-bottom: 14px; }
+.pl-text  {
+  flex: 1; font-size: clamp(0.8rem, 1.55vw, 0.92rem); line-height: 1.9;
+  color: var(--text); overflow-y: auto;
+}
+.pl-text::-webkit-scrollbar { width: 2px; }
+.pl-text::-webkit-scrollbar-thumb { background: var(--border); border-radius: 1px; }
+.pl-foot  { margin-top: 10px; font-size: 0.58rem; color: var(--muted); letter-spacing: 0.1em; }
+
+/* ── Right page inner (image) ─────────────────────── */
+.pr-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.pr-inner img {
+  max-width: 100%; max-height: 100%;
+  object-fit: contain; display: block;
+}
+.pr-ph {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.58rem; letter-spacing: 0.14em; color: var(--border);
+  text-transform: uppercase; background: var(--page-r);
+}
+
+/* ══════════════════════════════════════════════════════
+   3-D PAGE FLIPPER
+   Covers the right page exactly.
+   transform-origin: left center  →  rotates around the spine.
+   ══════════════════════════════════════════════════════ */
+#flipper-wrap {
+  position: absolute;
+  top: 0; right: 0;
+  width: calc(50% - 3px);   /* exact right-page width */
+  height: 100%;
+  perspective: 1800px;
+  z-index: 10;
+  pointer-events: none;     /* clicks fall through by default */
+}
+
+#page-flipper {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+}
+#page-flipper.is-flipping { transform: rotateY(-180deg); }
+
+.flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+/* Front = current right-page image */
+.flip-front {
+  background: var(--page-r);
+  display: flex; align-items: center; justify-content: center;
+}
+.flip-front img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+
+/* Back = next panel text; faces viewer when flipper reaches -180° */
+.flip-back {
+  background: var(--page-l);
+  transform: rotateY(180deg);
+  padding: 26px 22px 18px;
+  display: flex; flex-direction: column;
+}
+
+/* ── Footer: dots + nav ────────────────────────────── */
+.book-footer {
+  flex: 0 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  gap: 18px;
+  padding: 8px 16px 12px;
+}
+.nav-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: 1.15rem;
+  color: var(--muted);
+  flex-shrink: 0;
+  line-height: 1;
+  transition: background 0.12s, color 0.12s;
+}
+.nav-btn:hover { background: var(--border); color: var(--text); }
+.nav-btn:disabled { opacity: 0.22; cursor: default; }
+
+.panel-dots { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
+.pdot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--border); transition: background 0.2s;
+}
+.pdot.active { background: var(--muted); }
+
+/* ── Mobile fallback (≤ 580px) ──────────────────────── */
+@media (max-width: 580px) {
+  .book-spread {
+    flex-direction: column;
+    height: auto;
+    max-height: calc(100vh - 108px);
+    border-radius: 4px;
+  }
+  .book-page { flex: none; }
+  .page-left  { max-height: 30vh; border-radius: 4px 4px 0 0; }
+  .page-right { height: min(56vw * 16/9, 52vh); border-radius: 0 0 4px 4px; }
+  .book-spine { flex: 0 0 1px; background: var(--border); }
+  #flipper-wrap { display: none; } /* use simple fade on mobile */
 }
 </style>
 </head>
 <body>
-<div id="flipbook">
-  <div id="header">
-    <div class="hdr-dream-nav">
-      <button class="hdr-btn" id="btn-dream-prev" title="上一個夢">‹</button>
-      <span id="dream-label">夢 00 / 18</span>
-      <button class="hdr-btn" id="btn-dream-next" title="下一個夢">›</button>
+
+<!-- ════════════════════════════════════════════
+     VIEW 1 — COVER (click anywhere to enter)
+     ════════════════════════════════════════════ -->
+<div id="view-cover" class="view active" onclick="showTOC()">
+  <div class="cover-inner">
+    <div class="cover-rule-top"></div>
+    <div class="cover-zh">夢裡夢外</div>
+    <div class="cover-en">Among All Dreams</div>
+    <div class="cover-mid">
+      <div class="cover-line"></div>
+      <div class="cover-dot"></div>
+      <div class="cover-line"></div>
     </div>
-    <span class="hdr-phase-chip" id="phase-chip"></span>
+    <div class="cover-author">Eve &middot; 2026</div>
+    <div class="cover-hint">點擊翻開</div>
   </div>
-
-  <div id="stage">
-    <button class="nav-arrow" id="btn-prev" aria-label="上一頁">&#8249;</button>
-    <div id="page-current" class="page-card"></div>
-    <div id="page-next"    class="page-card" style="display:none"></div>
-    <button class="nav-arrow" id="btn-next" aria-label="下一頁">&#8250;</button>
-  </div>
-
-  <div id="dots"></div>
 </div>
 
-<!-- Dream list overlay -->
-<div id="dream-list-overlay" role="dialog" aria-modal="true" aria-label="選擇夢境">
-  <div id="dream-list-panel">
-    <div class="overlay-header">
-      <span class="overlay-title">所有夢境</span>
-      <button class="overlay-close" id="btn-overlay-close" aria-label="關閉">&#10005;</button>
-    </div>
-    <div id="dream-list-items"></div>
+<!-- ════════════════════════════════════════════
+     VIEW 2 — TABLE OF CONTENTS
+     ════════════════════════════════════════════ -->
+<div id="view-toc" class="view">
+  <div class="toc-header">
+    <button class="toc-back" onclick="showCover()">← 封面</button>
+    <span class="toc-heading">夢裡夢外</span>
+    <div class="toc-spacer"></div>
   </div>
+  <div class="toc-grid" id="toc-grid"></div>
 </div>
+
+<!-- ════════════════════════════════════════════
+     VIEW 3 — BOOK SPREAD
+     ════════════════════════════════════════════ -->
+<div id="view-book" class="view">
+
+  <!-- Header bar -->
+  <div class="book-hdr">
+    <button class="bh-btn" onclick="showTOC()">目錄</button>
+    <span class="bh-info" id="bh-info"></span>
+    <span class="bh-phase" id="bh-phase"></span>
+    <button class="bh-btn" id="bh-prev" onclick="prevDream()">‹ 上夢</button>
+    <button class="bh-btn" id="bh-next" onclick="nextDream()">下夢 ›</button>
+  </div>
+
+  <!-- Book stage -->
+  <div class="book-stage">
+    <div class="book-spread">
+
+      <!-- LEFT PAGE — text -->
+      <div class="book-page page-left">
+        <div class="pl-inner">
+          <div class="pl-num"   id="pl-num"></div>
+          <div class="pl-title" id="pl-title"></div>
+          <div class="pl-chip"  id="pl-chip"></div>
+          <div class="pl-rule"></div>
+          <div class="pl-text"  id="pl-text"></div>
+          <div class="pl-foot"  id="pl-foot"></div>
+        </div>
+      </div>
+
+      <!-- SPINE -->
+      <div class="book-spine"></div>
+
+      <!-- RIGHT PAGE — image -->
+      <div class="book-page page-right">
+        <div class="pr-inner">
+          <img id="right-img" src="" alt="" />
+          <div class="pr-ph" id="right-ph" style="display:none">image</div>
+        </div>
+      </div>
+
+      <!-- 3-D FLIPPER — covers right page, rotates around spine -->
+      <div id="flipper-wrap">
+        <div id="page-flipper">
+
+          <!-- Front face: current right-page image -->
+          <div class="flip-face flip-front">
+            <img id="fl-img" src="" alt="" />
+          </div>
+
+          <!-- Back face: next panel's text (becomes new left page after flip) -->
+          <div class="flip-face flip-back">
+            <div class="pl-num"   id="fl-num"></div>
+            <div class="pl-title" id="fl-title"></div>
+            <div class="pl-chip"  id="fl-chip"></div>
+            <div class="pl-rule"></div>
+            <div class="pl-text"  id="fl-text"></div>
+            <div class="pl-foot"  id="fl-foot"></div>
+          </div>
+
+        </div>
+      </div>
+      <!-- /flipper -->
+
+    </div><!-- /book-spread -->
+  </div><!-- /book-stage -->
+
+  <!-- Footer: panel navigation -->
+  <div class="book-footer">
+    <button class="nav-btn" id="btn-prev" onclick="flipPrev()" aria-label="上一頁">&#8249;</button>
+    <div class="panel-dots" id="panel-dots"></div>
+    <button class="nav-btn" id="btn-next" onclick="flipNext()" aria-label="下一頁">&#8250;</button>
+  </div>
+
+</div><!-- /view-book -->
 
 <script>
 // ─────────────────────────────────────────────────────
 // PHASE MAP
 // ─────────────────────────────────────────────────────
 const PHASES = {
-  '出發':     'departure',
-  '失去':     'loss',
+  '出發':      'departure',
+  '失去':      'loss',
   '暴力與覺察': 'violence',
-  '心死':     'heartdead',
-  '重建':     'rebuild',
+  '心死':      'heartdead',
+  '重建':      'rebuild',
   '行動的呼喚': 'action',
-  '飛起':     'fly',
-  '浮起':     'float',
+  '飛起':      'fly',
+  '浮起':      'float',
 };
 
 // ─────────────────────────────────────────────────────
 // DREAM DATA
-// panels: array of storybook text per panel (null = image only)
-// panelCount: FINAL image count
 // ─────────────────────────────────────────────────────
 const DREAMS = [
   {
@@ -671,7 +713,7 @@ const DREAMS = [
       '從小我就怕殺人鯨，書上看到圖片都會心底下害怕，說不出原因，就是怕。夢裡，那幾隻很小的殺人鯨放在桌上，我站在旁邊，沒有害怕。',
       '水族館是一條很長的走廊，右邊全是魚缸，下半部是展覽區，走到底，都是殺人鯨和其他魚，我從頭走到尾。',
       '我負責開車帶一班人去看鑲嵌玻璃展覽。到了那裡，大家先去旁邊的紀念品店逛了一圈。之後我自己開車去旁邊的雙層鑲嵌玻璃展覽館，那裡快要關門了，但保安說歡迎我進去。',
-      '我是學鑲嵌玻璃的，可以說是藝術家，非常喜歡這個技術。看著牆上大大小小的玻璃作品，我低頭，發現手上拿著一件自己做的鑲嵌玻璃，就這樣邊看展覽邊拿著它，像是也在展示。',
+      '我是學鑲嵌玻璃的，可以說是藝術家，非常喜歡這個技術。看著牆上大小小小的玻璃作品，我低頭，發現手上拿著一件自己做的鑲嵌玻璃，就這樣邊看展覽邊拿著它，像是也在展示。',
       '快要走完的時候，我仔細看了看手上那件，其實是草圖，不是完成品。',
     ],
   },
@@ -700,321 +742,232 @@ const DREAMS = [
 ];
 
 // ─────────────────────────────────────────────────────
-// BUILD PAGE INDEX
-// Pages: cover (0), dreams (each dream: N panels), back cover (last)
-// ─────────────────────────────────────────────────────
-
-// page = { type: 'cover' | 'panel' | 'backcover', dreamIdx, panelIdx }
-const PAGES = [];
-PAGES.push({ type: 'cover' });
-for (let di = 0; di < DREAMS.length; di++) {
-  const d = DREAMS[di];
-  for (let pi = 0; pi < d.panelCount; pi++) {
-    PAGES.push({ type: 'panel', dreamIdx: di, panelIdx: pi });
-  }
-}
-PAGES.push({ type: 'backcover' });
-
-// ─────────────────────────────────────────────────────
 // STATE
 // ─────────────────────────────────────────────────────
-let currentPage = 0;
-let animating = false;
+let dreamIdx = 0;
+let panelIdx = 0;
+let flipping = false;
 
 // ─────────────────────────────────────────────────────
 // HELPERS
 // ─────────────────────────────────────────────────────
-function phaseClass(phase) {
-  return 'phase-' + (PHASES[phase] || 'departure');
+function phClass(phase) {
+  return 'ph-' + (PHASES[phase] || 'departure');
 }
 
-function imgSrc(dreamId, panelNum) {
-  const pad = String(panelNum + 1).padStart(2, '0');
-  return 'images/dream-' + dreamId + '/panel-' + pad + '.png';
+function imgSrc(id, pi) {
+  return 'images/dream-' + id + '/panel-' + String(pi + 1).padStart(2, '0') + '.png';
 }
 
-function imgFallback(el, dreamId, panelNum) {
-  const pad = String(panelNum + 1).padStart(2, '0');
-  const jpg = 'images/dream-' + dreamId + '/panel-' + pad + '.jpg';
-  if (el.src.endsWith('.png')) {
-    el.src = jpg;
-  } else {
-    el.style.display = 'none';
-    const ph = el.parentNode.querySelector('.img-placeholder');
-    if (ph) ph.style.display = 'flex';
-  }
-}
-
-function escHtml(s) {
-  if (!s) return '';
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+function setImgSrc(el, id, pi) {
+  const src = imgSrc(id, pi);
+  el.src = src;
+  el.onerror = function () {
+    this.onerror = null;
+    this.src = src.replace('.png', '.jpg');
+  };
 }
 
 // ─────────────────────────────────────────────────────
-// BUILD PAGE HTML
+// VIEW SWITCHING
 // ─────────────────────────────────────────────────────
-function buildPageContent(pageIdx) {
-  const pg = PAGES[pageIdx];
-  if (!pg) return '';
+function showView(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + name).classList.add('active');
+}
+function showCover() { showView('cover'); }
 
-  if (pg.type === 'cover') {
-    return '<div class="cover-page">' +
-      '<div class="cover-title">夢裡夢外</div>' +
-      '<div class="cover-divider"></div>' +
-      '<div class="cover-subtitle">Among All Dreams</div>' +
-      '<div class="cover-author">Eve &middot; 2026</div>' +
-      '<div class="cover-hint">← 翻頁開始 →</div>' +
-      '</div>';
-  }
+function showTOC() {
+  buildTOC();
+  showView('toc');
+}
 
-  if (pg.type === 'backcover') {
-    return '<div class="back-cover-page"><span class="fin-text">fin.</span></div>';
-  }
-
-  // panel page
-  const dream = DREAMS[pg.dreamIdx];
-  const text = dream.panels[pg.panelIdx];
-  const src = imgSrc(dream.id, pg.panelIdx);
-
-  return '<div class="panel-img-wrap" id="img-wrap-' + pageIdx + '">' +
-    '<img src="' + src + '" alt="' + escHtml(dream.title) + ' panel ' + (pg.panelIdx + 1) + '" ' +
-      'onerror="imgFallback(this,\'' + dream.id + '\',' + pg.panelIdx + ')" loading="lazy">' +
-    '<div class="img-placeholder" style="display:none">P' + String(pg.panelIdx + 1).padStart(2,'0') + '</div>' +
-    '</div>' +
-    (text ? '<div class="panel-text-wrap">' + escHtml(text) + '</div>' : '');
+function openDream(di) {
+  dreamIdx = di;
+  panelIdx = 0;
+  showView('book');
+  renderBook();
 }
 
 // ─────────────────────────────────────────────────────
-// RENDER
+// TOC — build once
 // ─────────────────────────────────────────────────────
-function renderPage(pageIdx, el) {
-  el.innerHTML = buildPageContent(pageIdx);
-  el.style.display = 'flex';
-}
-
-function updateHeader() {
-  const pg = PAGES[currentPage];
-  const dreamLabel = document.getElementById('dream-label');
-  const phaseChip  = document.getElementById('phase-chip');
-  const btnDPrev   = document.getElementById('btn-dream-prev');
-  const btnDNext   = document.getElementById('btn-dream-next');
-
-  if (pg.type === 'cover' || pg.type === 'backcover') {
-    dreamLabel.textContent = pg.type === 'cover' ? '夢裡夢外' : '完';
-    phaseChip.textContent = '';
-    phaseChip.className = 'hdr-phase-chip';
-    btnDPrev.disabled = true;
-    btnDNext.disabled = true;
-    return;
-  }
-
-  const di = pg.dreamIdx;
-  const dream = DREAMS[di];
-  dreamLabel.textContent = '夢 ' + String(di + 1).padStart(2,'0') + ' / ' + DREAMS.length + ' · ' + dream.title.substring(0, 8);
-  phaseChip.textContent = dream.phase;
-  phaseChip.className = 'hdr-phase-chip ' + phaseClass(dream.phase);
-
-  // dream nav
-  // prev dream: is there a dream before di?
-  const prevDreamFirstPage = di > 0
-    ? PAGES.findIndex(p => p.type === 'panel' && p.dreamIdx === di - 1)
-    : -1;
-  const nextDreamFirstPage = di < DREAMS.length - 1
-    ? PAGES.findIndex(p => p.type === 'panel' && p.dreamIdx === di + 1)
-    : -1;
-
-  btnDPrev.disabled = prevDreamFirstPage === -1;
-  btnDNext.disabled = nextDreamFirstPage === -1;
-
-  btnDPrev.onclick = () => { if (prevDreamFirstPage !== -1) goToPage(prevDreamFirstPage, 'right'); };
-  btnDNext.onclick = () => { if (nextDreamFirstPage !== -1) goToPage(nextDreamFirstPage, 'left'); };
-}
-
-function updateDots() {
-  const dotsEl = document.getElementById('dots');
-  const pg = PAGES[currentPage];
-
-  if (pg.type === 'cover' || pg.type === 'backcover') {
-    dotsEl.innerHTML = '';
-    return;
-  }
-
-  const di = pg.dreamIdx;
-  const dream = DREAMS[di];
-  const firstPageOfDream = PAGES.findIndex(p => p.type === 'panel' && p.dreamIdx === di);
-
-  dotsEl.innerHTML = '';
-  for (let i = 0; i < dream.panelCount; i++) {
-    const dot = document.createElement('span');
-    dot.className = 'dot' + (i === pg.panelIdx ? ' active' : '');
-    dotsEl.appendChild(dot);
-  }
-}
-
-function updateNavArrows() {
-  document.getElementById('btn-prev').disabled = currentPage === 0;
-  document.getElementById('btn-next').disabled = currentPage === PAGES.length - 1;
-}
-
-function fullRender() {
-  const cur = document.getElementById('page-current');
-  renderPage(currentPage, cur);
-  cur.classList.remove('flip-exit-left','flip-exit-right','flip-enter-left','flip-enter-right');
-  updateHeader();
-  updateDots();
-  updateNavArrows();
-}
-
-// ─────────────────────────────────────────────────────
-// FLIP ANIMATION
-// direction: 'left' (go to next), 'right' (go to prev)
-// ─────────────────────────────────────────────────────
-function goToPage(targetPage, direction) {
-  if (animating) return;
-  if (targetPage < 0 || targetPage >= PAGES.length) return;
-  if (targetPage === currentPage) return;
-
-  animating = true;
-
-  const cur  = document.getElementById('page-current');
-  const next = document.getElementById('page-next');
-
-  // Prepare next page content (hidden behind)
-  renderPage(targetPage, next);
-  next.style.display = 'flex';
-
-  const exitAnim  = direction === 'left' ? 'flip-exit-left'  : 'flip-exit-right';
-  const enterAnim = direction === 'left' ? 'flip-enter-left' : 'flip-enter-right';
-
-  // Animate current out
-  cur.classList.add(exitAnim);
-
-  // After halfway (250ms), swap visibility — animate next in
-  setTimeout(() => {
-    cur.style.display = 'none';
-    cur.classList.remove(exitAnim);
-
-    // Swap DOM roles
-    cur.id = 'page-next';
-    next.id = 'page-current';
-
-    next.classList.add(enterAnim);
-    next.addEventListener('animationend', () => {
-      next.classList.remove(enterAnim);
-      animating = false;
-      // Clean up old page
-      document.getElementById('page-next').innerHTML = '';
-      document.getElementById('page-next').style.display = 'none';
-    }, { once: true });
-
-    currentPage = targetPage;
-    updateHeader();
-    updateDots();
-    updateNavArrows();
-  }, 250);
-}
-
-function goNext() {
-  if (currentPage < PAGES.length - 1) goToPage(currentPage + 1, 'left');
-}
-
-function goPrev() {
-  if (currentPage > 0) goToPage(currentPage - 1, 'right');
-}
-
-// ─────────────────────────────────────────────────────
-// DREAM LIST OVERLAY
-// ─────────────────────────────────────────────────────
-function buildDreamList() {
-  const container = document.getElementById('dream-list-items');
-  container.innerHTML = '';
+let tocBuilt = false;
+function buildTOC() {
+  if (tocBuilt) return;
+  tocBuilt = true;
+  const grid = document.getElementById('toc-grid');
   DREAMS.forEach((d, di) => {
-    const pg = PAGES[currentPage];
-    const isCurrent = pg.type === 'panel' && pg.dreamIdx === di;
-    const item = document.createElement('div');
-    item.className = 'dream-list-item' + (isCurrent ? ' current' : '');
-    item.innerHTML =
-      '<span class="dli-num">#' + d.id + '</span>' +
-      '<span class="dli-title">' + escHtml(d.title) + '</span>' +
-      '<span class="dli-chip ' + phaseClass(d.phase) + '">' + escHtml(d.phase) + '</span>';
-    item.addEventListener('click', () => {
-      closeOverlay();
-      const firstPage = PAGES.findIndex(p => p.type === 'panel' && p.dreamIdx === di);
-      const pg2 = PAGES[currentPage];
-      const curDi = pg2.type === 'panel' ? pg2.dreamIdx : -1;
-      const dir = di >= curDi ? 'left' : 'right';
-      goToPage(firstPage, dir);
-    });
-    container.appendChild(item);
+    const card = document.createElement('div');
+    card.className = 'toc-card';
+    card.innerHTML =
+      '<div class="toc-stripe ' + phClass(d.phase) + '"></div>' +
+      '<div class="toc-body">' +
+        '<div class="toc-num"># ' + d.id + '</div>' +
+        '<div class="toc-title">' + d.title + '</div>' +
+        '<span class="toc-chip ' + phClass(d.phase) + '">' + d.phase + '</span>' +
+      '</div>';
+    card.addEventListener('click', () => openDream(di));
+    grid.appendChild(card);
   });
 }
 
-function openOverlay() {
-  buildDreamList();
-  document.getElementById('dream-list-overlay').classList.add('open');
+// ─────────────────────────────────────────────────────
+// RENDER BOOK
+// ─────────────────────────────────────────────────────
+function renderBook() {
+  const dream = DREAMS[dreamIdx];
+  const text  = dream.panels[panelIdx] || null;
+
+  // ── Header ──
+  document.getElementById('bh-info').textContent =
+    '夢 ' + dream.id + ' — ' + dream.title;
+  const bpEl = document.getElementById('bh-phase');
+  bpEl.textContent = dream.phase;
+  bpEl.className   = 'bh-phase ' + phClass(dream.phase);
+  document.getElementById('bh-prev').disabled = dreamIdx === 0;
+  document.getElementById('bh-next').disabled = dreamIdx === DREAMS.length - 1;
+
+  // ── Left page ──
+  document.getElementById('pl-num').textContent   = '夢 ' + dream.id;
+  document.getElementById('pl-title').textContent = dream.title;
+  const plChip = document.getElementById('pl-chip');
+  plChip.textContent = dream.phase;
+  plChip.className   = 'pl-chip ' + phClass(dream.phase);
+  document.getElementById('pl-text').textContent  = text || '';
+  document.getElementById('pl-foot').textContent  =
+    (panelIdx + 1) + ' / ' + dream.panelCount;
+
+  // ── Right page image ──
+  const rImg = document.getElementById('right-img');
+  const rPh  = document.getElementById('right-ph');
+  rImg.style.display = 'block';
+  rPh.style.display  = 'none';
+  setImgSrc(rImg, dream.id, panelIdx);
+  rImg.onerror = (function (id, pi) {
+    return function () {
+      this.onerror = null;
+      const jpg = imgSrc(id, pi).replace('.png', '.jpg');
+      this.src = jpg;
+      this.onerror = function () {
+        this.style.display = 'none';
+        rPh.style.display  = 'flex';
+      };
+    };
+  }(dream.id, panelIdx));
+
+  // ── Flipper FRONT (mirrors right page) ──
+  setImgSrc(document.getElementById('fl-img'), dream.id, panelIdx);
+
+  // ── Flipper BACK (next panel → becomes new left after flip) ──
+  prepareFlipperBack();
+
+  // ── Dots ──
+  const dotsEl = document.getElementById('panel-dots');
+  dotsEl.innerHTML = '';
+  for (let i = 0; i < dream.panelCount; i++) {
+    const d = document.createElement('span');
+    d.className = 'pdot' + (i === panelIdx ? ' active' : '');
+    dotsEl.appendChild(d);
+  }
+
+  // ── Nav buttons ──
+  document.getElementById('btn-prev').disabled = panelIdx === 0;
+  document.getElementById('btn-next').disabled = panelIdx >= dream.panelCount - 1;
 }
 
-function closeOverlay() {
-  document.getElementById('dream-list-overlay').classList.remove('open');
+function prepareFlipperBack() {
+  const dream  = DREAMS[dreamIdx];
+  const nextPi = panelIdx + 1;
+  if (nextPi < dream.panelCount) {
+    const nextText = dream.panels[nextPi] || '';
+    document.getElementById('fl-num').textContent   = '夢 ' + dream.id;
+    document.getElementById('fl-title').textContent = dream.title;
+    const fc = document.getElementById('fl-chip');
+    fc.textContent = dream.phase;
+    fc.className   = 'pl-chip ' + phClass(dream.phase);
+    document.getElementById('fl-text').textContent  = nextText;
+    document.getElementById('fl-foot').textContent  =
+      (nextPi + 1) + ' / ' + dream.panelCount;
+  }
+}
+
+// ─────────────────────────────────────────────────────
+// FLIP NEXT — right page flips left (CSS 3-D)
+// ─────────────────────────────────────────────────────
+function flipNext() {
+  const dream = DREAMS[dreamIdx];
+  if (flipping || panelIdx >= dream.panelCount - 1) return;
+  flipping = true;
+
+  const flipper = document.getElementById('page-flipper');
+  flipper.classList.add('is-flipping');
+
+  flipper.addEventListener('transitionend', function handler() {
+    flipper.removeEventListener('transitionend', handler);
+
+    panelIdx++;
+
+    // Instant reset — no animation for the snap-back
+    flipper.style.transition = 'none';
+    flipper.classList.remove('is-flipping');
+
+    renderBook();
+
+    // Re-enable transition after two rAF cycles
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        flipper.style.transition = '';
+        flipping = false;
+      });
+    });
+  }, { once: true });
+}
+
+// ─────────────────────────────────────────────────────
+// FLIP PREV — instant update (no 3-D needed for going back)
+// ─────────────────────────────────────────────────────
+function flipPrev() {
+  if (flipping || panelIdx <= 0) return;
+  panelIdx--;
+  renderBook();
+}
+
+// ─────────────────────────────────────────────────────
+// DREAM NAVIGATION
+// ─────────────────────────────────────────────────────
+function prevDream() {
+  if (dreamIdx > 0) { dreamIdx--; panelIdx = 0; renderBook(); }
+}
+function nextDream() {
+  if (dreamIdx < DREAMS.length - 1) { dreamIdx++; panelIdx = 0; renderBook(); }
 }
 
 // ─────────────────────────────────────────────────────
 // TOUCH SWIPE
 // ─────────────────────────────────────────────────────
-let touchStartX = 0;
-let touchStartY = 0;
-
-document.addEventListener('touchstart', (e) => {
-  touchStartX = e.changedTouches[0].clientX;
-  touchStartY = e.changedTouches[0].clientY;
+let tx = 0, ty = 0;
+document.addEventListener('touchstart', e => {
+  tx = e.changedTouches[0].clientX;
+  ty = e.changedTouches[0].clientY;
 }, { passive: true });
 
-document.addEventListener('touchend', (e) => {
-  const dx = e.changedTouches[0].clientX - touchStartX;
-  const dy = e.changedTouches[0].clientY - touchStartY;
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - tx;
+  const dy = e.changedTouches[0].clientY - ty;
   if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
-    if (dx < 0) goNext();
-    else goPrev();
+    if (dx < 0) flipNext();
+    else         flipPrev();
   }
 }, { passive: true });
 
 // ─────────────────────────────────────────────────────
 // KEYBOARD
 // ─────────────────────────────────────────────────────
-document.addEventListener('keydown', (e) => {
-  if (document.getElementById('dream-list-overlay').classList.contains('open')) {
-    if (e.key === 'Escape') closeOverlay();
-    return;
-  }
-  if (e.key === 'ArrowRight') goNext();
-  if (e.key === 'ArrowLeft')  goPrev();
-});
-
-// ─────────────────────────────────────────────────────
-// EVENT WIRING
-// ─────────────────────────────────────────────────────
-document.getElementById('btn-prev').addEventListener('click', goPrev);
-document.getElementById('btn-next').addEventListener('click', goNext);
-document.getElementById('dream-label').addEventListener('click', openOverlay);
-document.getElementById('btn-overlay-close').addEventListener('click', closeOverlay);
-document.getElementById('dream-list-overlay').addEventListener('click', (e) => {
-  if (e.target === document.getElementById('dream-list-overlay')) closeOverlay();
-});
-
-// ─────────────────────────────────────────────────────
-// INIT
-// ─────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  // Check URL hash for deep link
-  const hash = location.hash;
-  if (hash && hash.startsWith('#dream-')) {
-    const id = hash.replace('#dream-', '');
-    const di = DREAMS.findIndex(d => d.id === id);
-    if (di !== -1) {
-      currentPage = PAGES.findIndex(p => p.type === 'panel' && p.dreamIdx === di);
-    }
-  }
-  fullRender();
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') flipNext();
+  if (e.key === 'ArrowLeft')  flipPrev();
+  if (e.key === 'Escape')     showTOC();
 });
 </script>
 </body>
