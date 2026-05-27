@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>夢裡夢外 — Among All Dreams</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F7F4EF;
+    --text: #2C2A27;
+    --text-muted: #7A7670;
+    --border: #DDD9D0;
+    --card-bg: #FDFAF5;
+
+    --phase-departure:  #C4B49A;
+    --phase-loss:       #8B9EA8;
+    --phase-violence:   #A8896C;
+    --phase-heartdead:  #6B7280;
+    --phase-rebuild:    #7A9E87;
+    --phase-action:     #9B7B9E;
+    --phase-fly:        #B8A9C9;
+    --phase-float:      #A9C4C0;
+
+    --max-w: 640px;
+    --font-serif: 'Noto Serif TC', 'Songti SC', serif;
+    --font-mono: 'Courier New', Courier, monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-serif);
+    font-size: 16px;
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+
+  /* ── Layout shell ──────────────────────────────────────── */
+  #app {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  /* ── Site header ───────────────────────────────────────── */
+  .site-header {
+    padding: 48px 0 32px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+  .site-header h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    line-height: 1.3;
+  }
+  .site-header .subtitle {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── Dream grid ────────────────────────────────────────── */
+  #list-view {
+    display: block;
+  }
+  #list-view.hidden { display: none; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding-bottom: 64px;
+  }
+
+  @media (max-width: 400px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+
+  .dream-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 14px 14px;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .dream-card::before {
+    content: '';
+    display: block;
+    width: 3px;
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    border-radius: 6px 0 0 6px;
+  }
+  .dream-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  }
+  .dream-card:active { transform: translateY(0); }
+
+  .card-number {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+  }
+  .card-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--text);
+  }
+  .card-phase {
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    letter-spacing: 0.08em;
+    padding: 2px 7px;
+    border-radius: 20px;
+    color: #fff;
+    opacity: 0.9;
+  }
+
+  /* ── Story view ─────────────────────────────────────────── */
+  #story-view { display: none; }
+  #story-view.active { display: block; }
+
+  .story-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0 28px;
+    gap: 8px;
+  }
+  .nav-btn {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: background 0.12s, color 0.12s;
+    white-space: nowrap;
+  }
+  .nav-btn:hover {
+    background: var(--border);
+    color: var(--text);
+  }
+  .nav-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+  .nav-btn.back {
+    font-size: 0.75rem;
+    padding: 6px 14px;
+  }
+
+  .story-header {
+    text-align: center;
+    padding: 0 0 36px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+  .story-number {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .story-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  .story-phase-pill {
+    margin-top: 14px;
+    display: inline-block;
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    letter-spacing: 0.1em;
+    padding: 4px 14px;
+    border-radius: 20px;
+    color: #fff;
+  }
+
+  /* ── Panels ─────────────────────────────────────────────── */
+  .panels-list { list-style: none; }
+  .panel-item {
+    margin-bottom: 48px;
+  }
+
+  /* placeholder image — 9:16 aspect ratio */
+  .panel-image {
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    background: #E8E4DC;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .panel-image-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    color: #B0ABA2;
+    text-transform: uppercase;
+    user-select: none;
+  }
+
+  .panel-text {
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: var(--text);
+  }
+
+  /* ── Analysis section ───────────────────────────────────── */
+  .analysis-section {
+    margin-top: 56px;
+    padding: 28px 22px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 72px;
+  }
+  .analysis-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+  .analysis-text {
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: var(--text);
+  }
+
+  /* ── Phase color helpers ────────────────────────────────── */
+  .phase-departure  { background-color: var(--phase-departure); }
+  .phase-loss       { background-color: var(--phase-loss); }
+  .phase-violence   { background-color: var(--phase-violence); }
+  .phase-heartdead  { background-color: var(--phase-heartdead); }
+  .phase-rebuild    { background-color: var(--phase-rebuild); }
+  .phase-action     { background-color: var(--phase-action); }
+  .phase-fly        { background-color: var(--phase-fly); }
+  .phase-float      { background-color: var(--phase-float); }
+
+  .border-departure  { border-left-color: var(--phase-departure) !important; }
+  .border-loss       { border-left-color: var(--phase-loss) !important; }
+  .border-violence   { border-left-color: var(--phase-violence) !important; }
+  .border-heartdead  { border-left-color: var(--phase-heartdead) !important; }
+  .border-rebuild    { border-left-color: var(--phase-rebuild) !important; }
+  .border-action     { border-left-color: var(--phase-action) !important; }
+  .border-fly        { border-left-color: var(--phase-fly) !important; }
+  .border-float      { border-left-color: var(--phase-float) !important; }
+
+  .color-bar-departure  { background: var(--phase-departure); }
+  .color-bar-loss       { background: var(--phase-loss); }
+  .color-bar-violence   { background: var(--phase-violence); }
+  .color-bar-heartdead  { background: var(--phase-heartdead); }
+  .color-bar-rebuild    { background: var(--phase-rebuild); }
+  .color-bar-action     { background: var(--phase-action); }
+  .color-bar-fly        { background: var(--phase-fly); }
+  .color-bar-float      { background: var(--phase-float); }
+
+  /* card color bar (::before pseudo-element) */
+  .dream-card.phase-departure::before  { background: var(--phase-departure); }
+  .dream-card.phase-loss::before       { background: var(--phase-loss); }
+  .dream-card.phase-violence::before   { background: var(--phase-violence); }
+  .dream-card.phase-heartdead::before  { background: var(--phase-heartdead); }
+  .dream-card.phase-rebuild::before    { background: var(--phase-rebuild); }
+  .dream-card.phase-action::before     { background: var(--phase-action); }
+  .dream-card.phase-fly::before        { background: var(--phase-fly); }
+  .dream-card.phase-float::before      { background: var(--phase-float); }
+
+  /* footer */
+  .site-footer {
+    text-align: center;
+    padding: 24px 0 40px;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <header class="site-header">
+    <h1>夢裡夢外</h1>
+    <p class="subtitle">Among All Dreams &mdash; Eve &middot; 2026</p>
+  </header>
+
+  <!-- LIST VIEW -->
+  <section id="list-view">
+    <div class="grid" id="dream-grid">
+      <!-- cards injected by JS -->
+    </div>
+  </section>
+
+  <!-- STORY VIEW -->
+  <section id="story-view">
+    <nav class="story-nav">
+      <button class="nav-btn back" id="btn-back">← 所有夢</button>
+      <div style="display:flex;gap:8px;">
+        <button class="nav-btn" id="btn-prev">‹ 上一個</button>
+        <button class="nav-btn" id="btn-next">下一個 ›</button>
+      </div>
+    </nav>
+    <div id="story-content">
+      <!-- injected by JS -->
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    &copy; 2026 Eve &mdash; 夢裡夢外 Among All Dreams
+  </footer>
+</div>
+
+<script>
+// ─────────────────────────────────────────────────────────
+// DATA
+// ─────────────────────────────────────────────────────────
+
+const PHASES = {
+  '出發':     'departure',
+  '失去':     'loss',
+  '暴力與覺察': 'violence',
+  '心死':     'heartdead',
+  '重建':     'rebuild',
+  '行動的呼喚': 'action',
+  '飛起':     'fly',
+  '浮起':     'float',
+};
+
+// Each dream: id, title, phase, panels (array of strings), analysis (string)
+const DREAMS = [
+  {
+    id: '01',
+    title: '中式大宅中轉站',
+    phase: '出發',
+    panels: [
+      '我住在那棟宅子的時間比所有人都長。',
+      '門廊、走廊、每一個轉角，我都認識。朋友們住在不同的樓層和房間，偶爾遇上，我只問一件事：「你什麼時候要走？」他們都會走，乘飛機去不同的地方。我也會走，只是不知道是哪一天。',
+      '每次擁抱都用力。因為下一站各散東西，不知道還會不會再見。',
+      '有一天，兩個人來找住在宅子裡的某個人。我幫他們尋找，走錯了方向，推開了幾扇不認識的門。裡面的房間很奇怪——由網格組成，橫向伸展，像懸在半空的陽台，四面全是格子，只容得下一個人。走進去，腳下的格子透著空，下面什麼都沒有。不穩，不安，像站在空氣上。',
+      '幾間都找不到人。最後我站在黑暗的走廊裡，大聲叫她的名字，才在一間正常的房間裡找到她，和另外兩個朋友住在一起。',
+      '後來我把網格房的事告訴別人。她們都說：「沒有這樣的房間。」',
+    ],
+    analysis: '做夢者站在人生的過渡點，比其他人更遲啟程，更深地感受每一次離別。她發現了一個只有她看見、沒有人承認的秘密空間，然後仍然繼續找人、繼續擁抱，繼續待在那棟她比誰都長的宅子裡。她所感受的孤獨，是「我看見的東西無人共見」的那種。',
+  },
+  {
+    id: '02',
+    title: '後樓梯殘缺樂器追逐',
+    phase: '出發',
+    panels: [
+      '整個世界是灰色的。',
+      '後樓梯比正常的更窄，梯級扁平，可以一跳越過半層。我和男朋友非常緊張地往下走。下面有出口，我們只想快點出去。',
+      '某一層，一個女生靠在牆邊。她扶著破掉一半的樂器，好像要演奏，又好像要介紹。她的手腕不在身上，落在地板上。',
+      '我們沒有停。快速掠過她，繼續往下走。',
+      '下一層，又是一件破損的樂器。再下一層，又是。那個女生的腳步聲在身後響起，不緊不慢，一直跟著。我們越走越快。',
+      '出到街道，直接上了車。我坐定，回頭望著門口等，看她有沒有跟出來。',
+      '走出來的是一位普通的婦人。那個女生不見了。',
+      '車沒有立刻開走。我沒有回頭看後座。但我的整個身體都知道——她在那裡。',
+    ],
+    analysis: '做夢者正在用一條後樓梯，在一個沒有顏色的世界裡，快速離開某個她不願意面對的內在存在。那個存在不危險，它只是殘缺，只是渴望被看見，只是跟著做夢者，上了她的車，坐在後座等她。',
+  },
+  {
+    id: '07',
+    title: '流浪漢昏迷自醒',
+    phase: '失去',
+    panels: [
+      '大雪。',
+      '車房外，有一個流浪漢靠著我的車坐著，蓋著什麼在睡覺。我是去拿東西才走進去的，看到他，他也看到我，用眼神問我。',
+      '我答應了他。他可以在車房裡過一夜。',
+      '床憑空出現了，就在車房裡。他去睡了。',
+      '我不知道是什麼時候、用什麼方式昏迷的。意識還在，身體不動。我感覺到他靠近，感覺到他觸碰我，在心裡喊「不要碰我」，但說不出聲，也動不了。',
+      '這樣過了一段時間。',
+      '然後我沉下去，很深的地方，深呼了一口氣，說：「醒。」',
+      '我睜開眼，躺在自己的床上，天亮了。',
+    ],
+    analysis: '做夢者的善意是真實的，她的邊界是模糊的，但她的自主清醒能力也是真實的。夢展示了一個完整的循環：開放→失控→從內部找回自己。那個「醒」字，是她用自己的聲音解救自己。',
+  },
+  {
+    id: '15',
+    title: '廢物箱尋寶中學朋友',
+    phase: '失去',
+    panels: [
+      '學校或大學的某個角落，有三個大紙箱。',
+      '裡面是賣剩的貨、瑕疵品，有些拆了包裝，有些已經壞了，但可以帶走。我和她發現這個地方的時候都很開心，立刻翻起來。發光棒、舊翻蓋手機、一堆其實我用不著的東西，我們一起把它們全部撿出來看。',
+      '她是我中學時最好的朋友。畢業之後，我們就沒有再聯絡。',
+      '走廊有人說隔壁大樓起火，嗅到一點煙味，我們繼續翻箱，完全沒有管。',
+      '開心是真實的。不是因為得到了什麼，是因為在她面前，不需要裝，不需要管面子，想拿免費的破爛就拿，想翻垃圾就翻。她比我更開心，她比我更先伸手進去。',
+    ],
+    analysis: '做夢者的深層需求，是一個不需要管理形象的空間，以及在這個空間裡可以做真實動作的人。當這兩個條件同時成立，連外部的火災都無法把她拉走。',
+  },
+  {
+    id: '17',
+    title: '貓生病電梯',
+    phase: '失去',
+    panels: [
+      '整個世界是灰黑色和暗綠色。',
+      '男朋友把我的貓帶去了動物醫院。我是後來才知道的，知道後立刻跑過去，推開醫生的房間門，警告他：要好好治療我的貓。',
+      '我不記得為什麼那麼大情緒，但我是生氣的。',
+      '說完又怕自己的怒氣影響治療，立刻切換語氣，好好拜託他。醫生有點不悅，只說：「我會讓下一個值班的醫生知道。」我看到他在寫Memo。他不是主治的那個，我知道了，轉身離開。',
+      '電梯大堂有兩部電梯。左邊那部不能進，我說不清為什麼，但就是知道。我站在右邊等，心裡有點害怕。',
+      '一位清潔大嬸推著清潔車走過來，也在等。她什麼都沒說，只是站在那裡。我的害怕就消失了。',
+      '電梯門開了，裡面已經有人，他們拿著非常巨大但很輕盈的東西，霸了三分之一的空間。電梯裡有六個人，門關上之後，我被推到靠近門口的位置。',
+      '然後就忘記了。',
+    ],
+    analysis: '做夢者在這個夢裡展示了三種能力：識別危險（不進左邊電梯）、策略性調節情緒（警告後切換為拜託）、從他人的存在中汲取穩定感（清潔大嬸）。三種能力都在，同時也都顯示了她的邊界——她的情感核心是由別人送去治療的，她在事後才趕去。',
+  },
+  {
+    id: '26',
+    title: '商場買鞋偷錢包搶劫',
+    phase: '暴力與覺察',
+    panels: [
+      '我在選鞋。男朋友走過來，拿兩張卡給我看，說買某個白色錢包有很大的折扣。我在選鞋，讓他自己處理。',
+      '店員說超過關門時間，請大家離開。我走出去，男朋友在外面等我，手上有兩個白色錢包。他說沒有人發現，因為關門了。他偷的。我就拿走了。',
+      '走在路上，有人衝出來搶包，左手一條燒肉，右手幾把刀，周圍的人都散開了。我不讓他拿包，扭打，最後制服了他。',
+      '男朋友站在旁邊，好像不太明白為什麼我要這麼堅持。',
+      '我叫他報警。他把電話遞給旁邊幾個人，讓我自己處理。',
+      '警察來了，看到那條燒肉，切開，開始吃，還分給旁邊的人和男朋友，吃得很開心。',
+      '我按著那個人，看著他們吃。',
+      '最後我和男朋友離開現場，我告訴他我們分手。我拿走了我自己的兩部電話，上了天橋，一個人走。他留在原地，沒有追。',
+      '草叢裡有聲音。兩隻黑白貓走出來，一隻很大，一隻正常體型。牠們停在那裡看著我，然後走了。',
+    ],
+    analysis: '做夢者一個人承擔、一個人行動、一個人離開。這個夢把「孤立」這件事以最清楚的方式呈現——不是沒有人，而是每一個應該在場的人都在看別的地方。',
+  },
+  {
+    id: '28',
+    title: '荒廢豪宅十億寶藏',
+    phase: '暴力與覺察',
+    panels: [
+      '豪宅已經有些倒塌了。我不知道怎麼到了這裡，到了之後才發現裡面已經有兩個人：一個年輕警察，一個中年工人。',
+      '警察和我一起走，他保護我，我跟著他。工人另走一路，去到地下一個洞。他說裡面有十億。',
+      '那個洞我很害怕，我沒有進去，遠遠站著。',
+      '工人進去，不一會兒走上來，真的帶著那麼多的東西和錢。他分了警察一份，警察替我爭取了一小部份。我很感謝他，我自己沒有打算開口要。雖然我很想成為那種值得被人巴結的人，但我沒有行動。',
+      '工人說另外還有兩輛車給了警察，換他閉一隻眼。',
+      '第二次，我們又在同一個地方。我跟工人說，主人房應該有更直接的路去地下，何必進那個洞。他不急，不想找，還是下去了。',
+      '我和警察繼續走，地板突然把我吸進去，什麼都沒了。',
+    ],
+    analysis: '做夢者清楚地知道財富在哪裡，清楚地知道她想要什麼，清楚地知道她為什麼不行動——「我原本並沒有打算主動去爭取」，這句話是整個夢最清醒的自我觀察。財富不是不在，是她還沒有準備好直接伸手。',
+  },
+  {
+    id: '32',
+    title: '奧運公園乾花怪獸',
+    phase: '心死',
+    panels: [
+      '出去散步，遇到兩個女生在問路。她們要找一個有奧運標誌的公園，乘了很遠的巴士過來，原本要去的地方因為時間過了，臨時改到這裡。我在地圖上找了很久，最後在她們的手機上找到——原來是我平日去散步的那個小公園。我和她們一起走過去。',
+      '有一個臨時攤位在賣乾花。薰衣草很便宜，還有很多其他乾花。我本來只是被薰衣草吸引，後來想著：不如為自己挑一束放在家裡。我拿了白色的蓮花。店主看到，把更大、更漂亮的那朵蓮花拿來給我，幫我搭配。有點貴，我一直在想要不要走，但最後買了。',
+      '付款前，有人抽獎中了一件外套，店主先服務他。',
+      '我拿著乾花回大廈，電梯裡放了拖鞋，是新的管理層——韓國人接管了立案法團，改了一些規則。電梯只能到4樓，我想說去5樓走樓梯就好了，走上去。',
+      '4樓開了門，完全不同的景色，像宇宙星球一樣設計的戶外走廊，找不到樓梯去5樓。有另一批人和我一樣不知道往哪走，我跟著他們，找了幾條摺疊式的樓梯，每一條都很可怕，搖晃，差點。',
+      '門外有怪獸。我回到家，把門鎖緊，只有我和貓。手上拿著那束乾花。',
+      '我打算離開這裡，把家裡的五花肉拿出來煮，帶在路上吃。貓發出聲音，門外怪獸的聲音立刻出現，我叫貓不要出聲。我用吹風機以最低溫、最低音量風乾五花肉，每一個動作都很輕。',
+      '後來我把其中一隻怪獸打暈，拖進家裡，想研究一下。我用繩子綁它的手，綁不緊，怪獸教我怎麼綁才牢。我從家裡的架子上拿了一瓶酒，喝了一口，非常好喝。它跪著，雙手被綁，沒有反抗。',
+    ],
+    analysis: '做夢者在這個夢裡做了一件新的事：為自己買了美麗的東西，然後在充滿威脅的環境裡，把那個威脅拖進家，帶著一杯好酒，研究它。這個組合——美麗、準備離開的食物、被研究的怪獸——是做夢者在危機中的一個完整圖景。',
+  },
+  {
+    id: '34',
+    title: '豪宅迷宮父親燒木櫃',
+    phase: '心死',
+    panels: [
+      '家人買了一間很大的房子，像迷宮一樣，每個房間之間都是鏤空的，沒有完全封閉的地方。交收的前一晚，我和爸爸先去住一夜。',
+      '2樓大廳有非常漂亮的木櫃子，精緻，舊式的工藝。我在自己的房間待著，嗅到燒焦的氣味。跑出去，爸爸在燒那些櫃子。',
+      '我不知道為什麼他要燒，他也說不清楚。',
+      '我拿了滅火器把火熄滅，對他大罵：「櫃子很漂亮，不要燒！」',
+      '他也不辯解。',
+      '然後樓梯頂有動靜，一個拿著長槍的男人走下來，問我們是誰。他是豪宅的前男主人，不知道已經換了新主人。他拿著槍往前走，我讓他滾落下樓梯，他暈了。',
+      '第二天早上，女主人和地產代理來交收，其他家庭成員也來了。昨晚的事沒有人提起，就像沒有發生過。爸爸也不知道去了哪裡。',
+      '走出豪宅，在以前住過的那條街上，有一輛外賣車，以前從來沒見過。賣豆腐花和小食，招牌寫著「一線豆腐花」，但真正賣的只有二線和三線。我只是注意到這件事，然後繼續走。',
+    ],
+    analysis: '做夢者在這個夢裡三次保護了某些東西：熄火（保護美麗）、制服前主人（保護新的所有權）、繼續走（不陷入對每個落差的抗議）。父親和前主人代表兩種不同的「舊有的破壞力」——一個無意識，一個不知情——做夢者在夜晚獨自處理了這兩者。',
+  },
+  {
+    id: '35',
+    title: '藥材鋪異能者彩虹能量場',
+    phase: '重建',
+    panels: [
+      '那是一間看起來像藥材鋪的店，但我是去裡面理髮的。前面還有一個女生在等，輪到我的時候，我沒有剪，因為我認識了一個在那裡做兼職的人。',
+      '他不是普通的兼職。他有特殊能力，可以切換去另一個維度輕鬆解決問題。他在藥材鋪裡做的是暗面的事，老闆的一些安排。',
+      '不知道怎麼變成我們兩個在船上，急流，地圖在手，走錯了方向，在湍急的水裡U轉。好幾次差點流入錯誤的分支，但每次都找回了主流，最後水平靜了，我們到了中國的某條河道。',
+      '再之後，我們住在一起，養著一隻貓。也有他的朋友偶爾一起住，做同樣工作的人。',
+      '有一次準備出門，街上突然出現一個行為很異常的人。他的真身出現了——彩虹能量場在他周圍，臉有些變形，我第一次看到他全部的力量。',
+      '他看出那個異常的人不是壞人，是在找什麼，傷心地找。他把那個人帶去藥材鋪，在一個舊櫃子裡找到一盒錄影帶——原來他是剛去世的藥材鋪老闆的秘密兒子。',
+    ],
+    analysis: '做夢者在這個夢裡進入了一個有隱藏層的世界，遇到一個力量龐大但可以自然同住的人，隨他在混亂的急流中找回方向，在平靜的日常裡養貓。他的真身是彩虹，她看見了，沒有逃。',
+  },
+  {
+    id: '36',
+    title: '中國街變形動物小男孩',
+    phase: '重建',
+    panels: [
+      '那條街在中國某個地方，看起來像普通的地鋪，一戶一戶排過去，但每一戶裡面住的都是動物，而且不對勁。',
+      '矮頸的長頸鹿在水氹裡玩耍。獵豹和她的寶寶住在一塊濕地裡。有一個鋪頭在賣貓肉，我身上抱著貓，立刻繞開，不讓那個人注意到我懷裡有一隻貓。',
+      '我旁邊一直有一個小男孩，大概三歲，眼睛很大，背著一個小背包，背包連著風扇和冷氣管，一直吹著他的背。精靈，自給自足，不需要我特別照顧，就是走在旁邊。',
+      '過了那個賣貓肉的鋪頭，我手上突然多了兩條深海魚，粉紅色，頭是圓的，全是牙齒。我不知道從哪裡來的。一個不小心牠們就咬我的手，旁邊的人幫我把牠們移開，但我一直拿著，從頭走到尾，被咬了幾次，每次都有人幫，每次走完了我還是拿著。',
+      '我的褲子被什麼動物抓破了，沒有注意到是哪一隻。',
+      '走完了整條街，小男孩找到一間Café，坐在玻璃窗後面休息。我在玻璃外面，清楚看到他，他也看著我。',
+    ],
+    analysis: '做夢者帶著會咬她的魚，穿越了一條滿是「以奇怪方式存在的生命」的街。她理解那些動物，她保護她的貓，她和小男孩同行，她沒有放下那兩條魚，她走完了整條街。',
+  },
+  {
+    id: '39b',
+    title: 'Frantiono 旅遊小胖子',
+    phase: '行動的呼喚',
+    panels: [
+      '我參加了一個烹飪比賽。黑色的背景，十組人以內，我已經決定好菜式，和其中一組廚師合作，用他們的醬汁。試了幾次，大家都很滿意。',
+      '然後我張開眼，已經是下午，比賽早上九點就開始，電視的直播裡已經沒有我，我被取消了資格。不知道什麼情況，只是不在了。我擔心和我合作的廚師怎麼辦，比擔心自己更多一點。',
+      '到了一個叫Frantiono的地方，很大的水池，像埃及，又像墨西哥，像歐洲。很明顯是旅遊，我一直看著手機上的地圖，上面標了很多餐廳，但那個地方我不熟悉。',
+      '有一個小胖子小朋友和我一起。我牽著他，拉著行李，去市中心找了一間比較暗、比較小的旅館住下來。',
+      '第二天帶著他在市中心邊緣走，那裡比較危險，我走了很久，手機拿著地圖，但又不敢太明顯地拿出來，怕被偷。',
+      '他走累了，我把他抱起來，急著回市中心，因為要退房。地圖上有很多餐廳，我都不想去。時間到了下午，我還沒走回去，很緊。',
+      '我突然想起忘了讓他吃早餐。他不說話，臉色蒼白，快暈了。我沒有食物，給他喝水，他喝了很多，抱他走的時候，他把水吐了一些出來。我繼續走，走回旅館，先給他一罐貓罐頭吃，然後開始收拾行李。',
+    ],
+    analysis: '做夢者準備好了但缺席了，帶著一個沉默的、快暈的孩子走在危險的街道上，用水試圖喂飽他，最後用貓罐頭解決了緊急的飢餓。這個夢的核心問題是：誰在照顧不說話的那個部分？',
+  },
+  {
+    id: '40',
+    title: '室內種植盆家人無視',
+    phase: '行動的呼喚',
+    panels: [
+      '家裡全是白色，遠房親戚也來了，人很多，走來走去，但冷冷清清的。',
+      '客廳的某個角落，有一個很大的室內種植盆，像一塊小田。它放在那裡很久了，但今天我才仔細看。裡面有西蘭花、蔬菜、蘿蔔，長得很大，有些已經可以收成，有些剛開始枯萎。我越看越多，每翻一個角落都有新的東西。',
+      '我像發現什麼珍貴的事情一樣開心，整個家只有這裡是有生命的。',
+      '走近了看，是水耕，發泡膠和木架鐵架搭的，本來有氣泵傳水，但我一查，氣泵沒有插電，水早就乾了，不知道多久了。什麼支援都沒有，它還是長出了這麼多。可以升降，我調整到最適合自己的高度，站在那裡仔細看。',
+      '我叫弟弟來看，他不以為然。叫堂姐來看，她也沒有興趣。每個人從旁邊走過，都沒有人停下來。',
+      '後來爸爸出門了，他說他不想留在這裡，雖然全都是他的親戚。',
+      '媽媽在廚房，看到我走過去，給我看一份設計圖，是她自己找人做的。她不需要我幫忙，只是通知我。我以前都是幫她做這些事的。',
+      '客廳還是很多人，我的心一直是空的。',
+    ],
+    analysis: '做夢者發現了一個在斷電斷水的情況下仍然豐盛生長的系統，它就在她家裡，一直在那裡。但沒有人和她一起看見它，她的心是空的。也許那個空，是那個寶藏剛好可以填進去的地方。',
+  },
+  {
+    id: '42',
+    title: '蛇人受傷父親房間',
+    phase: '飛起',
+    panels: [
+      '他受了很重的傷。',
+      '他是蛇，但可以幻化成人形，現在是人的樣子，坐在我家裡，非常害怕。我想幫他，想把他固定住，方便療傷，試了幾條頸鏈，粗的、幼的，都套不住他。不是他掙脫，是他的本質就不是被鏈條能困住的東西。',
+      '他知道我要幫他，讓我為他處理傷口。傷好了一些之後，他躲進了家裡唯一一個有門的房間——我爸爸的房間。我把食物推進門縫裡。',
+      '爸媽回來，不需要我解釋，他們已經知道有什麼東西在那個房間。他們很不安，一直催我把它趕走，或者用粗暴的方式逼他離開。',
+      '我在洗碗。我沒有管他們。',
+      '他從爸爸的房間走出來，是個很高的男人，把放在房間裡的碗拿到我旁邊，說謝謝我，但不想再麻煩了，就離開了。是他自己決定的。',
+      '爸爸走回他的房間，像回到自己地盤一樣。',
+      '整個夢只有心痛。',
+    ],
+    analysis: '做夢者的善意是真實的，她的控制衝動也是真實的，她的堅持也是真實的。她在家人的壓力下保護了一個受傷的異類，看著他自己決定離開，然後整個夢只有心痛。那個心痛，是在分離之中仍然選擇了自己的判斷的代價。',
+  },
+  {
+    id: '47',
+    title: '自殺計劃白鷹飛翔',
+    phase: '飛起',
+    panels: [
+      '我把易燃的罐放在前門的車旁，也倒在後院，準備點燃，然後爆炸。',
+      '一個朋友來了。她來到，我就無法進行，因為她在。她說她很累，拒絕了帶我去散步，去洗澡了。我在房間裡靜靜地整理要離開的東西。',
+      '手機響了，一個只在網上聊過很短時間的人打電話來，一接就是一串告白，聽得到他身邊有人在鼓勵他。我聽到他的聲音就認出他是誰，心裡是高興的，但我打算完結，所以我裝傻，給了一個讓他失望的回應。他掛電話了。',
+      '門外有動靜，我走出去看，鄰居在找什麼，可能是那條以前見過的流浪狗。',
+      '白馬從草叢走出來，跑走了。',
+      '一隻鹿走出來。',
+      '所有人都很驚訝。',
+      '後院有一隻非常大的白色的鷹，很大很大。我騎上去，抱著牠的頸，牠帶我飛。我一邊飛，一邊哭。',
+      '回到屋裡，我想繼續進行，突然想到還沒有把保險資料給弟弟。拿起電話準備發給他，才想起自殺是拿不到保險賠償的。',
+      '我走到朋友面前，哭著說：我剛才很想很想離開這個世界，但這樣不能拿到保險，有沒有辦法讓人進來殺了我？',
+      '沒有回答。',
+    ],
+    analysis: '做夢者帶著極深的疲憊，被三件日常的事打斷，被一隻巨大的白鷹帶去飛翔，哭，然後被對弟弟的牽掛留下來。她最後問：有沒有辦法讓人進來殺了我？沒有回答。夢在這裡結束，那個問題沒有被回應，做夢者還在。',
+  },
+  {
+    id: '48',
+    title: '水族館殺人鯨鑲嵌玻璃',
+    phase: '飛起',
+    panels: [
+      '那個水族館不是正常的水族館。魚缸在外面，有些魚放在桌子上，像街市一樣，乾燥的，靜止的。桌面上有幾條秋刀魚大小的魚，還有非常小的殺人鯨寶寶，比寶寶稍大一點，就那樣放在桌上。',
+      '從小我就怕殺人鯨，書上看到圖片都會心底下害怕，說不出原因，就是怕。',
+      '夢裡，那幾隻很小的殺人鯨放在桌上，我站在旁邊，沒有害怕。',
+      '水族館是一條很長的走廊，右邊全是魚缸，下半部是展覽區，走到底，都是殺人鯨和其他魚，我從頭走到尾。',
+      '我負責開車帶一班人去看鑲嵌玻璃展覽。到了那裡，大家先去旁邊的紀念品店逛了一圈。之後我自己開車去旁邊的雙層鑲嵌玻璃展覽館，那裡快要關門了，但保安說歡迎我進去。',
+      '我是學鑲嵌玻璃的，可以說是藝術家，非常喜歡這個技術。看著牆上大大小小的玻璃作品，我低頭，發現手上拿著一件自己做的鑲嵌玻璃，就這樣邊看展覽邊拿著它，像是也在展示。',
+      '快要走完的時候，我仔細看了看手上那件，其實是草圖，不是完成品。',
+    ],
+    analysis: '這個夢說的是兩種「可以面對了」：一個舊的非理性恐懼（殺人鯨），以可以承受的形式出現，做夢者穿越了；一個當下的創作現實（草圖），在大師的作品前，做夢者如實看見了自己的位置。',
+  },
+  {
+    id: '52',
+    title: '絕症戀人變中性媽媽麵包店',
+    phase: '浮起',
+    panels: [
+      '他有絕症，類似癌症，一直都很弱。我細心照顧他，他弱下去，我在旁邊。這段關係就是這樣走著的。',
+      '有一天他的眼神變了，神情變了，整個人不一樣了。他告訴我，他女性的部分想做很多生意，賺很多錢，樣子也變得中性。那種熱情和氣勢讓我措手不及。',
+      '我逃了。',
+      '穿越商場，裡面有活動，人很多，我在人群裡穿梭離開。',
+      '麵包店裡找到媽媽。我和她很不熟悉，感到疏離，但我知道：只要我在她旁邊，就永遠有個位置，她會接納我。',
+      '她一直問我她要買哪個餅乾送人，我說不知道，只是告訴她：「你買你認為適合的，我只想觀察你的選擇。」',
+      '黃昏，麵包店，我在媽媽旁邊，就記得到這裡。',
+    ],
+    analysis: '做夢者逃離了突然有力量的人，找到了永遠接納她的人，在黃昏的麵包店站在旁邊看媽媽選餅乾。這個結尾的平靜，說的是：做夢者知道她的底線在哪裡，她知道怎麼找到它。',
+  },
+  {
+    id: '53',
+    title: '鐵達尼號泥漿浮木求生',
+    phase: '浮起',
+    panels: [
+      '水不是水，是泥漿。',
+      '和鐵達尼號沉沒的感覺一樣，只是每一個沉進去的地方都是泥漿，不透明，沉重，包裹著一切。船身一個部分一個部分地沉入，泥漿從那些缺口湧進來。我從一個部分躲到下一個，再下一個，繼續移動。',
+      '最後那個部分沉了，沒有地方可以再躲，泥漿湧進來，我也沉進去了。',
+      '泥漿裡有一扇木門，漂著。我找到它，爬上去。',
+      '沒有猶豫。',
+    ],
+    analysis: '沉重的環境（泥漿），有序的迴避，最後沉入，然後找到門，爬上去，沒有猶豫。夢在這裡結束。做夢者在那扇木門上，浮著。',
+  },
+];
+
+// ─────────────────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────────────────
+
+let currentDreamIndex = null;
+
+// ─────────────────────────────────────────────────────────
+// HELPERS
+// ─────────────────────────────────────────────────────────
+
+function phaseClass(phase) {
+  return 'phase-' + (PHASES[phase] || 'departure');
+}
+
+function phaseLabel(phase) {
+  return phase;
+}
+
+// ─────────────────────────────────────────────────────────
+// RENDER: LIST
+// ─────────────────────────────────────────────────────────
+
+function renderList() {
+  const grid = document.getElementById('dream-grid');
+  grid.innerHTML = '';
+  DREAMS.forEach((dream, idx) => {
+    const card = document.createElement('div');
+    card.className = 'dream-card ' + phaseClass(dream.phase);
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', '夢 ' + dream.id + ' ' + dream.title);
+    card.innerHTML =
+      '<div class="card-number">DREAM #' + dream.id + '</div>' +
+      '<div class="card-title">' + escHtml(dream.title) + '</div>' +
+      '<span class="card-phase ' + phaseClass(dream.phase) + '">' + escHtml(dream.phase) + '</span>';
+    card.addEventListener('click', () => openDream(idx));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') openDream(idx);
+    });
+    grid.appendChild(card);
+  });
+}
+
+// ─────────────────────────────────────────────────────────
+// RENDER: STORY
+// ─────────────────────────────────────────────────────────
+
+function renderStory(idx) {
+  const dream = DREAMS[idx];
+  const content = document.getElementById('story-content');
+
+  const panelsHtml = dream.panels.map((text, i) =>
+    '<li class="panel-item">' +
+    /* TODO: replace with actual MJ image */
+    '<div class="panel-image" aria-label="Panel ' + (i + 1) + '">' +
+    '<span class="panel-image-label">P' + (i + 1) + '</span>' +
+    '</div>' +
+    '<p class="panel-text">' + escHtml(text) + '</p>' +
+    '</li>'
+  ).join('');
+
+  content.innerHTML =
+    '<div class="story-header">' +
+      '<div class="story-number">DREAM #' + dream.id + '</div>' +
+      '<h2 class="story-title">' + escHtml(dream.title) + '</h2>' +
+      '<span class="story-phase-pill ' + phaseClass(dream.phase) + '">' + escHtml(dream.phase) + '</span>' +
+    '</div>' +
+    '<ul class="panels-list">' + panelsHtml + '</ul>' +
+    '<div class="analysis-section">' +
+      '<div class="analysis-label">分析</div>' +
+      '<p class="analysis-text">' + escHtml(dream.analysis) + '</p>' +
+    '</div>';
+
+  // update nav buttons
+  document.getElementById('btn-prev').disabled = idx === 0;
+  document.getElementById('btn-next').disabled = idx === DREAMS.length - 1;
+}
+
+// ─────────────────────────────────────────────────────────
+// NAVIGATION
+// ─────────────────────────────────────────────────────────
+
+function openDream(idx) {
+  currentDreamIndex = idx;
+  document.getElementById('list-view').classList.add('hidden');
+  const sv = document.getElementById('story-view');
+  sv.classList.add('active');
+  renderStory(idx);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // update URL hash for linkability
+  history.pushState({ dreamIdx: idx }, '', '#dream-' + DREAMS[idx].id);
+}
+
+function backToList() {
+  currentDreamIndex = null;
+  document.getElementById('story-view').classList.remove('active');
+  document.getElementById('list-view').classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  history.pushState({}, '', location.pathname);
+}
+
+// ─────────────────────────────────────────────────────────
+// UTIL
+// ─────────────────────────────────────────────────────────
+
+function escHtml(str) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// ─────────────────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────────────────
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderList();
+
+  document.getElementById('btn-back').addEventListener('click', backToList);
+
+  document.getElementById('btn-prev').addEventListener('click', () => {
+    if (currentDreamIndex > 0) openDream(currentDreamIndex - 1);
+  });
+  document.getElementById('btn-next').addEventListener('click', () => {
+    if (currentDreamIndex < DREAMS.length - 1) openDream(currentDreamIndex + 1);
+  });
+
+  // handle browser back/forward
+  window.addEventListener('popstate', (e) => {
+    if (e.state && typeof e.state.dreamIdx === 'number') {
+      currentDreamIndex = e.state.dreamIdx;
+      document.getElementById('list-view').classList.add('hidden');
+      document.getElementById('story-view').classList.add('active');
+      renderStory(currentDreamIndex);
+    } else {
+      backToList();
+    }
+  });
+
+  // deep link on load
+  const hash = location.hash;
+  if (hash && hash.startsWith('#dream-')) {
+    const id = hash.replace('#dream-', '');
+    const idx = DREAMS.findIndex(d => d.id === id);
+    if (idx !== -1) openDream(idx);
+  }
+});
+</script>
+</body>
+</html>
