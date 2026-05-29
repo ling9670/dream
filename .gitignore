@@ -1,10 +1,15 @@
 # Image panels — stored locally, not in repo (too large, also personal content)
 **/panels/
 *.png
-*.jpg
-*.jpeg
 *.heic
 *.webp
+
+# Exclude loose jpg/jpeg everywhere EXCEPT the published flipbook assets
+*.jpg
+*.jpeg
+!docs/assets/**/*.jpg
+!docs/assets/**/*.jpeg
+!docs/assets/img/cover.jpg
 
 # macOS
 .DS_Store

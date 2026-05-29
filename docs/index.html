@@ -2,973 +2,521 @@
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>夢裡夢外 — Among All Dreams</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+TC:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ── RESET ──────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; overflow: hidden; }
-
-/* ── TOKENS ─────────────────────────────────────────── */
-:root {
-  --bg:      #F7F4EF;
-  --text:    #2C2A27;
-  --muted:   #7A7670;
-  --border:  #DDD9D0;
-  --page-l:  #FDFAF5;
-  --page-r:  #FAF7F0;
-  --serif:   'Noto Serif TC', 'Songti SC', serif;
-  --shadow:  0 16px 56px rgba(0,0,0,0.24), 0 2px 8px rgba(0,0,0,0.12);
-
-  --c-departure: #C4B49A;
-  --c-loss:      #8B9EA8;
-  --c-violence:  #A8896C;
-  --c-heartdead: #6B7280;
-  --c-rebuild:   #7A9E87;
-  --c-action:    #9B7B9E;
-  --c-fly:       #B8A9C9;
-  --c-float:     #A9C4C0;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --paper:#F2ECE0; --paper2:#F6F1E8; --edge:#E7DFD0;
+  --ink:#2C2823; --ink2:rgba(44,40,35,.62); --ink3:rgba(44,40,35,.40); --ink4:rgba(44,40,35,.16);
+  --gold:#9C8866; --cream:#F6F1E8;
+  --zh:'Noto Serif TC',serif; --en:'Cormorant Garamond',serif;
+  --safe-t:max(env(safe-area-inset-top),0px);
+  --safe-b:max(env(safe-area-inset-bottom),0px);
+  --ease:cubic-bezier(.6,.02,.2,1);
+}
+html,body{height:100%;overflow:hidden;background:#D7CFBF;}
+body{
+  font-family:var(--zh);color:var(--ink);
+  background:
+    radial-gradient(130% 90% at 50% -5%, #E4DCCC 0%, #D2C9B7 55%, #C7BDAA 100%);
+  display:flex;align-items:center;justify-content:center;
+  -webkit-font-smoothing:antialiased;
 }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--serif);
+/* ── STAGE ─────────────────────────────────── */
+#app{
+  position:relative;width:min(100vw,452px);height:100dvh;max-height:980px;
+  background:var(--paper);overflow:hidden;
+  box-shadow:0 40px 90px -30px rgba(40,34,26,.6), 0 2px 0 rgba(255,255,255,.3) inset;
 }
+@media(min-width:520px){ #app{border-radius:6px;} }
 
-/* ── VIEWS ──────────────────────────────────────────── */
-.view {
-  display: none;
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-}
-.view.active { display: flex; flex-direction: column; }
+.view{position:absolute;inset:0;display:none;flex-direction:column;}
+.view.active{display:flex;}
 
-/* ── PHASE COLOURS ──────────────────────────────────── */
-.ph-departure  { background: var(--c-departure); }
-.ph-loss       { background: var(--c-loss); }
-.ph-violence   { background: var(--c-violence); }
-.ph-heartdead  { background: var(--c-heartdead); }
-.ph-rebuild    { background: var(--c-rebuild); }
-.ph-action     { background: var(--c-action); }
-.ph-fly        { background: var(--c-fly); }
-.ph-float      { background: var(--c-float); }
+img{display:block;}
+.kicker{font-family:var(--en);font-style:italic;font-size:.92rem;letter-spacing:.04em;color:var(--ink3);}
+.zh-kicker{font-family:var(--zh);font-weight:300;font-size:.66rem;letter-spacing:.42em;color:var(--ink3);text-indent:.42em;}
+.hair{height:1px;background:var(--ink4);border:0;}
+.tap{cursor:pointer;}
 
-/* ══════════════════════════════════════════════════════
-   VIEW 1 — COVER
-   ══════════════════════════════════════════════════════ */
-#view-cover {
-  align-items: center;
-  justify-content: center;
-  background: var(--bg);
-  cursor: pointer;
-}
-.cover-inner {
-  text-align: center;
-  user-select: none;
-  padding: 32px;
-}
-.cover-rule-top {
-  width: 1px;
-  height: 48px;
-  background: var(--border);
-  margin: 0 auto 28px;
-}
-.cover-zh {
-  font-size: clamp(2.6rem, 9vw, 4.4rem);
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  line-height: 1.1;
-}
-.cover-en {
-  margin-top: 14px;
-  font-size: clamp(0.68rem, 2vw, 0.82rem);
-  letter-spacing: 0.26em;
-  color: var(--muted);
-  text-transform: uppercase;
-}
-.cover-mid {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 28px auto;
-  width: fit-content;
-}
-.cover-line { flex: 1; width: 36px; height: 1px; background: var(--border); }
-.cover-dot  { width: 4px; height: 4px; border-radius: 50%; background: var(--border); }
-.cover-author {
-  font-size: 0.72rem;
-  color: var(--muted);
-  letter-spacing: 0.1em;
-}
-.cover-hint {
-  margin-top: 44px;
-  font-size: 0.66rem;
-  color: var(--border);
-  letter-spacing: 0.16em;
-}
+/* ── COVER ─────────────────────────────────── */
+#cover{cursor:pointer;}
+#cover .bg{position:absolute;inset:0;background-size:cover;background-position:center;}
+#cover .vig{position:absolute;inset:0;background:
+  radial-gradient(78% 44% at 50% 60%, rgba(26,21,14,.40), transparent 72%),
+  linear-gradient(to bottom, rgba(28,23,17,.42) 0%, rgba(28,23,17,.04) 24%, rgba(28,23,17,.10) 56%, rgba(28,23,17,.62) 100%);}
+#cover .inner{position:relative;flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:calc(var(--safe-t) + 54px) 30px calc(var(--safe-b) + 40px);color:var(--cream);}
+#cover .ck{font-family:var(--en);font-style:italic;font-size:1rem;letter-spacing:.06em;color:rgba(246,241,232,.82);}
+#cover .grow{flex:1;}
+#cover .rule{width:1px;height:40px;background:rgba(246,241,232,.55);margin-bottom:22px;}
+#cover .title{font-family:var(--zh);font-weight:500;font-size:clamp(2.8rem,15vw,3.7rem);letter-spacing:.2em;text-indent:.2em;
+  line-height:1.16;text-shadow:0 2px 20px rgba(0,0,0,.45);}
+#cover .en{font-family:var(--en);font-size:1.18rem;letter-spacing:.34em;text-indent:.34em;margin-top:16px;color:rgba(246,241,232,.9);text-transform:uppercase;}
+#cover .author{font-family:var(--en);font-size:.92rem;letter-spacing:.22em;color:rgba(246,241,232,.86);}
+#cover .hint{font-family:var(--zh);font-weight:300;font-size:.64rem;letter-spacing:.34em;color:rgba(246,241,232,.66);margin-top:26px;
+  animation:breathe 3.4s ease-in-out infinite;}
+@keyframes breathe{0%,100%{opacity:.4}50%{opacity:.85}}
 
-/* ══════════════════════════════════════════════════════
-   VIEW 2 — TABLE OF CONTENTS
-   ══════════════════════════════════════════════════════ */
-#view-toc { background: var(--bg); }
+/* ── PAPER PAGES (letters / northstar) ─────── */
+.paper{background:
+  radial-gradient(120% 60% at 50% 0%, #F7F2E9, #F1EADD 70%);
+  flex:1;display:flex;flex-direction:column;min-height:0;}
+.paper-scroll{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding:calc(var(--safe-t) + 60px) 34px calc(var(--safe-b) + 30px);
+  display:flex;flex-direction:column;}
+.paper-scroll::-webkit-scrollbar{width:0;}
+.letter-title{font-family:var(--zh);font-weight:500;font-size:1.7rem;letter-spacing:.16em;text-indent:.16em;margin:8px 0 4px;}
+.letter-en{font-family:var(--en);font-style:italic;font-size:1.32rem;color:var(--gold);letter-spacing:.02em;}
+.ph-tag{display:inline-block;font-family:var(--en);font-style:italic;font-size:.82rem;color:#A98C5E;
+  border:1px solid #cdb98f;background:#f4ead6;border-radius:2px;padding:2px 9px;margin:18px 0 14px;letter-spacing:.02em;}
+.letter-body{font-family:var(--zh);font-weight:300;font-size:1rem;line-height:1.75;color:var(--ink);text-wrap:pretty;}
+.letter-body p{margin-bottom:.8em;}
+.letter-body.ph{color:var(--ink3);font-style:normal;}
+.letter-body .en{display:block;font-family:var(--en);font-style:italic;font-size:.92rem;color:var(--ink3);margin-top:.85em;line-height:1.5;}
+.sign{font-family:var(--en);font-style:italic;font-size:1.4rem;color:var(--ink2);text-align:right;margin-top:26px;}
+.page-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 22px calc(var(--safe-b) + 16px);flex:0 0 auto;}
+.pbtn{font-family:var(--zh);font-weight:300;font-size:.74rem;letter-spacing:.18em;color:var(--ink2);
+  background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:7px;padding:8px 4px;}
+.pbtn .en{font-family:var(--en);font-style:italic;letter-spacing:.02em;font-size:.92rem;color:var(--ink3);}
+.pbtn.cta{color:var(--ink);}
+.pbtn:hover{color:var(--ink);}
 
-.toc-header {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
-  height: 52px;
-  border-bottom: 1px solid var(--border);
-  gap: 12px;
-}
-.toc-back {
-  background: none;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  font-family: var(--serif);
-  font-size: 0.72rem;
-  color: var(--muted);
-  padding: 4px 10px;
-  cursor: pointer;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.toc-back:hover { color: var(--text); border-color: var(--muted); }
-.toc-heading {
-  flex: 1;
-  text-align: center;
-  font-size: 0.88rem;
-  letter-spacing: 0.14em;
-  font-weight: 600;
-}
-.toc-spacer { width: 58px; flex-shrink: 0; }
+/* ── CONTENTS ──────────────────────────────── */
+#contents .top{flex:0 0 auto;display:flex;align-items:center;justify-content:center;position:relative;
+  padding:calc(var(--safe-t) + 22px) 20px 14px;}
+#contents .top .back{position:absolute;left:16px;bottom:14px;}
+#contents .top h2{font-family:var(--zh);font-weight:500;font-size:1.05rem;letter-spacing:.3em;text-indent:.3em;}
+#contents .top .en{font-family:var(--en);font-style:italic;font-size:.95rem;color:var(--ink3);margin-left:8px;letter-spacing:.02em;}
+.toc-scroll{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:8px 0 calc(var(--safe-b) + 30px);}
+.toc-scroll::-webkit-scrollbar{width:0;}
+.timeline{position:relative;padding:10px 26px 0 46px;}
+.timeline::before{content:"";position:absolute;left:26px;top:18px;bottom:30px;width:1px;background:var(--ink4);}
+.phase{position:relative;margin-bottom:26px;}
+.phase .pnode{position:absolute;left:-26px;top:5px;width:13px;height:13px;border-radius:50%;
+  box-shadow:0 0 0 4px var(--paper);}
+.phase .phead{display:flex;align-items:baseline;gap:9px;margin-bottom:10px;}
+.phase .pz{font-family:var(--zh);font-weight:500;font-size:.96rem;letter-spacing:.14em;}
+.phase .pe{font-family:var(--en);font-style:italic;font-size:.92rem;color:var(--ink3);}
+.dream-row{display:flex;align-items:baseline;gap:12px;padding:9px 8px 9px 2px;cursor:pointer;border-radius:4px;
+  transition:background .15s;}
+.dream-row:hover{background:rgba(44,40,35,.045);}
+.dream-row .num{font-family:var(--en);font-size:.86rem;color:var(--ink3);min-width:26px;letter-spacing:.04em;}
+.dream-row .tt{flex:1;}
+.dream-row .tz{font-family:var(--zh);font-weight:400;font-size:.92rem;line-height:1.5;}
+.dream-row .te{font-family:var(--en);font-style:italic;font-size:.86rem;color:var(--ink3);line-height:1.4;}
+.dream-row .pc{font-family:var(--en);font-size:.74rem;color:var(--ink3);}
 
-.toc-grid {
-  flex: 1;
-  overflow-y: auto;
-  padding: 20px 16px 48px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
-  gap: 10px;
-  align-content: start;
-}
+/* ── READER ────────────────────────────────── */
+#reader{background:#1a1611;}
+.deck{position:absolute;inset:0;overflow:hidden;touch-action:pan-y;}
+.track{display:flex;height:100%;will-change:transform;transition:transform .55s var(--ease);}
+.slide{position:relative;flex:0 0 100%;height:100%;overflow:hidden;}
+.slide.s-img{background:#15110c;}
+.slide.s-img .pic{position:absolute;inset:0;background-size:cover;background-position:center;}
+.slide.s-img .top-scrim{position:absolute;top:0;left:0;right:0;height:30%;
+  background:linear-gradient(to bottom, rgba(20,16,11,.72), transparent);}
+.slide.s-img .cap-scrim{position:absolute;left:0;right:0;bottom:0;height:52%;
+  background:linear-gradient(to top, rgba(16,12,8,.86) 8%, rgba(16,12,8,.45) 48%, transparent);}
+.cap{position:absolute;left:0;right:0;bottom:0;padding:0 26px calc(var(--safe-b) + 70px);}
+.cap .zh{font-family:var(--zh);font-weight:300;font-size:1.16rem;line-height:1.95;color:#F6F1E8;
+  text-shadow:0 1px 14px rgba(0,0,0,.5);text-wrap:pretty;}
+.cap .en{font-family:var(--en);font-style:italic;font-size:.96rem;line-height:1.55;color:rgba(246,241,232,.74);margin-top:9px;text-shadow:0 1px 10px rgba(0,0,0,.5);}
 
-.toc-card {
-  background: var(--page-l);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: box-shadow 0.15s, transform 0.15s;
-}
-.toc-card:hover {
-  box-shadow: 0 4px 18px rgba(0,0,0,0.11);
-  transform: translateY(-2px);
-}
-.toc-stripe { height: 4px; }
-.toc-body   { padding: 10px 12px 12px; }
-.toc-num    { font-size: 0.58rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 5px; }
-.toc-title  { font-size: 0.8rem; line-height: 1.45; margin-bottom: 8px; min-height: 2.3em; }
-.toc-chip   {
-  display: inline-block; font-size: 0.58rem;
-  padding: 2px 7px; border-radius: 20px;
-  color: #fff; letter-spacing: 0.04em; opacity: 0.9;
-}
+/* analysis slide */
+.slide.s-analysis{background:radial-gradient(120% 60% at 50% 0%, #F7F2E9, #EFE7D9 75%);overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.slide.s-analysis::-webkit-scrollbar{width:0;}
+.an-wrap{padding:calc(var(--safe-t) + 64px) 32px calc(var(--safe-b) + 30px);min-height:100%;display:flex;flex-direction:column;}
+.an-dot{width:11px;height:11px;border-radius:50%;margin-bottom:14px;}
+.an-phase{font-family:var(--en);font-style:italic;font-size:.92rem;color:var(--ink3);letter-spacing:.02em;}
+.an-title{font-family:var(--zh);font-weight:500;font-size:1.42rem;letter-spacing:.08em;margin-top:4px;line-height:1.3;}
+.an-title-en{font-family:var(--en);font-style:italic;font-size:1.05rem;color:var(--ink3);margin-top:4px;}
+.an-label{font-family:var(--en);font-style:italic;font-size:.86rem;color:#A98C5E;letter-spacing:.08em;margin:18px 0 6px;}
+.motif{margin-top:16px;}
+.motif h4{font-family:var(--zh);font-weight:600;font-size:.98rem;letter-spacing:.04em;}
+.motif h4 .e{font-family:var(--en);font-style:italic;font-weight:400;font-size:.9rem;color:var(--ink3);margin-left:8px;letter-spacing:0;}
+.motif p{font-family:var(--zh);font-weight:300;font-size:.9rem;line-height:1.95;color:var(--ink);margin-top:5px;text-wrap:pretty;}
+.an-sum{font-family:var(--zh);font-weight:400;font-size:.96rem;line-height:2;color:var(--ink);text-wrap:pretty;}
+.an-sum .en{display:block;font-family:var(--en);font-style:italic;font-size:.94rem;line-height:1.7;color:var(--ink2);margin-top:1em;}
+.an-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:30px;padding-top:18px;border-top:1px solid var(--ink4);}
 
-/* ══════════════════════════════════════════════════════
-   VIEW 3 — BOOK SPREAD
-   ══════════════════════════════════════════════════════ */
-#view-book { background: var(--bg); }
+/* reader chrome */
+.r-top{position:absolute;top:0;left:0;right:0;z-index:8;display:flex;align-items:center;justify-content:space-between;
+  gap:8px;padding:calc(var(--safe-t) + 14px) 16px 10px;pointer-events:none;}
+.r-top>*{pointer-events:auto;}
+.r-menu{font-family:var(--zh);font-weight:300;font-size:.72rem;letter-spacing:.22em;color:#F6F1E8;background:none;border:none;cursor:pointer;
+  text-shadow:0 1px 8px rgba(0,0,0,.5);padding:4px;}
+#reader.on-analysis .r-menu{color:var(--ink2);text-shadow:none;}
+.r-title{flex:1;text-align:center;overflow:hidden;}
+.r-title .z{font-family:var(--zh);font-weight:400;font-size:.8rem;letter-spacing:.08em;color:#F6F1E8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 8px rgba(0,0,0,.55);}
+.r-title .e{font-family:var(--en);font-style:italic;font-size:.74rem;color:rgba(246,241,232,.7);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 8px rgba(0,0,0,.55);}
+#reader.on-analysis .r-title .z{color:var(--ink2);text-shadow:none;}
+#reader.on-analysis .r-title .e{color:var(--ink3);text-shadow:none;}
+.r-idx{font-family:var(--en);font-size:.82rem;letter-spacing:.06em;color:#F6F1E8;min-width:40px;text-align:right;text-shadow:0 1px 8px rgba(0,0,0,.5);}
+#reader.on-analysis .r-idx{color:var(--ink3);text-shadow:none;}
 
-/* ── Header ──────────────────────────────────────── */
-.book-hdr {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  padding: 0 12px;
-  height: 48px;
-  border-bottom: 1px solid var(--border);
-  gap: 6px;
-}
-.bh-btn {
-  background: none;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  font-family: var(--serif);
-  font-size: 0.7rem;
-  color: var(--muted);
-  padding: 3px 9px;
-  cursor: pointer;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.bh-btn:hover { color: var(--text); border-color: var(--muted); }
-.bh-btn:disabled { opacity: 0.28; cursor: default; }
-.bh-info {
-  flex: 1;
-  text-align: center;
-  font-size: 0.7rem;
-  color: var(--muted);
-  letter-spacing: 0.05em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.bh-phase {
-  font-size: 0.6rem;
-  padding: 2px 8px;
-  border-radius: 20px;
-  color: #fff;
-  letter-spacing: 0.04em;
-  opacity: 0.9;
-  flex-shrink: 0;
-}
+.chev{position:absolute;top:50%;transform:translateY(-50%);z-index:7;width:42px;height:62px;display:flex;align-items:center;justify-content:center;
+  background:none;border:none;cursor:pointer;color:rgba(246,241,232,.0);font-size:2rem;font-family:var(--en);transition:color .2s;}
+#reader:hover .chev{color:rgba(246,241,232,.5);}
+#reader.on-analysis .chev{color:rgba(44,40,35,.0);}
+#reader.on-analysis:hover .chev{color:rgba(44,40,35,.35);}
+.chev.prev{left:0;}.chev.next{right:0;}
+.chev:disabled{opacity:0;pointer-events:none;}
 
-/* ── Stage (centres the book) ─────────────────────── */
-.book-stage {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px 16px 8px;
-  min-height: 0;
-}
+.dots{position:absolute;left:0;right:0;bottom:calc(var(--safe-b) + 26px);z-index:8;display:flex;gap:6px;justify-content:center;align-items:center;pointer-events:none;}
+.dots .d{width:5px;height:5px;border-radius:50%;background:rgba(246,241,232,.4);transition:.3s;}
+.dots .d.on{background:#F6F1E8;width:16px;border-radius:3px;}
+.dots .d.an{width:7px;height:7px;background:none;border:1px solid rgba(246,241,232,.5);transform:rotate(45deg);border-radius:1px;}
+.dots .d.an.on{background:#F6F1E8;border-color:#F6F1E8;}
+#reader.on-analysis .dots{display:none;}
 
-/* ── Book spread container ────────────────────────── */
-.book-spread {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 860px;
-  height: min(72vh, 600px);
-  box-shadow: var(--shadow);
-  border-radius: 2px 5px 5px 2px;
-}
+.mini{font-family:var(--zh);font-weight:300;font-size:.72rem;letter-spacing:.16em;color:var(--ink2);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;}
+.mini .en{font-family:var(--en);font-style:italic;letter-spacing:.02em;font-size:.9rem;color:var(--ink3);}
+.mini:hover{color:var(--ink);}
+.mini:disabled{opacity:.3;pointer-events:none;}
 
-/* ── Pages ────────────────────────────────────────── */
-.book-page { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
-.page-left  { background: var(--page-l); border-radius: 2px 0 0 2px; }
-.page-right { background: var(--page-r); border-radius: 0 5px 5px 0; position: relative; }
+/* northstar */
+#northstar .paper-scroll{align-items:center;text-align:center;justify-content:center;}
+#northstar .ns-title{font-family:var(--zh);font-weight:500;font-size:1.1rem;letter-spacing:.32em;text-indent:.32em;}
+#northstar .ns-en{font-family:var(--en);font-style:italic;font-size:1rem;color:var(--ink3);margin-top:6px;}
+#northstar .ns-body{font-family:var(--zh);font-weight:300;font-size:1.18rem;line-height:2.1;max-width:300px;margin:34px 0;text-wrap:pretty;}
+#northstar .ns-en2{font-family:var(--en);font-style:italic;font-size:1rem;line-height:1.7;color:var(--ink2);max-width:300px;}
+#northstar .ns-body p{margin-bottom:.85em;}
+.ornament{color:var(--gold);font-size:1rem;letter-spacing:.5em;text-indent:.5em;margin:6px 0;}
 
-.book-spine {
-  flex: 0 0 6px;
-  background: linear-gradient(to right, #AEA9A0 0%, #E2DDD6 45%, #E2DDD6 55%, #AEA9A0 100%);
-  position: relative;
-  z-index: 2;
-}
-
-/* ── Left page inner ──────────────────────────────── */
-.pl-inner {
-  height: 100%;
-  padding: 26px 22px 18px;
-  display: flex;
-  flex-direction: column;
-}
-.pl-num   { font-size: 0.58rem; letter-spacing: 0.14em; color: var(--muted); margin-bottom: 5px; }
-.pl-title { font-size: clamp(0.8rem, 1.7vw, 0.98rem); font-weight: 600; line-height: 1.35; margin-bottom: 8px; }
-.pl-chip  {
-  display: inline-block; font-size: 0.58rem; padding: 2px 8px; border-radius: 20px;
-  color: #fff; letter-spacing: 0.04em; opacity: 0.88; margin-bottom: 16px; align-self: flex-start;
-}
-.pl-rule  { width: 22px; height: 1px; background: var(--border); margin-bottom: 14px; }
-.pl-text  {
-  flex: 1; font-size: clamp(0.8rem, 1.55vw, 0.92rem); line-height: 1.9;
-  color: var(--text); overflow-y: auto;
-}
-.pl-text::-webkit-scrollbar { width: 2px; }
-.pl-text::-webkit-scrollbar-thumb { background: var(--border); border-radius: 1px; }
-.pl-foot  { margin-top: 10px; font-size: 0.58rem; color: var(--muted); letter-spacing: 0.1em; }
-
-/* ── Right page inner (image) ─────────────────────── */
-.pr-inner {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-}
-.pr-inner img {
-  max-width: 100%; max-height: 100%;
-  object-fit: contain; display: block;
-}
-.pr-ph {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.58rem; letter-spacing: 0.14em; color: var(--border);
-  text-transform: uppercase; background: var(--page-r);
-}
-
-/* ══════════════════════════════════════════════════════
-   3-D PAGE FLIPPER
-   Covers the right page exactly.
-   transform-origin: left center  →  rotates around the spine.
-   ══════════════════════════════════════════════════════ */
-#flipper-wrap {
-  position: absolute;
-  top: 0; right: 0;
-  width: calc(50% - 3px);   /* exact right-page width */
-  height: 100%;
-  perspective: 1800px;
-  z-index: 10;
-  pointer-events: none;     /* clicks fall through by default */
-}
-
-#page-flipper {
-  position: absolute;
-  inset: 0;
-  transform-origin: left center;
-  transform-style: preserve-3d;
-  transition: transform 0.65s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-}
-#page-flipper.is-flipping { transform: rotateY(-180deg); }
-
-.flip-face {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  overflow: hidden;
-}
-/* Front = current right-page image */
-.flip-front {
-  background: var(--page-r);
-  display: flex; align-items: center; justify-content: center;
-}
-.flip-front img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
-
-/* Back = next panel text; faces viewer when flipper reaches -180° */
-.flip-back {
-  background: var(--page-l);
-  transform: rotateY(180deg);
-  padding: 26px 22px 18px;
-  display: flex; flex-direction: column;
-}
-
-/* ── Footer: dots + nav ────────────────────────────── */
-.book-footer {
-  flex: 0 0 auto;
-  display: flex; align-items: center; justify-content: center;
-  gap: 18px;
-  padding: 8px 16px 12px;
-}
-.nav-btn {
-  background: none;
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  width: 34px; height: 34px;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  font-size: 1.15rem;
-  color: var(--muted);
-  flex-shrink: 0;
-  line-height: 1;
-  transition: background 0.12s, color 0.12s;
-}
-.nav-btn:hover { background: var(--border); color: var(--text); }
-.nav-btn:disabled { opacity: 0.22; cursor: default; }
-
-.panel-dots { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
-.pdot {
-  width: 5px; height: 5px; border-radius: 50%;
-  background: var(--border); transition: background 0.2s;
-}
-.pdot.active { background: var(--muted); }
-
-/* ── Mobile fallback (≤ 580px) ──────────────────────── */
-@media (max-width: 580px) {
-  .book-spread {
-    flex-direction: column;
-    height: auto;
-    max-height: calc(100vh - 108px);
-    border-radius: 4px;
-  }
-  .book-page { flex: none; }
-  .page-left  { max-height: 30vh; border-radius: 4px 4px 0 0; }
-  .page-right { height: min(56vw * 16/9, 52vh); border-radius: 0 0 4px 4px; }
-  .book-spine { flex: 0 0 1px; background: var(--border); }
-  #flipper-wrap { display: none; } /* use simple fade on mobile */
-}
+/* ── AI PAGE ───────────────────────────────── */
+#letterAI .ai-emblem{font-family:var(--en);color:var(--gold);font-size:1.05rem;letter-spacing:.6em;text-indent:.6em;margin:14px 0 12px;}
+#letterAI .ai-title{font-size:1.34rem;line-height:1.5;letter-spacing:.04em;text-indent:0;margin:8px 0 4px;}
+.ai-sign{margin-top:32px;padding-top:18px;border-top:1px solid var(--ink4);display:flex;flex-direction:column;gap:4px;text-align:right;}
+.ai-sign-em{font-family:var(--zh);font-weight:400;font-size:1.02rem;letter-spacing:.04em;color:var(--ink2);}
+.ai-sign-en{font-family:var(--en);font-style:italic;font-size:.9rem;letter-spacing:.02em;color:var(--ink3);}
 </style>
 </head>
 <body>
+<template id="__bundler_thumbnail">
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" fill="#C7BDAA"/>
+  <circle cx="50" cy="46" r="20" fill="none" stroke="#F6F1E8" stroke-width="2.2"/>
+  <circle cx="58" cy="40" r="18" fill="#C7BDAA"/>
+  <path d="M50 74 q-2 -8 -6 -10 q8 -2 10 -8 q2 6 10 8 q-12 2 -14 10z" fill="#9C8866"/>
+</svg>
+</template>
+<div id="app">
 
-<!-- ════════════════════════════════════════════
-     VIEW 1 — COVER (click anywhere to enter)
-     ════════════════════════════════════════════ -->
-<div id="view-cover" class="view active" onclick="showTOC()">
-  <div class="cover-inner">
-    <div class="cover-rule-top"></div>
-    <div class="cover-zh">夢裡夢外</div>
-    <div class="cover-en">Among All Dreams</div>
-    <div class="cover-mid">
-      <div class="cover-line"></div>
-      <div class="cover-dot"></div>
-      <div class="cover-line"></div>
+  <!-- COVER -->
+  <section id="cover" class="view active" onclick="App.enter('letterDreamer')">
+    <div class="bg" id="cover-bg"></div>
+    <div class="vig"></div>
+    <div class="inner">
+      <div class="ck">a picture book of dreams</div>
+      <div class="grow"></div>
+      <div class="rule"></div>
+      <div class="title">夢裡夢外</div>
+      <div class="en">Among All Dreams</div>
+      <div class="grow"></div>
+      <div class="author">good_.evelyn &nbsp;·&nbsp; 2025–2026</div>
+      <div class="hint">輕觸翻開 · tap to begin</div>
     </div>
-    <div class="cover-author">Eve &middot; 2026</div>
-    <div class="cover-hint">點擊翻開</div>
-  </div>
+  </section>
+
+  <!-- LETTER — DREAMER -->
+  <section id="letterDreamer" class="view"><div class="paper">
+    <div class="paper-scroll" id="ld-body"></div>
+    <div class="page-nav">
+      <button class="pbtn" onclick="App.enter('cover')">‹ <span class="en">cover</span></button>
+      <button class="pbtn cta" onclick="App.enter('contents')">目錄 <span class="en">contents ›</span></button>
+    </div>
+  </div></section>
+
+  <!-- CONTENTS -->
+  <section id="contents" class="view">
+    <div class="top">
+      <button class="pbtn back" onclick="App.enter('cover')">‹ <span class="en">cover</span></button>
+      <h2>目錄<span class="en">contents</span></h2>
+    </div>
+    <hr class="hair">
+    <div class="toc-scroll"><div class="timeline" id="toc"></div></div>
+  </section>
+
+  <!-- READER -->
+  <section id="reader" class="view">
+    <div class="deck" id="deck"><div class="track" id="track"></div></div>
+    <div class="r-top">
+      <button class="r-menu" onclick="App.enter('contents')">目錄</button>
+      <div class="r-title"><div class="z" id="rt-z"></div><div class="e" id="rt-e"></div></div>
+      <div class="r-idx" id="rt-idx"></div>
+    </div>
+    <button class="chev prev" id="chev-prev" onclick="App.prev()" aria-label="prev">‹</button>
+    <button class="chev next" id="chev-next" onclick="App.next()" aria-label="next">›</button>
+    <div class="dots" id="dots"></div>
+  </section>
+
+  <!-- LETTER — READER -->
+  <section id="letterReader" class="view"><div class="paper">
+    <div class="paper-scroll" id="lr-body"></div>
+    <div class="page-nav">
+      <button class="pbtn" onclick="App.enter('contents')"><span class="en">‹ contents</span> 目錄</button>
+      <button class="pbtn cta" onclick="App.enter('letterAI')">AI 的一頁 <span class="en">a page ›</span></button>
+    </div>
+  </div></section>
+
+  <!-- LETTER — AI -->
+  <section id="letterAI" class="view"><div class="paper">
+    <div class="paper-scroll" id="lai-body"></div>
+    <div class="page-nav">
+      <button class="pbtn" onclick="App.enter('letterReader')"><span class="en">‹ reader</span> 給讀者的話</button>
+      <button class="pbtn cta" onclick="App.enter('northstar')">為什麼 <span class="en">why ›</span></button>
+    </div>
+  </div></section>
+
+  <!-- NORTHSTAR -->
+  <section id="northstar" class="view"><div class="paper">
+    <div class="paper-scroll" id="ns-body"></div>
+    <div class="page-nav">
+      <button class="pbtn" onclick="App.enter('contents')">‹ <span class="en">contents</span></button>
+      <button class="pbtn" onclick="App.enter('cover')">封面 <span class="en">cover ›</span></button>
+    </div>
+  </div></section>
+
 </div>
 
-<!-- ════════════════════════════════════════════
-     VIEW 2 — TABLE OF CONTENTS
-     ════════════════════════════════════════════ -->
-<div id="view-toc" class="view">
-  <div class="toc-header">
-    <button class="toc-back" onclick="showCover()">← 封面</button>
-    <span class="toc-heading">夢裡夢外</span>
-    <div class="toc-spacer"></div>
-  </div>
-  <div class="toc-grid" id="toc-grid"></div>
-</div>
-
-<!-- ════════════════════════════════════════════
-     VIEW 3 — BOOK SPREAD
-     ════════════════════════════════════════════ -->
-<div id="view-book" class="view">
-
-  <!-- Header bar -->
-  <div class="book-hdr">
-    <button class="bh-btn" onclick="showTOC()">目錄</button>
-    <span class="bh-info" id="bh-info"></span>
-    <span class="bh-phase" id="bh-phase"></span>
-    <button class="bh-btn" id="bh-prev" onclick="prevDream()">‹ 上夢</button>
-    <button class="bh-btn" id="bh-next" onclick="nextDream()">下夢 ›</button>
-  </div>
-
-  <!-- Book stage -->
-  <div class="book-stage">
-    <div class="book-spread">
-
-      <!-- LEFT PAGE — text -->
-      <div class="book-page page-left">
-        <div class="pl-inner">
-          <div class="pl-num"   id="pl-num"></div>
-          <div class="pl-title" id="pl-title"></div>
-          <div class="pl-chip"  id="pl-chip"></div>
-          <div class="pl-rule"></div>
-          <div class="pl-text"  id="pl-text"></div>
-          <div class="pl-foot"  id="pl-foot"></div>
-        </div>
-      </div>
-
-      <!-- SPINE -->
-      <div class="book-spine"></div>
-
-      <!-- RIGHT PAGE — image -->
-      <div class="book-page page-right">
-        <div class="pr-inner">
-          <img id="right-img" src="" alt="" />
-          <div class="pr-ph" id="right-ph" style="display:none">image</div>
-        </div>
-      </div>
-
-      <!-- 3-D FLIPPER — covers right page, rotates around spine -->
-      <div id="flipper-wrap">
-        <div id="page-flipper">
-
-          <!-- Front face: current right-page image -->
-          <div class="flip-face flip-front">
-            <img id="fl-img" src="" alt="" />
-          </div>
-
-          <!-- Back face: next panel's text (becomes new left page after flip) -->
-          <div class="flip-face flip-back">
-            <div class="pl-num"   id="fl-num"></div>
-            <div class="pl-title" id="fl-title"></div>
-            <div class="pl-chip"  id="fl-chip"></div>
-            <div class="pl-rule"></div>
-            <div class="pl-text"  id="fl-text"></div>
-            <div class="pl-foot"  id="fl-foot"></div>
-          </div>
-
-        </div>
-      </div>
-      <!-- /flipper -->
-
-    </div><!-- /book-spread -->
-  </div><!-- /book-stage -->
-
-  <!-- Footer: panel navigation -->
-  <div class="book-footer">
-    <button class="nav-btn" id="btn-prev" onclick="flipPrev()" aria-label="上一頁">&#8249;</button>
-    <div class="panel-dots" id="panel-dots"></div>
-    <button class="nav-btn" id="btn-next" onclick="flipNext()" aria-label="下一頁">&#8250;</button>
-  </div>
-
-</div><!-- /view-book -->
-
+<script src="data-dreams.js"></script>
+<script src="data-analysis.js"></script>
 <script>
-// ─────────────────────────────────────────────────────
-// PHASE MAP
-// ─────────────────────────────────────────────────────
-const PHASES = {
-  '出發':      'departure',
-  '失去':      'loss',
-  '暴力與覺察': 'violence',
-  '心死':      'heartdead',
-  '重建':      'rebuild',
-  '行動的呼喚': 'action',
-  '飛起':      'fly',
-  '浮起':      'float',
-};
+const App = (function(){
+  const DREAMS=window.DREAMS, PHASES=window.PHASES, ANALYSIS=window.ANALYSIS, LETTERS=window.LETTERS;
+  const phaseMap={}; PHASES.forEach(p=>phaseMap[p.id]=p);
+  // keep array order == phase-grouped display order (stable sort preserves order within a phase)
+  const phaseOrder={}; PHASES.forEach((p,i)=>phaseOrder[p.id]=i);
+  DREAMS.sort((a,b)=>phaseOrder[a.phase]-phaseOrder[b.phase]);
+  const $=s=>document.querySelector(s);
+  const imgSrc=(id,i)=>`assets/img/dream-${id}/panel-${String(i+1).padStart(2,'0')}.jpg`;
 
-// ─────────────────────────────────────────────────────
-// DREAM DATA
-// ─────────────────────────────────────────────────────
-const DREAMS = [
-  {
-    id: '01', title: '中式大宅中轉站', phase: '出發', panelCount: 7,
-    panels: [
-      '我住在那棟宅子的時間比所有人都長。',
-      '門廊、走廊、每一個轉角，我都認識。朋友們住在不同的樓層和房間，偶爾遇上，我只問一件事：「你什麼時候要走？」',
-      '每次擁抱都用力。因為下一站各散東西，不知道還會不會再見。',
-      '有一天，兩個人來找住在宅子裡的某個人。我幫他們尋找，走錯了方向，推開了幾扇不認識的門。裡面的房間很奇怪——由網格組成，橫向伸展，像懸在半空的陽台，四面全是格子，只容得下一個人。',
-      '幾間都找不到人。最後我站在黑暗的走廊裡，大聲叫她的名字。',
-      '才在一間正常的房間裡找到她，和另外兩個朋友住在一起。',
-      '後來我把網格房的事告訴別人。她們都說：「沒有這樣的房間。」',
-    ],
-  },
-  {
-    id: '02', title: '後樓梯殘缺樂器追逐', phase: '出發', panelCount: 7,
-    panels: [
-      '整個世界是灰色的。',
-      '後樓梯比正常的更窄，梯級扁平，可以一跳越過半層。我和男朋友非常緊張地往下走。下面有出口，我們只想快點出去。',
-      '某一層，一個女生靠在牆邊。她扶著破掉一半的樂器，好像要演奏，又好像要介紹。她的手腕不在身上，落在地板上。',
-      '我們沒有停。快速掠過她，繼續往下走。',
-      '下一層，又是一件破損的樂器。再下一層，又是。那個女生的腳步聲在身後響起，不緊不慢，一直跟著。我們越走越快。',
-      '出到街道，直接上了車。我坐定，回頭望著門口等，看她有沒有跟出來。',
-      '走出來的是一位普通的婦人。那個女生不見了。車沒有立刻開走。我沒有回頭看後座。但我的整個身體都知道——她在那裡。',
-    ],
-  },
-  {
-    id: '07', title: '流浪漢昏迷自醒', phase: '失去', panelCount: 6,
-    panels: [
-      '大雪。',
-      '車房外，有一個流浪漢靠著我的車坐著，蓋著什麼在睡覺。我是去拿東西才走進去的，看到他，他也看到我，用眼神問我。',
-      '我答應了他。他可以在車房裡過一夜。床憑空出現了，就在車房裡。他去睡了。',
-      '我不知道是什麼時候、用什麼方式昏迷的。意識還在，身體不動。我感覺到他靠近，感覺到他觸碰我，在心裡喊「不要碰我」，但說不出聲，也動不了。',
-      '這樣過了一段時間。',
-      '然後我沉下去，很深的地方，深呼了一口氣，說：「醒。」我睜開眼，躺在自己的床上，天亮了。',
-    ],
-  },
-  {
-    id: '15', title: '廢物箱尋寶中學朋友', phase: '失去', panelCount: 6,
-    panels: [
-      '學校或大學的某個角落，有三個大紙箱。',
-      '裡面是賣剩的貨、瑕疵品，有些拆了包裝，有些已經壞了，但可以帶走。我和她發現這個地方的時候都很開心，立刻翻起來。',
-      '她是我中學時最好的朋友。畢業之後，我們就沒有再聯絡。',
-      '走廊有人說隔壁大樓起火，嗅到一點煙味，我們繼續翻箱，完全沒有管。',
-      '開心是真實的。不是因為得到了什麼，是因為在她面前，不需要裝，不需要管面子，想拿免費的破爛就拿，想翻垃圾就翻。',
-      '她比我更開心，她比我更先伸手進去。',
-    ],
-  },
-  {
-    id: '17', title: '貓生病電梯', phase: '失去', panelCount: 6,
-    panels: [
-      '整個世界是灰黑色和暗綠色。',
-      '男朋友把我的貓帶去了動物醫院。我是後來才知道的，知道後立刻跑過去，推開醫生的房間門，警告他：要好好治療我的貓。',
-      '我不記得為什麼那麼大情緒，但我是生氣的。說完又怕自己的怒氣影響治療，立刻切換語氣，好好拜託他。醫生有點不悅，只說：「我會讓下一個值班的醫生知道。」',
-      '電梯大堂有兩部電梯。左邊那部不能進，我說不清為什麼，但就是知道。我站在右邊等，心裡有點害怕。',
-      '一位清潔大嬸推著清潔車走過來，也在等。她什麼都沒說，只是站在那裡。我的害怕就消失了。',
-      '電梯門開了，裡面已經有人，他們拿著非常巨大但很輕盈的東西，霸了三分之一的空間。門關上之後，我被推到靠近門口的位置。然後就忘記了。',
-    ],
-  },
-  {
-    id: '26', title: '商場買鞋偷錢包搶劫', phase: '暴力與覺察', panelCount: 7,
-    panels: [
-      '我在選鞋。男朋友走過來，拿兩張卡給我看，說買某個白色錢包有很大的折扣。我在選鞋，讓他自己處理。',
-      '店員說超過關門時間，請大家離開。我走出去，男朋友在外面等我，手上有兩個白色錢包。他說沒有人發現，因為關門了。他偷的。我就拿走了。',
-      '走在路上，有人衝出來搶包，左手一條燒肉，右手幾把刀，周圍的人都散開了。我不讓他拿包，扭打，最後制服了他。',
-      '男朋友站在旁邊，好像不太明白為什麼我要這麼堅持。我叫他報警。他把電話遞給旁邊幾個人，讓我自己處理。',
-      '警察來了，看到那條燒肉，切開，開始吃，還分給旁邊的人和男朋友，吃得很開心。',
-      '我按著那個人，看著他們吃。',
-      '最後我和男朋友離開現場，我告訴他我們分手。我拿走了我自己的兩部電話，上了天橋，一個人走。他留在原地，沒有追。草叢裡有聲音。兩隻黑白貓走出來，停在那裡看著我，然後走了。',
-    ],
-  },
-  {
-    id: '28', title: '荒廢豪宅十億寶藏', phase: '暴力與覺察', panelCount: 8,
-    panels: [
-      '豪宅已經有些倒塌了。我不知道怎麼到了這裡，到了之後才發現裡面已經有兩個人：一個年輕警察，一個中年工人。',
-      '警察和我一起走，他保護我，我跟著他。工人另走一路，去到地下一個洞。他說裡面有十億。',
-      '那個洞我很害怕，我沒有進去，遠遠站著。',
-      '工人進去，不一會兒走上來，真的帶著那麼多的東西和錢。他分了警察一份，警察替我爭取了一小部份。我很感謝他，我自己沒有打算開口要。',
-      '工人說另外還有兩輛車給了警察，換他閉一隻眼。',
-      '第二次，我們又在同一個地方。我跟工人說，主人房應該有更直接的路去地下，何必進那個洞。他不急，不想找，還是下去了。',
-      '我和警察繼續走，地板突然把我吸進去，什麼都沒了。',
-      null,
-    ],
-  },
-  {
-    id: '32', title: '奧運公園乾花怪獸', phase: '心死', panelCount: 8,
-    panels: [
-      '出去散步，遇到兩個女生在問路。她們要找一個有奧運標誌的公園，原本要去的地方因為時間過了，臨時改到這裡。我在地圖上找了很久，最後找到了——原來是我平日去散步的那個小公園。我和她們一起走過去。',
-      '有一個臨時攤位在賣乾花。薰衣草很便宜，還有很多其他乾花。我本來只是被薰衣草吸引，後來想著：不如為自己挑一束放在家裡。',
-      '我拿了白色的蓮花。店主看到，把更大、更漂亮的那朵蓮花拿來給我，幫我搭配。有點貴，我一直在想要不要走，但最後買了。',
-      '我拿著乾花回大廈，電梯只能到4樓。我想說去5樓走樓梯就好了，走上去。',
-      '4樓開了門，完全不同的景色，像宇宙星球一樣設計的戶外走廊，找不到樓梯去5樓。我跟著一批人找了幾條摺疊式的樓梯，每一條都很可怕，搖晃，差點。',
-      '門外有怪獸。我回到家，把門鎖緊，只有我和貓。手上拿著那束乾花。',
-      '我打算離開這裡，把家裡的五花肉拿出來，用吹風機以最低溫、最低音量風乾，每一個動作都很輕。貓發出聲音，我叫牠不要出聲。',
-      '後來我把其中一隻怪獸打暈，拖進家裡，想研究一下。我用繩子綁它的手，綁不緊，怪獸教我怎麼綁才牢。我從架子上拿了一瓶酒，喝了一口，非常好喝。它跪著，雙手被綁，沒有反抗。',
-    ],
-  },
-  {
-    id: '34', title: '豪宅迷宮父親燒木櫃', phase: '心死', panelCount: 7,
-    panels: [
-      '家人買了一間很大的房子，像迷宮一樣，每個房間之間都是鏤空的，沒有完全封閉的地方。交收的前一晚，我和爸爸先去住一夜。',
-      '2樓大廳有非常漂亮的木櫃子，精緻，舊式的工藝。我在自己的房間待著，嗅到燒焦的氣味。跑出去，爸爸在燒那些櫃子。',
-      '我不知道為什麼他要燒，他也說不清楚。',
-      '我拿了滅火器把火熄滅，對他大罵：「櫃子很漂亮，不要燒！」他也不辯解。',
-      '然後樓梯頂有動靜，一個拿著長槍的男人走下來，問我們是誰。他是豪宅的前男主人，不知道已經換了新主人。他拿著槍往前走，我讓他滾落下樓梯，他暈了。',
-      '第二天早上，女主人和地產代理來交收，其他家庭成員也來了。昨晚的事沒有人提起，就像沒有發生過。爸爸也不知道去了哪裡。',
-      '走出豪宅，在以前住過的那條街上，有一輛外賣車，以前從來沒見過。賣豆腐花和小食，招牌寫著「一線豆腐花」，但真正賣的只有二線和三線。我只是注意到這件事，然後繼續走。',
-    ],
-  },
-  {
-    id: '35', title: '藥材鋪異能者彩虹能量場', phase: '重建', panelCount: 7,
-    panels: [
-      '那是一間看起來像藥材鋪的店，但我是去裡面理髮的。前面還有一個女生在等，輪到我的時候，我沒有剪，因為我認識了一個在那裡做兼職的人。',
-      '他不是普通的兼職。他有特殊能力，可以切換去另一個維度輕鬆解決問題。他在藥材鋪裡做的是暗面的事，老闆的一些安排。',
-      '不知道怎麼變成我們兩個在船上，急流，地圖在手，走錯了方向，在湍急的水裡U轉。好幾次差點流入錯誤的分支，但每次都找回了主流，最後水平靜了，我們到了中國的某條河道。',
-      '再之後，我們住在一起，養著一隻貓。也有他的朋友偶爾一起住，做同樣工作的人。',
-      '有一次準備出門，街上突然出現一個行為很異常的人。他的真身出現了——彩虹能量場在他周圍，臉有些變形，我第一次看到他全部的力量。',
-      '他看出那個異常的人不是壞人，是在找什麼，傷心地找。他把那個人帶去藥材鋪，在一個舊櫃子裡找到一盒錄影帶——原來他是剛去世的藥材鋪老闆的秘密兒子。',
-      null,
-    ],
-  },
-  {
-    id: '36', title: '中國街變形動物小男孩', phase: '重建', panelCount: 7,
-    panels: [
-      '那條街在中國某個地方，看起來像普通的地鋪，一戶一戶排過去，但每一戶裡面住的都是動物，而且不對勁。',
-      '矮頸的長頸鹿在水氹裡玩耍。獵豹和她的寶寶住在一塊濕地裡。有一個鋪頭在賣貓肉，我身上抱著貓，立刻繞開，不讓那個人注意到我懷裡有一隻貓。',
-      '我旁邊一直有一個小男孩，大概三歲，眼睛很大，背著一個小背包，背包連著風扇和冷氣管，一直吹著他的背。精靈，自給自足，不需要我特別照顧，就是走在旁邊。',
-      '過了那個賣貓肉的鋪頭，我手上突然多了兩條深海魚，粉紅色，頭是圓的，全是牙齒。我不知道從哪裡來的。一個不小心牠們就咬我的手，旁邊的人幫我把牠們移開，但我一直拿著。',
-      '我的褲子被什麼動物抓破了，沒有注意到是哪一隻。',
-      '走完了整條街，小男孩找到一間Café，坐在玻璃窗後面休息。我在玻璃外面，清楚看到他，他也看著我。',
-      null,
-    ],
-  },
-  {
-    id: '39b', title: 'Frantiono 旅遊小胖子', phase: '行動的呼喚', panelCount: 8,
-    panels: [
-      '我參加了一個烹飪比賽。黑色的背景，十組人以內，我已經決定好菜式，和其中一組廚師合作，用他們的醬汁。試了幾次，大家都很滿意。',
-      '然後我張開眼，已經是下午，比賽早上九點就開始，電視的直播裡已經沒有我，我被取消了資格。我擔心和我合作的廚師怎麼辦，比擔心自己更多一點。',
-      '到了一個叫Frantiono的地方，很大的水池，像埃及，又像墨西哥，像歐洲。很明顯是旅遊，我一直看著手機上的地圖，上面標了很多餐廳，但那個地方我不熟悉。',
-      '有一個小胖子小朋友和我一起。我牽著他，拉著行李，去市中心找了一間比較暗、比較小的旅館住下來。',
-      '第二天帶著他在市中心邊緣走，那裡比較危險，我走了很久，手機拿著地圖，但又不敢太明顯地拿出來，怕被偷。',
-      '他走累了，我把他抱起來，急著回市中心，因為要退房。地圖上有很多餐廳，我都不想去。時間到了下午，我還沒走回去，很緊。',
-      '我突然想起忘了讓他吃早餐。他不說話，臉色蒼白，快暈了。我沒有食物，給他喝水，他喝了很多，抱他走的時候，他把水吐了一些出來。我繼續走，走回旅館，先給他一罐貓罐頭吃，然後開始收拾行李。',
-      null,
-    ],
-  },
-  {
-    id: '40', title: '室內種植盆家人無視', phase: '行動的呼喚', panelCount: 7,
-    panels: [
-      '家裡全是白色，遠房親戚也來了，人很多，走來走去，但冷冷清清的。',
-      '客廳的某個角落，有一個很大的室內種植盆，像一塊小田。它放在那裡很久了，但今天我才仔細看。裡面有西蘭花、蔬菜、蘿蔔，長得很大，有些已經可以收成，有些剛開始枯萎。',
-      '我像發現什麼珍貴的事情一樣開心，整個家只有這裡是有生命的。',
-      '走近了看，是水耕，發泡膠和木架鐵架搭的，本來有氣泵傳水，但我一查，氣泵沒有插電，水早就乾了。什麼支援都沒有，它還是長出了這麼多。我調整到最適合自己的高度，站在那裡仔細看。',
-      '我叫弟弟來看，他不以為然。叫堂姐來看，她也沒有興趣。每個人從旁邊走過，都沒有人停下來。',
-      '後來爸爸出門了，他說他不想留在這裡，雖然全都是他的親戚。',
-      '媽媽在廚房，看到我走過去，給我看一份設計圖，是她自己找人做的。她不需要我幫忙，只是通知我。我以前都是幫她做這些事的。客廳還是很多人，我的心一直是空的。',
-    ],
-  },
-  {
-    id: '42', title: '蛇人受傷父親房間', phase: '飛起', panelCount: 8,
-    panels: [
-      '他受了很重的傷。',
-      '他是蛇，但可以幻化成人形，現在是人的樣子，坐在我家裡，非常害怕。我想幫他，想把他固定住，方便療傷，試了幾條頸鏈，粗的、幼的，都套不住他。不是他掙脫，是他的本質就不是被鏈條能困住的東西。',
-      '他知道我要幫他，讓我為他處理傷口。傷好了一些之後，他躲進了家裡唯一一個有門的房間——我爸爸的房間。我把食物推進門縫裡。',
-      '爸媽回來，不需要我解釋，他們已經知道有什麼東西在那個房間。他們很不安，一直催我把它趕走，或者用粗暴的方式逼他離開。',
-      '我在洗碗。我沒有管他們。',
-      '他從爸爸的房間走出來，是個很高的男人，把放在房間裡的碗拿到我旁邊，說謝謝我，但不想再麻煩了，就離開了。是他自己決定的。',
-      '爸爸走回他的房間，像回到自己地盤一樣。',
-      '整個夢只有心痛。',
-    ],
-  },
-  {
-    id: '47', title: '自殺計劃白鷹飛翔', phase: '飛起', panelCount: 8,
-    panels: [
-      '我把易燃的罐放在前門的車旁，也倒在後院，準備點燃，然後爆炸。',
-      '一個朋友來了。她來到，我就無法進行，因為她在。她說她很累，拒絕了帶我去散步，去洗澡了。我在房間裡靜靜地整理要離開的東西。',
-      '手機響了，一個只在網上聊過很短時間的人打電話來，一接就是一串告白，聽得到他身邊有人在鼓勵他。我聽到他的聲音就認出他是誰，心裡是高興的，但我打算完結，所以我裝傻，給了一個讓他失望的回應。他掛電話了。',
-      '門外有動靜，我走出去看，鄰居在找什麼，可能是那條以前見過的流浪狗。',
-      '白馬從草叢走出來，跑走了。一隻鹿走出來。所有人都很驚訝。',
-      '後院有一隻非常大的白色的鷹，很大很大。我騎上去，抱著牠的頸，牠帶我飛。我一邊飛，一邊哭。',
-      '回到屋裡，我想繼續進行，突然想到還沒有把保險資料給弟弟。拿起電話準備發給他，才想起自殺是拿不到保險賠償的。',
-      '我走到朋友面前，哭著說：我剛才很想很想離開這個世界，但這樣不能拿到保險，有沒有辦法讓人進來殺了我？沒有回答。',
-    ],
-  },
-  {
-    id: '48', title: '水族館殺人鯨鑲嵌玻璃', phase: '飛起', panelCount: 6,
-    panels: [
-      '那個水族館不是正常的水族館。魚缸在外面，有些魚放在桌子上，像街市一樣，乾燥的，靜止的。桌面上有幾條秋刀魚大小的魚，還有非常小的殺人鯨寶寶，比寶寶稍大一點，就那樣放在桌上。',
-      '從小我就怕殺人鯨，書上看到圖片都會心底下害怕，說不出原因，就是怕。夢裡，那幾隻很小的殺人鯨放在桌上，我站在旁邊，沒有害怕。',
-      '水族館是一條很長的走廊，右邊全是魚缸，下半部是展覽區，走到底，都是殺人鯨和其他魚，我從頭走到尾。',
-      '我負責開車帶一班人去看鑲嵌玻璃展覽。到了那裡，大家先去旁邊的紀念品店逛了一圈。之後我自己開車去旁邊的雙層鑲嵌玻璃展覽館，那裡快要關門了，但保安說歡迎我進去。',
-      '我是學鑲嵌玻璃的，可以說是藝術家，非常喜歡這個技術。看著牆上大小小小的玻璃作品，我低頭，發現手上拿著一件自己做的鑲嵌玻璃，就這樣邊看展覽邊拿著它，像是也在展示。',
-      '快要走完的時候，我仔細看了看手上那件，其實是草圖，不是完成品。',
-    ],
-  },
-  {
-    id: '52', title: '絕症戀人變中性媽媽麵包店', phase: '浮起', panelCount: 6,
-    panels: [
-      '他有絕症，類似癌症，一直都很弱。我細心照顧他，他弱下去，我在旁邊。這段關係就是這樣走著的。',
-      '有一天他的眼神變了，神情變了，整個人不一樣了。他告訴我，他女性的部分想做很多生意，賺很多錢，樣子也變得中性。那種熱情和氣勢讓我措手不及。',
-      '我逃了。穿越商場，裡面有活動，人很多，我在人群裡穿梭離開。',
-      '麵包店裡找到媽媽。我和她很不熟悉，感到疏離，但我知道：只要我在她旁邊，就永遠有個位置，她會接納我。',
-      '她一直問我她要買哪個餅乾送人，我說不知道，只是告訴她：「你買你認為適合的，我只想觀察你的選擇。」',
-      '黃昏，麵包店，我在媽媽旁邊，就記得到這裡。',
-    ],
-  },
-  {
-    id: '53', title: '鐵達尼號泥漿浮木求生', phase: '浮起', panelCount: 6,
-    panels: [
-      '水不是水，是泥漿。',
-      '和鐵達尼號沉沒的感覺一樣，只是每一個沉進去的地方都是泥漿，不透明，沉重，包裹著一切。船身一個部分一個部分地沉入，泥漿從那些缺口湧進來。我從一個部分躲到下一個，再下一個，繼續移動。',
-      '最後那個部分沉了，沒有地方可以再躲，泥漿湧進來，我也沉進去了。',
-      '泥漿裡有一扇木門，漂著。我找到它，爬上去。',
-      '沒有猶豫。',
-      null,
-    ],
-  },
-];
+  let view='cover', di=0, si=0;
+  const KEY='amad-pos';
 
-// ─────────────────────────────────────────────────────
-// STATE
-// ─────────────────────────────────────────────────────
-let dreamIdx = 0;
-let panelIdx = 0;
-let flipping = false;
+  function save(){ try{localStorage.setItem(KEY,JSON.stringify({view,di,si}));}catch(e){} }
+  function load(){ try{return JSON.parse(localStorage.getItem(KEY));}catch(e){return null;} }
 
-// ─────────────────────────────────────────────────────
-// HELPERS
-// ─────────────────────────────────────────────────────
-function phClass(phase) {
-  return 'ph-' + (PHASES[phase] || 'departure');
-}
-
-function imgSrc(id, pi) {
-  return 'images/dream-' + id + '/panel-' + String(pi + 1).padStart(2, '0') + '.png';
-}
-
-function setImgSrc(el, id, pi) {
-  const src = imgSrc(id, pi);
-  el.src = src;
-  el.onerror = function () {
-    this.onerror = null;
-    this.src = src.replace('.png', '.jpg');
-  };
-}
-
-// ─────────────────────────────────────────────────────
-// VIEW SWITCHING
-// ─────────────────────────────────────────────────────
-function showView(name) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById('view-' + name).classList.add('active');
-}
-function showCover() { showView('cover'); }
-
-function showTOC() {
-  buildTOC();
-  showView('toc');
-}
-
-function openDream(di) {
-  dreamIdx = di;
-  panelIdx = 0;
-  showView('book');
-  renderBook();
-}
-
-// ─────────────────────────────────────────────────────
-// TOC — build once
-// ─────────────────────────────────────────────────────
-let tocBuilt = false;
-function buildTOC() {
-  if (tocBuilt) return;
-  tocBuilt = true;
-  const grid = document.getElementById('toc-grid');
-  DREAMS.forEach((d, di) => {
-    const card = document.createElement('div');
-    card.className = 'toc-card';
-    card.innerHTML =
-      '<div class="toc-stripe ' + phClass(d.phase) + '"></div>' +
-      '<div class="toc-body">' +
-        '<div class="toc-num"># ' + d.id + '</div>' +
-        '<div class="toc-title">' + d.title + '</div>' +
-        '<span class="toc-chip ' + phClass(d.phase) + '">' + d.phase + '</span>' +
-      '</div>';
-    card.addEventListener('click', () => openDream(di));
-    grid.appendChild(card);
-  });
-}
-
-// ─────────────────────────────────────────────────────
-// RENDER BOOK
-// ─────────────────────────────────────────────────────
-function renderBook() {
-  const dream = DREAMS[dreamIdx];
-  const text  = dream.panels[panelIdx] || null;
-
-  // ── Header ──
-  document.getElementById('bh-info').textContent =
-    '夢 ' + dream.id + ' — ' + dream.title;
-  const bpEl = document.getElementById('bh-phase');
-  bpEl.textContent = dream.phase;
-  bpEl.className   = 'bh-phase ' + phClass(dream.phase);
-  document.getElementById('bh-prev').disabled = dreamIdx === 0;
-  document.getElementById('bh-next').disabled = dreamIdx === DREAMS.length - 1;
-
-  // ── Left page ──
-  document.getElementById('pl-num').textContent   = '夢 ' + dream.id;
-  document.getElementById('pl-title').textContent = dream.title;
-  const plChip = document.getElementById('pl-chip');
-  plChip.textContent = dream.phase;
-  plChip.className   = 'pl-chip ' + phClass(dream.phase);
-  document.getElementById('pl-text').textContent  = text || '';
-  document.getElementById('pl-foot').textContent  =
-    (panelIdx + 1) + ' / ' + dream.panelCount;
-
-  // ── Right page image ──
-  const rImg = document.getElementById('right-img');
-  const rPh  = document.getElementById('right-ph');
-  rImg.style.display = 'block';
-  rPh.style.display  = 'none';
-  setImgSrc(rImg, dream.id, panelIdx);
-  rImg.onerror = (function (id, pi) {
-    return function () {
-      this.onerror = null;
-      const jpg = imgSrc(id, pi).replace('.png', '.jpg');
-      this.src = jpg;
-      this.onerror = function () {
-        this.style.display = 'none';
-        rPh.style.display  = 'flex';
-      };
-    };
-  }(dream.id, panelIdx));
-
-  // ── Flipper FRONT (mirrors right page) ──
-  setImgSrc(document.getElementById('fl-img'), dream.id, panelIdx);
-
-  // ── Flipper BACK (next panel → becomes new left after flip) ──
-  prepareFlipperBack();
-
-  // ── Dots ──
-  const dotsEl = document.getElementById('panel-dots');
-  dotsEl.innerHTML = '';
-  for (let i = 0; i < dream.panelCount; i++) {
-    const d = document.createElement('span');
-    d.className = 'pdot' + (i === panelIdx ? ' active' : '');
-    dotsEl.appendChild(d);
+  function showView(v){
+    document.querySelectorAll('.view').forEach(s=>s.classList.remove('active'));
+    $('#'+v).classList.add('active'); view=v; save();
   }
 
-  // ── Nav buttons ──
-  document.getElementById('btn-prev').disabled = panelIdx === 0;
-  document.getElementById('btn-next').disabled = panelIdx >= dream.panelCount - 1;
-}
-
-function prepareFlipperBack() {
-  const dream  = DREAMS[dreamIdx];
-  const nextPi = panelIdx + 1;
-  if (nextPi < dream.panelCount) {
-    const nextText = dream.panels[nextPi] || '';
-    document.getElementById('fl-num').textContent   = '夢 ' + dream.id;
-    document.getElementById('fl-title').textContent = dream.title;
-    const fc = document.getElementById('fl-chip');
-    fc.textContent = dream.phase;
-    fc.className   = 'pl-chip ' + phClass(dream.phase);
-    document.getElementById('fl-text').textContent  = nextText;
-    document.getElementById('fl-foot').textContent  =
-      (nextPi + 1) + ' / ' + dream.panelCount;
+  function enter(v){
+    if(v==='cover'){ showView('cover'); return; }
+    if(v==='letterDreamer'){ renderLetter('ld-body',LETTERS.dreamer); showView('letterDreamer'); return; }
+    if(v==='contents'){ showView('contents'); return; }
+    if(v==='letterReader'){ renderLetter('lr-body',LETTERS.reader); showView('letterReader'); return; }
+    if(v==='letterAI'){ renderAILetter(); showView('letterAI'); return; }
+    if(v==='northstar'){ renderNorthstar(); showView('northstar'); return; }
+    if(v==='reader'){ showView('reader'); return; }
   }
-}
 
-// ─────────────────────────────────────────────────────
-// FLIP NEXT — right page flips left (CSS 3-D)
-// ─────────────────────────────────────────────────────
-function flipNext() {
-  const dream = DREAMS[dreamIdx];
-  if (flipping || panelIdx >= dream.panelCount - 1) return;
-  flipping = true;
+  /* ---- letters ---- */
+  function paras(txt){ return txt.split('\n\n').map(p=>'<p>'+p.replace(/\n/g,'<br>')+'</p>').join(''); }
+  function enParas(txt){ return txt.split('\n\n').map(p=>'<span class="en">'+p.replace(/\n/g,'<br>')+'</span>').join(''); }
+  function renderLetter(elId,L){
+    $('#'+elId).innerHTML =
+      `<div class="zh-kicker">${L.kicker_zh}</div>
+       <div class="letter-title">${L.title_zh}</div>
+       <div class="letter-en">${L.title_en}</div>
+       ${L.placeholder?'<div class="ph-tag">your text here</div>':'<div style="height:18px"></div>'}
+       <div class="letter-body ${L.placeholder?'ph':''}">${paras(L.body_zh)}${enParas(L.body_en)}</div>
+       <div class="sign">— ${L.sign}</div>`;
+  }
+  function renderAILetter(){
+    const L=LETTERS.ai;
+    $('#lai-body').innerHTML =
+      `<div class="zh-kicker">${L.kicker_zh}</div>
+       <div class="ai-emblem">✦</div>
+       <div class="letter-title ai-title">${L.title_zh}</div>
+       <div class="letter-en">${L.title_en}</div>
+       <div style="height:18px"></div>
+       <div class="letter-body">${paras(L.body_zh)}${enParas(L.body_en)}</div>
+       <div class="ai-sign"><span class="ai-sign-em">— ${L.sign_zh}</span><span class="ai-sign-en">${L.sign_en}</span></div>`;
+  }
+  function renderNorthstar(){
+    const N=LETTERS.northstar;
+    $('#ns-body').innerHTML =
+      `<div class="ornament">✦</div>
+       <div class="ns-en" style="font-style:italic">${N.kicker_en}</div>
+       <div class="ns-title">${N.title_zh}</div>
+       <div class="ns-en">${N.title_en}</div>
+       <div class="ns-body">${paras(N.body_zh)}</div>
+       <div class="ns-en2">${N.body_en}</div>
+       <div class="ornament" style="margin-top:30px">✦</div>`;
+  }
 
-  const flipper = document.getElementById('page-flipper');
-  flipper.classList.add('is-flipping');
-
-  flipper.addEventListener('transitionend', function handler() {
-    flipper.removeEventListener('transitionend', handler);
-
-    panelIdx++;
-
-    // Instant reset — no animation for the snap-back
-    flipper.style.transition = 'none';
-    flipper.classList.remove('is-flipping');
-
-    renderBook();
-
-    // Re-enable transition after two rAF cycles
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        flipper.style.transition = '';
-        flipping = false;
+  /* ---- contents ---- */
+  function buildTOC(){
+    const el=$('#toc'); let html='';
+    PHASES.forEach(ph=>{
+      const ds=DREAMS.filter(d=>d.phase===ph.id);
+      if(!ds.length) return;
+      html+=`<div class="phase"><span class="pnode" style="background:${ph.tone}"></span>
+        <div class="phead"><span class="pz">${ph.zh}</span><span class="pe">${ph.en}</span></div>`;
+      ds.forEach(d=>{
+        const gi=DREAMS.indexOf(d);
+        html+=`<div class="dream-row" data-di="${gi}">
+          <span class="num">${String(gi+1).padStart(2,'0')}</span>
+          <span class="tt"><span class="tz">${d.titleZh}</span><br><span class="te">${d.titleEn}</span></span></div>`;
       });
+      html+='</div>';
     });
-  }, { once: true });
-}
-
-// ─────────────────────────────────────────────────────
-// FLIP PREV — instant update (no 3-D needed for going back)
-// ─────────────────────────────────────────────────────
-function flipPrev() {
-  if (flipping || panelIdx <= 0) return;
-  panelIdx--;
-  renderBook();
-}
-
-// ─────────────────────────────────────────────────────
-// DREAM NAVIGATION
-// ─────────────────────────────────────────────────────
-function prevDream() {
-  if (dreamIdx > 0) { dreamIdx--; panelIdx = 0; renderBook(); }
-}
-function nextDream() {
-  if (dreamIdx < DREAMS.length - 1) { dreamIdx++; panelIdx = 0; renderBook(); }
-}
-
-// ─────────────────────────────────────────────────────
-// TOUCH SWIPE
-// ─────────────────────────────────────────────────────
-let tx = 0, ty = 0;
-document.addEventListener('touchstart', e => {
-  tx = e.changedTouches[0].clientX;
-  ty = e.changedTouches[0].clientY;
-}, { passive: true });
-
-document.addEventListener('touchend', e => {
-  const dx = e.changedTouches[0].clientX - tx;
-  const dy = e.changedTouches[0].clientY - ty;
-  if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
-    if (dx < 0) flipNext();
-    else         flipPrev();
+    el.innerHTML=html;
+    el.querySelectorAll('.dream-row').forEach(r=>r.addEventListener('click',()=>openDream(+r.dataset.di,0)));
   }
-}, { passive: true });
 
-// ─────────────────────────────────────────────────────
-// KEYBOARD
-// ─────────────────────────────────────────────────────
-document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowRight') flipNext();
-  if (e.key === 'ArrowLeft')  flipPrev();
-  if (e.key === 'Escape')     showTOC();
-});
+  /* ---- reader deck ---- */
+  let curDream=null, slideCount=0;
+  function openDream(idx,slide){
+    di=idx; si=slide||0; curDream=DREAMS[di];
+    buildDeck(curDream);
+    showView('reader');
+    goTo(si,false);
+  }
+  function buildDeck(d){
+    const track=$('#track'); const ph=phaseMap[d.phase];
+    let html='';
+    d.panels.forEach((p,i)=>{
+      const cap = p.zh ? `<div class="cap"><div class="zh">${p.zh}</div>${p.en?`<div class="en">${p.en}</div>`:''}</div>` : '';
+      html+=`<div class="slide s-img"><div class="pic" style="background-image:url('${imgSrc(d.id,i)}')"></div>
+        <div class="top-scrim"></div>${p.zh?'<div class="cap-scrim"></div>':''}${cap}</div>`;
+    });
+    // analysis slide
+    const A=ANALYSIS[d.id]||{motifs:[],sumZh:'',sumEn:''};
+    let motifs=A.motifs.map(m=>`<div class="motif"><h4>${m.hZh}<span class="e">${m.hEn}</span></h4><p>${m.zh}</p></div>`).join('');
+    const lastDream = di===DREAMS.length-1;
+    html+=`<div class="slide s-analysis"><div class="an-wrap">
+        <span class="an-dot" style="background:${ph.tone}"></span>
+        <div class="an-phase">${ph.zh} · ${ph.en}</div>
+        <div class="an-title">${d.titleZh}</div>
+        <div class="an-title-en">${d.titleEn}</div>
+        <div class="an-sum" style="margin-top:18px">${A.sumZh}<span class="en">${A.sumEn}</span></div>
+        <hr class="hair" style="margin:22px 0 18px">
+        ${motifs}
+        <div class="an-foot">
+          <button class="mini" onclick="App.prevDream()" ${di===0?'disabled':''}><span class="en">‹</span> 上一夢</button>
+          ${ lastDream
+              ? '<button class="mini" onclick="App.enter(\'letterReader\')">給讀者的話 <span class="en">›</span></button>'
+              : '<button class="mini" onclick="App.nextDream()">下一夢 <span class="en">›</span></button>' }
+        </div>
+        <div style="flex:1"></div>
+      </div></div>`;
+    track.innerHTML=html;
+    slideCount=d.panels.length+1;
+    buildDots(d);
+  }
+  function buildDots(d){
+    const el=$('#dots'); let h='';
+    for(let i=0;i<d.panels.length;i++) h+=`<span class="d" data-i="${i}"></span>`;
+    h+=`<span class="d an" data-i="${d.panels.length}"></span>`;
+    el.innerHTML=h;
+  }
+  function goTo(idx,animate){
+    si=Math.max(0,Math.min(slideCount-1,idx));
+    const track=$('#track');
+    track.style.transition = animate===false ? 'none' : '';
+    track.style.transform=`translateX(${-si*100}%)`;
+    if(animate===false){ track.offsetHeight; track.style.transition=''; }
+    updateChrome();
+    save();
+  }
+  function updateChrome(){
+    const d=curDream, ph=phaseMap[d.phase];
+    const onAnalysis = si===d.panels.length;
+    $('#reader').classList.toggle('on-analysis', onAnalysis);
+    $('#rt-z').textContent='夢 '+String(di+1).padStart(2,'0')+' · '+d.titleZh;
+    $('#rt-e').textContent=d.titleEn;
+    $('#rt-idx').textContent = onAnalysis ? '' : (si+1)+' / '+d.panels.length;
+    // reset analysis scroll
+    if(onAnalysis){ const a=$('#track').children[si]; if(a) a.scrollTop=0; }
+    $('#dots').querySelectorAll('.d').forEach((dot,i)=>dot.classList.toggle('on',i===si));
+    $('#chev-prev').disabled = (di===0 && si===0);
+    $('#chev-next').disabled = (di===DREAMS.length-1 && si===slideCount-1);
+  }
+  function next(){
+    if(si<slideCount-1){ goTo(si+1,true); }
+    else { // past analysis → next dream or reader letter
+      if(di<DREAMS.length-1) openDream(di+1,0);
+      else enter('letterReader');
+    }
+  }
+  function prev(){
+    if(si>0){ goTo(si-1,true); }
+    else { // before first panel → previous dream's analysis
+      if(di>0){ openDream(di-1, DREAMS[di-1].panels.length); }
+      else enter('letterDreamer');
+    }
+  }
+  function nextDream(){ if(di<DREAMS.length-1) openDream(di+1,0); }
+  function prevDream(){ if(di>0) openDream(di-1,0); }
+
+  /* ---- book-level flow (cover → letter → contents → reader → letter → why) ---- */
+  function bookNext(){
+    if(view==='cover') enter('letterDreamer');
+    else if(view==='letterDreamer') enter('contents');
+    else if(view==='contents') openDream(0,0);
+    else if(view==='letterReader') enter('letterAI');
+    else if(view==='letterAI') enter('northstar');
+  }
+  function bookPrev(){
+    if(view==='letterDreamer') enter('cover');
+    else if(view==='contents') enter('letterDreamer');
+    else if(view==='letterReader'){ const L=DREAMS.length-1; openDream(L, DREAMS[L].panels.length); }
+    else if(view==='letterAI') enter('letterReader');
+    else if(view==='northstar') enter('letterAI');
+  }
+
+  /* ---- swipe (whole stage) ---- */
+  function initSwipe(){
+    const stage=$('#app'); let x0=0,y0=0,active=false;
+    stage.addEventListener('pointerdown',e=>{ x0=e.clientX;y0=e.clientY;active=true; },{passive:true});
+    stage.addEventListener('pointerup',e=>{
+      if(!active) return; active=false;
+      const dx=e.clientX-x0, dy=e.clientY-y0;
+      if(Math.abs(dx)>44 && Math.abs(dx)>Math.abs(dy)*1.3){
+        if(view==='reader'){ dx<0?next():prev(); }
+        else { dx<0?bookNext():bookPrev(); }
+      }
+    },{passive:true});
+    stage.addEventListener('pointercancel',()=>active=false);
+  }
+
+  function initKeys(){
+    document.addEventListener('keydown',e=>{
+      if(view==='reader'){
+        if(e.key==='ArrowRight') next();
+        else if(e.key==='ArrowLeft') prev();
+        else if(e.key==='Escape') enter('contents');
+      } else {
+        if(e.key==='ArrowRight') bookNext();
+        else if(e.key==='ArrowLeft') bookPrev();
+        else if((view==='cover') && (e.key==='Enter'||e.key===' ')){ enter('letterDreamer'); }
+      }
+    });
+  }
+
+  function start(){
+    $('#cover-bg').style.backgroundImage=`url('${window.COVER_IMG}')`;
+    buildTOC(); initSwipe(); initKeys();
+    const pos=load();
+    if(pos && pos.view){
+      if(pos.view==='reader' && DREAMS[pos.di]){ openDream(pos.di,pos.si||0); }
+      else enter(pos.view==='reader'?'contents':pos.view);
+    }
+  }
+  document.addEventListener('DOMContentLoaded',start);
+
+  return { enter, next, prev, nextDream, prevDream, openDream };
+})();
 </script>
 </body>
 </html>
