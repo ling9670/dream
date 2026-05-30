@@ -1,3 +1,4 @@
+/* [2026-05-29] slide edits: 8 panels shortened/trimmed across 6 dreams */
 /* 夢裡夢外 — Among All Dreams · content data
    Captions map 1:1 to panel images (panel-01..panel-0N). Empty zh = a wordless panel.
    zh = good_.evelyn's storybook prose; en = working translation (editable). */
@@ -51,7 +52,7 @@ window.DREAMS = [
     {zh:'我住在那棟宅子的時間比所有人都長。門廊、走廊、每一個轉角，我都認識。', en:'I had lived in that house longer than anyone.The porches, the halls, every corner — I knew them all. '},
     {zh:'朋友們住在不同的樓層和房間，偶爾遇上，我只問一件事：「你什麼時候要走？」', en:'Friends lived on different floors; when we crossed paths I asked only one thing: when are you leaving?'},
     {zh:'每次擁抱都用力，因為下一站各散東西，不知道還會不會再見。', en:'Every embrace was hard. After this we scatter, and may never meet again.'},
-    {zh:'有一天，兩個人來找住在宅子裡的某個人。我幫他們尋找，推開了幾扇不認識的門。裡面的房間很奇怪。由網格組成，橫向伸展，像懸在半空的陽台，四面全是格子，只容得下一個人。', en:'One day two people came looking for someone in the house. Helping them, I opened doors I didn\'t know. The room inside was strange — woven of wire grid, stretched out like a balcony hung in the air, latticed on every side, room for one.'},
+    {zh:'有一天，我幫人找朋友，走進了幾扇不認識的門。裡面的房間很奇怪——四面全是格子，只容得下一個人。', en:'One day, helping someone search, I opened doors I didn\'t know. The room inside was strange — latticed on every side, room for one.'},
     {zh:'幾間都找不到人。最後我站在黑暗的走廊裡，大聲叫她的名字。', en:'I found no one in any of them. At last I stood in the dark hall and called her name aloud.'},
     {zh:'才在一間正常的房間裡找到她，和另外兩個朋友在一起。', en:'Only then did I find her, in an ordinary room, with two other friends.'},
     {zh:'後來我把網格房的事告訴別人。她們都說：「沒有這樣的房間。」', en:'Later I told them about the grid room. They all said: there is no such room.'},
@@ -86,7 +87,7 @@ window.DREAMS = [
     {zh:'推開醫生的房間門，警告他：要好好治療我的貓。說完又怕自己的怒氣影響治療，立刻切換語氣，好好拜託他。', en:'Open the doctor\'s door, and warned him: treat my cat well. Then, afraid my anger would hurt the care, I switched my tone at once and pleaded with him kindly.'},
     {zh:'醫生有點不悅，只說：「我會讓下一個值班的醫生知道。」', en:' Displeased, he only said: I\'ll let the next doctor on shift know.'},
     {zh:'我不記得為什麼那麼大情緒，但我是生氣的。', en:'I don\'t recall why the feeling was so big, but I was angry. '},
-    {zh:'電梯大堂有兩部電梯。左邊那部不能進，我說不清為什麼，但就是知道。我站在右邊等，心裡有點害怕。', en:'There were two lifts in the lobby. The left one I could not enter — I couldn\'t say why, I just knew. I waited at the right, a little afraid inside. '},
+    {zh:'電梯大堂有兩部電梯。左邊那部不能進。我站在右邊等，心裡有點害怕。', en:'There were two lifts in the lobby. The left one I could not enter. I waited at the right, a little afraid inside.'},
     {zh:'一位清潔大嬸推著清潔車走過來，也在等。她什麼都沒說，只是站在那裡。我的害怕就消失了。', en:'A cleaning lady pushed her cart over and waited too. She said nothing, only stood there. And my fear simply vanished.'},
   ]},
   { id:'26', phase:'heartdead', titleZh:'商場買鞋偷錢包搶劫', titleEn:'Stolen Wallets, a Robbery', panels:[
@@ -95,7 +96,7 @@ window.DREAMS = [
     {zh:'走在路上，有人衝出來搶包，左手一條燒肉，右手幾把刀，周圍的人都散開了。我不讓他拿包，扭打，最後制服了他。', en:'On the road someone rushed out to grab the bag — roast pork in his left hand, knives in his right. The crowd scattered. I wouldn\'t let him have it; we grappled, and at last I pinned him.'},
     {zh:'男朋友站在旁邊，好像不太明白為什麼我要這麼堅持。我叫他報警。他把電話遞給旁邊幾個人，讓我自己處理。', en:'My boyfriend stood by, as if he didn\'t quite see why I held on so hard. I told him to call the police. He handed his phone to some strangers and left it to me.'},
     {zh:'警察來了，看到那條燒肉，切開，開始吃，還分給旁邊的人和男朋友，吃得很開心。', en:'The police came, saw the roast pork, cut it, began to eat, even shared it round with the bystanders and my boyfriend — eating away, happily.'},
-    {zh:'最後我和男朋友離開現場，我告訴他我們分手。我拿走了我自己的兩部電話，上了天橋，一個人走。他留在原地，沒有追。', en:'In the end we left, and I told him we were over. I took my own two phones, climbed the footbridge, and walked alone. He stayed where he was, and didn\'t follow. '},
+    {zh:'最後我和男朋友離開現場，我告訴他我們分手。我上了天橋，一個人走。他留在原地，沒有追。', en:'In the end we left, and I told him we were over. I climbed the footbridge and walked alone. He stayed where he was, and didn\'t follow.'},
     {zh:'草叢裡有聲音。兩隻黑白貓走出來，停在那裡看著我，然後走了。', en:'A sound in the grass — two black-and-white cats came out, stopped, looked at me, and left.'},
   ]},
   { id:'28', phase:'heartdead', titleZh:'荒廢豪宅十億寶藏', titleEn:'The Ruined Mansion, a Billion', panels:[
@@ -109,14 +110,14 @@ window.DREAMS = [
     {zh:'我和警察繼續走，地板突然把我吸進去，什麼都沒了。', en:'The policeman and I walked on. The floor suddenly drew me in, and everything was gone.'},
   ]},
   { id:'32', phase:'rebuild', titleZh:'奧運公園乾花怪獸', titleEn:'Dried Flowers, a Monster', panels:[
-    {zh:'出去散步，遇到兩個女生在問路。她們要找一個有奧運標誌的公園，原本要去的地方因為時間過了，臨時改到這裡。我在地圖上找了很久，最後找到了——原來是我平日去散步的那個小公園。我和她們一起走過去。', en:'Out walking, I met two girls asking the way. They were looking for a park with an Olympic sign; their first plan had fallen through, so they came here instead. I searched the map a long time, and found it at last — the little park I walk in every day. I went there with them.'},
+    {zh:'出去散步，遇到兩個女生在問路，要找一個有奧運標誌的公園。我在地圖上找了很久，最後發現——原來是我平日去散步的那個小公園。', en:'Out walking, I met two girls looking for a park with an Olympic sign. I searched the map a long time, and found it at last — the little park I walk in every day.'},
     {zh:'有一個臨時攤位在賣乾花。薰衣草很便宜，還有很多其他乾花。我本來只是被薰衣草吸引，後來想著：不如為自己挑一束放在家裡。', en:'A pop-up stall was selling dried flowers. The lavender was cheap, and there were many others. At first only the lavender drew me; then I thought — why not pick a bunch for myself, to keep at home.'},
     {zh:'我拿了白色的蓮花。店主看到，把更大、更漂亮的那朵蓮花拿來給我，幫我搭配。有點貴，我一直在想要不要走，但最後買了。', en:'I took a white lotus. The seller saw, and brought me a larger, lovelier one to go with it. It was a little dear; I kept wondering whether to walk away — but in the end I bought it.'},
     {zh:'我拿著乾花回大廈，電梯只能到4樓。我想說去5樓走樓梯就好了，走上去。', en:'I carried the flowers back to the building; the lift only reached the 4th floor. I\'ll just take the stairs to the 5th, I thought, and climbed.'},
     {zh:'4樓開了門，完全不同的景色，像宇宙星球一樣設計的戶外走廊，找不到樓梯去5樓。我跟著一批人找了條摺疊式的樓梯上去。', en:'The 4th floor opened onto an entirely different scene — an outdoor corridor designed like a planet in space, no stairs to the 5th to be found. I followed a group to a folding staircases.'},
-    {zh:'門外有怪獸。', en:'Monsters outside the door. '},
+    {zh:'我貼著牆，沒有動。怪獸就在前面。', en:'I pressed myself against the wall and did not move. The monster was right there.'},
     {zh:'我回到家，把門鎖緊，只有我和貓。手上拿著那束乾花。', en:'I got home, locked it tight — only me and the cat, the bunch of dried flowers still in my hand.'},
-    {zh:'後來我把其中一隻怪獸打暈，拖進家裡，想研究一下。我用繩子綁它的手，綁不緊，怪獸教我怎麼綁才牢。我從架子上拿了一瓶酒，喝了一口，非常好喝。它跪著，雙手被綁，沒有反抗。', en:'Later I knocked one of the monsters out and dragged it inside, wanting to study it. My rope wouldn\'t hold its hands; the monster taught me how to tie it fast. I took a bottle from the shelf and drank — it was very good. It knelt, hands bound, and did not resist.'},
+    {zh:'我把其中一隻怪獸打暈，拖進家裡，用繩子綁它的手。怪獸教我怎麼綁才牢。它跪著，沒有反抗。', en:'I knocked one of the monsters out, dragged it inside, and tried to bind its hands. The monster taught me how. It knelt, and did not resist.'},
   ]},
   { id:'34', phase:'rebuild', titleZh:'豪宅迷宮父親燒木櫃', titleEn:'The Maze House, Father Burning Cabinets', panels:[
     {zh:'家人買了一間很大的房子，像迷宮一樣，每個房間之間都是鏤空的，沒有完全封閉的地方。交收的前一晚，我和爸爸先去住一夜。', en:'My family bought a very large house, like a maze, every room open to the next, nowhere fully sealed. The night before handover, my father and I went to stay one night.'},
@@ -137,7 +138,7 @@ window.DREAMS = [
     {zh:'他看出那個異常的人不是壞人，是在找什麼，傷心地找。他把那個人帶去藥材鋪，在一個舊櫃子裡找到一盒錄影帶，原來他是剛去世的藥材鋪老闆的秘密兒子。', en:'He saw the strange man was not bad, but searching for something, searching in grief. He took him to the herb shop and found, in an old cabinet, a videotape — the man was the secret son of the shop\'s owner, who had just died.'},
   ]},
   { id:'36', phase:'rebuild', titleZh:'中國街變形動物小男孩', titleEn:'The Street of Altered Animals', panels:[
-    {zh:'那條街在中國某個地方，看起來像普通的地鋪。我旁邊一直有一個小男孩，大概三歲，眼睛很大，背著一個小背包，背包連著風扇和冷氣管，一直吹著他的背。精靈，自給自足，不需要我特別照顧，就是走在旁邊。', en:'The street was somewhere in China, looking like ordinary shopfronts in a row.Beside me, all along, was a small boy, maybe three, with big eyes, a little backpack rigged with a fan and cooling tube blowing on his back. Sprightly, self-sufficient, needing no special care from me — just walking alongside.'},
+    {zh:'那條街在中國某個地方，看起來像普通的地鋪。旁邊一直有個小男孩，大概三歲，眼睛很大，背包連著風扇和冷氣管，一直吹著他的背。', en:'The street was somewhere in China, ordinary shopfronts in a row. Beside me walked a small boy, maybe three, with big eyes and a backpack rigged with a cooling fan.'},
     {zh:'矮頸的長頸鹿在水氹裡玩耍。', en:'A short-necked giraffe played in a puddle. '},
     {zh:'獵豹和她的寶寶住在一塊濕地裡。', en:'A cheetah and her cub lived in a marsh. '},
     {zh:'有一個鋪頭在賣貓肉，我身上抱著貓，立刻繞開，不讓那個人注意到我懷裡有一隻貓。', en:'One shop was selling cat meat; holding my cat, I went around at once, so the man wouldn\'t notice the cat in my arms.'},
@@ -150,7 +151,7 @@ window.DREAMS = [
     {zh:'然後我張開眼，已經是下午，比賽早上九點就開始，電視的直播裡已經沒有我，我被取消了資格。不知道什麼情況，只是不在了。我擔心和我合作的廚師怎麼辦，比擔心自己更多一點。', en:'Then I opened my eyes — it was afternoon. It had begun at nine; I was gone from the broadcast, disqualified. I don\'t know how, only that I wasn\'t in it. I worried more for the chefs I\'d teamed with than for myself.'},
     {zh:'到了一個叫Frantiono的地方，很大的水池，像埃及，又像墨西哥，像歐洲。很明顯是旅遊，我一直看著手機上的地圖，上面標了很多餐廳，但那個地方我不熟悉。', en:'I came to a place called Frantiono — a great pool, like Egypt, like Mexico, like Europe. Clearly a tourist place. I kept watching the map on my phone, marked with many restaurants, but the place was strange to me.'},
     {zh:'有一個小胖子小朋友和我一起。我牽著他，拉著行李，去市中心找了一間比較暗、比較小的旅館住下來。', en:'A small, round-cheeked child was with me. Holding his hand and dragging my luggage, I found a dim little inn downtown and settled in.'},
-    {zh:'第二天帶著他在市中心邊緣走，那裡比較危險，我走了很久，手機拿著地圖，但又不敢太明顯地拿出來，怕被偷。', en:'The next day I walked him along the edge of downtown, where it was less safe. I walked a long time, the map on my phone in hand, but didn\'t dare hold it out too openly, afraid of thieves.'},
+    {zh:'第二天帶著他在市中心邊緣走。手機拿著地圖，但不敢太明顯地拿出來，怕被偷。', en:'The next day I walked him along the edge of downtown. Map in hand, but I didn\'t dare hold it openly, afraid of thieves.'},
     {zh:'他走累了，我把他抱起來，急著回市中心，因為要退房。地圖上有很多餐廳，我都不想去。時間到了下午，我還沒走回去，很緊。', en:'He grew tired; I picked him up, hurrying back to check out. The map showed many restaurants; I wanted none of them. Afternoon came and I still hadn\'t made it back. The tightness rose.'},
     {zh:'我突然想起忘了讓他吃早餐。他不說話，臉色蒼白，快暈了。我沒有食物，給他喝水，他喝了很多，抱他走的時候，他把水吐了一些出來。', en:'I suddenly remembered I\'d forgotten his breakfast. He said nothing, pale, near fainting. I had no food; I gave him water, and he drank a lot, bringing some up as I carried him. '},
     {zh:'我繼續走，走回旅館，先給他一罐貓罐頭吃，然後開始收拾行李。', en:'I kept going, back to the inn, fed him a tin of cat food first, then began to pack.'},
