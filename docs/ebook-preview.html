@@ -1,0 +1,633 @@
+<!DOCTYPE html><html lang="zh-TW"><head><meta charset="utf-8"><title>夢裡夢外 — Among All Dreams</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+TC:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --paper:#F2ECE0; --ink:#2C2823; --ink2:rgba(44,40,35,.62); --ink3:rgba(44,40,35,.42); --ink4:rgba(44,40,35,.16);
+  --gold:#9C8866; --cream:#F6F1E8;
+  --zh:'Noto Serif TC','Songti TC','Source Han Serif TC','Source Han Serif SC',serif;
+  --en:'Cormorant Garamond','Cormorant',Georgia,'Times New Roman',serif;
+}
+html,body{margin:0;padding:0;}
+.page{position:relative;width:816px;height:1456px;overflow:hidden;background:var(--paper);
+  font-family:var(--zh);color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+img{display:block;}
+.page.cover{background:#15110c;}
+.cover .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.cover .vig{position:absolute;inset:0;background:
+  radial-gradient(78% 44% at 50% 60%, rgba(26,21,14,.40), transparent 72%),
+  linear-gradient(to bottom, rgba(28,23,17,.42) 0%, rgba(28,23,17,.04) 24%, rgba(28,23,17,.10) 56%, rgba(28,23,17,.64) 100%);}
+.cover .inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;text-align:center;
+  color:var(--cream);padding:120px 64px 96px;}
+.cover .ck{font-family:var(--en);font-style:italic;font-size:30px;letter-spacing:.05em;color:rgba(246,241,232,.84);}
+.cover .grow{flex:1;}
+.cover .rule{width:1px;height:66px;background:rgba(246,241,232,.55);margin-bottom:34px;}
+.cover .ctitle{font-family:var(--zh);font-weight:500;font-size:112px;letter-spacing:.2em;text-indent:.2em;line-height:1.15;
+  text-shadow:0 2px 26px rgba(0,0,0,.5);}
+.cover .cen{font-family:var(--en);font-size:35px;letter-spacing:.34em;text-indent:.34em;margin-top:26px;
+  color:rgba(246,241,232,.92);text-transform:uppercase;}
+.cover .cauthor{font-family:var(--en);font-size:26px;letter-spacing:.22em;color:rgba(246,241,232,.86);}
+.page.art{background:#15110c;}
+.art .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.art .top-scrim{position:absolute;top:0;left:0;right:0;height:22%;
+  background:linear-gradient(to bottom, rgba(20,16,11,.6), transparent);}
+.art .cap-scrim{position:absolute;left:0;right:0;bottom:0;height:54%;
+  background:linear-gradient(to top, rgba(16,12,8,.9) 8%, rgba(16,12,8,.46) 46%, transparent);}
+.art .run{position:absolute;top:46px;left:0;right:0;text-align:center;font-family:var(--en);font-style:italic;
+  font-size:19px;letter-spacing:.05em;color:rgba(246,241,232,.74);text-shadow:0 1px 8px rgba(0,0,0,.6);}
+.art .cap{position:absolute;left:0;right:0;bottom:0;padding:0 60px 96px;}
+.art .cap .zh{font-family:var(--zh);font-weight:300;font-size:26px;line-height:1.6;color:#F6F1E8;
+  text-shadow:0 1px 14px rgba(0,0,0,.55);}
+.art .cap .en{font-family:var(--en);font-style:italic;font-size:21px;line-height:1.4;color:rgba(246,241,232,.8);
+  margin-top:14px;text-shadow:0 1px 10px rgba(0,0,0,.55);}
+.page.text{background:radial-gradient(120% 60% at 50% 0%, #F7F2E9, #F1EADD 70%);
+  padding:88px 86px 72px;display:flex;flex-direction:column;}
+.text .kicker{font-family:var(--zh);font-weight:300;font-size:17px;letter-spacing:.42em;text-indent:.42em;color:var(--ink3);}
+.text .title{font-family:var(--zh);font-weight:500;font-size:40px;letter-spacing:.12em;margin:16px 0 6px;line-height:1.3;}
+.text .title.sm{font-size:32px;letter-spacing:.06em;}
+.text .title-en{font-family:var(--en);font-style:italic;font-size:29px;color:var(--gold);letter-spacing:.02em;line-height:1.3;}
+.text .gap{height:20px;}
+.text p.zh{font-family:var(--zh);font-weight:300;font-size:23px;line-height:1.62;color:var(--ink);margin-bottom:19px;text-wrap:pretty;}
+.text p.en{font-family:var(--en);font-style:italic;font-size:21px;line-height:1.45;color:var(--ink3);margin-bottom:17px;text-wrap:pretty;}
+.text .emblem{font-family:var(--en);color:var(--gold);font-size:24px;letter-spacing:.6em;text-indent:.6em;margin:8px 0 6px;}
+.text hr.rule-h{border:0;height:1px;background:var(--ink4);margin:20px 0;}
+.text .sign{font-family:var(--en);font-style:italic;font-size:30px;color:var(--ink2);text-align:right;margin-top:30px;}
+.text .sign.zh{font-family:var(--zh);font-weight:400;font-size:22px;letter-spacing:.04em;margin-top:24px;}
+.text .sign-en{font-family:var(--en);font-style:italic;font-size:19px;color:var(--ink3);text-align:right;margin-top:2px;}
+.text .an-phase{font-family:var(--en);font-style:italic;font-size:20px;color:var(--ink3);}
+.text .dot{display:inline-block;width:18px;height:18px;border-radius:50%;vertical-align:middle;margin-right:12px;}
+.text .motif h4{font-family:var(--zh);font-weight:600;font-size:23px;line-height:1.35;margin-top:4px;}
+.text .motif h4 .e{font-family:var(--en);font-style:italic;font-weight:400;font-size:20px;color:var(--ink3);margin-left:10px;letter-spacing:0;}
+.text .motif p{font-family:var(--zh);font-weight:300;font-size:21px;line-height:1.6;margin:7px 0 28px;text-wrap:pretty;}
+.text .toc-phase{font-family:var(--zh);font-weight:500;font-size:22px;letter-spacing:.08em;margin:26px 0 8px;}
+.text .toc-phase .pe{font-family:var(--en);font-style:italic;font-size:19px;color:var(--ink3);margin-left:8px;}
+.text .toc-row{display:flex;align-items:baseline;gap:18px;padding:13px 0;border-bottom:1px solid var(--ink4);}
+.text .toc-row .num{font-family:var(--en);font-size:21px;color:var(--ink3);min-width:48px;}
+.text .toc-row .tz{font-family:var(--zh);font-weight:400;font-size:22px;}
+.text .toc-row .te{font-family:var(--en);font-style:italic;font-size:19px;color:var(--ink3);margin-left:6px;}
+.page.why{background:radial-gradient(120% 60% at 50% 0%, #F7F2E9, #EFE7D9 75%);
+  padding:120px 96px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+.why .ornament{color:var(--gold);font-size:30px;letter-spacing:.5em;text-indent:.5em;margin:10px 0;}
+.why .ornament.end{margin-top:34px;}
+.why .nk{font-family:var(--en);font-style:italic;font-size:21px;color:var(--ink3);}
+.why .nt{font-family:var(--zh);font-weight:500;font-size:36px;letter-spacing:.1em;margin-top:8px;}
+.why .nte{font-family:var(--en);font-style:italic;font-size:22px;color:var(--ink3);margin-top:8px;}
+.why .nb{font-family:var(--zh);font-weight:300;font-size:26px;line-height:1.7;max-width:580px;margin:46px 0;text-wrap:pretty;}
+.why .nb p{margin-bottom:.7em;}
+.why .nbe{font-family:var(--en);font-style:italic;font-size:21px;line-height:1.5;color:var(--ink2);max-width:560px;}
+
+@media print{ body{margin:0;} .page{break-after:page;page-break-after:always;} }
+body{margin:0;}
+</style>
+</head>
+<body>
+<div class="page cover" data-t="夢裡夢外 — Among All Dreams"><img class="bg" src="assets/img/cover.jpg" alt=""/><div class="vig"></div>
+       <div class="inner"><div class="ck">a picture book of dreams</div><div class="grow"></div>
+       <div class="rule"></div><div class="ctitle">夢裡夢外</div><div class="cen">Among All Dreams</div>
+       <div class="grow"></div><div class="cauthor">good_.evelyn &nbsp;·&nbsp; 2025–2026</div></div></div>
+<div class="page text" data-t="前言 · A Word to the Dreamer"><div class="kicker">前言 · preface</div><div class="title">給做夢者的話</div><div class="title-en">A Word to the Dreamer</div><div class="gap"></div><p class="zh">感謝你打開這一頁。</p><p class="zh">這是一個平凡女生在 29–30 歲之間做夢的記錄。那段時期是我至今最無能為力的日子——內心的迷惘、孤單與混亂，外在生活與理想的落差，與自己漫長的和解。每一天都像毛毛蟲在葉子上，一口一口蠶食我的心。</p><p class="zh">後來我想起，6–10 歲那段時間也有過相似的徬徨不安。那是成長的痛。現在的，是成熟的痛。</p><p class="zh">這裡記錄的是那段時間做過的部分夢。那些夢特別清晰，像一段幫我回顧前半段人生的倒帶——從現在慢慢回到小時候。夢裡有同伴，有我最不想面對的感受，有最害怕的事物，毫無保留地要我直視。有些夢醒來後心跳加速，有些讓我放下、坦然。</p><p class="zh">我慢慢明白，那是潛意識在給我的訊號。她沒有文字的概念，只好用一個個不合邏輯的故事告訴我——讓我經歷、面對、做不同的選擇、相信自己的力量。她要我看清：我已經不用再像小時候那個小女孩，不用害怕，不需要用犧牲自己的感受來生存。</p><p class="zh">這不是容易的事。我總是在夢裡用回以前一貫的方式面對事情，所以這段旅程持續了一年多，不斷跳針，用不同的場景磨練我、測試我——直到我明白，我想要成為的自己，可以由自己選擇。從一個不一樣的反應開始。</p><hr class="rule-h"/><p class="en">Thank you for opening this page.</p><p class="en">This is the record of an ordinary girl's dreams, between the ages of 29 and 30 — the most powerless days of my life so far. The confusion, the loneliness and chaos within; the gap between the life I had and the one I longed for; a long, slow reconciliation with myself. Every day was like a caterpillar on a leaf, eating away at my heart, bite by bite.</p></div>
+<div class="page text" data-t="前言 · A Word to the Dreamer"><p class="en">Later I remembered that between the ages of 6 and 10 I had felt a similar unease. That was the pain of growing up. This was the pain of growing whole.</p><p class="en">What is kept here are some of the dreams from that time. They were unusually clear — like a tape rewinding through the first half of my life, from now slowly back to childhood. In them were companions, the feelings I least wanted to face, the things I feared most, asking me to look without flinching. Some I woke from with my heart racing; some let me set things down, and be at peace.</p><p class="en">Slowly I understood that this was my unconscious sending me signals. She has no concept of words, so she told me through one illogical story after another — to let me live it, face it, choose differently, and trust my own strength. She wanted me to see clearly: I no longer have to be that little girl, I do not have to be afraid, I do not have to survive by sacrificing my own feelings.</p><p class="en">This was not easy. In the dreams I kept meeting things the old way, so the journey lasted more than a year, skipping like a scratched record, wearing me down and testing me through different scenes — until I understood that the self I want to become is mine to choose. Beginning with a single, different response.</p><div class="sign">— good_.evelyn</div></div>
+<div class="page text" data-t="目錄 · Contents"><div class="kicker">目錄 · contents</div><div class="title">目錄</div><div class="gap"></div><div class="toc-phase"><span class="dot" style="background:#C3B69E"></span>出發 <span class="pe">Departure</span></div><div class="toc-row"><span class="num">01</span><span class="tt"><span class="tz">中式大宅中轉站</span> <span class="te">The Great House, a Waystation</span></span></div><div class="toc-row"><span class="num">02</span><span class="tt"><span class="tz">後樓梯殘缺樂器追逐</span> <span class="te">Back Stairwell, Broken Instruments</span></span></div><div class="toc-phase"><span class="dot" style="background:#A2B0B6"></span>失去 <span class="pe">Loss</span></div><div class="toc-row"><span class="num">03</span><span class="tt"><span class="tz">流浪漢昏迷自醒</span> <span class="te">The Drifter; Waking Myself</span></span></div><div class="toc-row"><span class="num">04</span><span class="tt"><span class="tz">廢物箱尋寶中學朋友</span> <span class="te">Treasure in the Discard Boxes</span></span></div><div class="toc-phase"><span class="dot" style="background:#B0917A"></span>暴力與覺察 <span class="pe">Violence &amp; Seeing</span></div><div class="toc-row"><span class="num">05</span><span class="tt"><span class="tz">貓生病電梯</span> <span class="te">The Sick Cat, the Lift</span></span></div><div class="toc-phase"><span class="dot" style="background:#9B9A95"></span>心死 <span class="pe">Heart-death</span></div><div class="toc-row"><span class="num">06</span><span class="tt"><span class="tz">商場買鞋偷錢包搶劫</span> <span class="te">Stolen Wallets, a Robbery</span></span></div><div class="toc-row"><span class="num">07</span><span class="tt"><span class="tz">荒廢豪宅十億寶藏</span> <span class="te">The Ruined Mansion, a Billion</span></span></div><div class="toc-phase"><span class="dot" style="background:#AE927F"></span>重建 <span class="pe">Rebuilding</span></div><div class="toc-row"><span class="num">08</span><span class="tt"><span class="tz">奧運公園乾花怪獸</span> <span class="te">Dried Flowers, a Monster</span></span></div><div class="toc-row"><span class="num">09</span><span class="tt"><span class="tz">豪宅迷宮父親燒木櫃</span> <span class="te">The Maze House, Father Burning Cabinets</span></span></div><div class="toc-row"><span class="num">10</span><span class="tt"><span class="tz">藥材鋪異能者彩虹能量場</span> <span class="te">The Herb Shop, the Rainbow</span></span></div><div class="toc-row"><span class="num">11</span><span class="tt"><span class="tz">中國街變形動物小男孩</span> <span class="te">The Street of Altered Animals</span></span></div><div class="toc-row"><span class="num">12</span><span class="tt"><span class="tz">室內種植盆家人無視</span> <span class="te">The Growing Bed No One Sees</span></span></div><div class="toc-phase"><span class="dot" style="background:#8E96AC"></span>行動的呼喚 <span class="pe">The Call to Act</span></div><div class="toc-row"><span class="num">13</span><span class="tt"><span class="tz">Frantiono 旅遊小胖子</span> <span class="te">Frantiono, the Small Boy</span></span></div></div>
+<div class="page text" data-t="目錄 · Contents"><div class="toc-row"><span class="num">14</span><span class="tt"><span class="tz">蛇人受傷父親房間</span> <span class="te">The Wounded Serpent-Man</span></span></div><div class="toc-phase"><span class="dot" style="background:#BFC3C9"></span>飛起 <span class="pe">Flight</span></div><div class="toc-row"><span class="num">15</span><span class="tt"><span class="tz">自殺計劃白鷹飛翔</span> <span class="te">The White Eagle</span></span></div><div class="toc-row"><span class="num">16</span><span class="tt"><span class="tz">水族館殺人鯨鑲嵌玻璃</span> <span class="te">The Aquarium, Stained Glass</span></span></div><div class="toc-phase"><span class="dot" style="background:#C5AE86"></span>浮起 <span class="pe">Surfacing</span></div><div class="toc-row"><span class="num">17</span><span class="tt"><span class="tz">絕症戀人變中性媽媽麵包店</span> <span class="te">The Bakery at Dusk</span></span></div><div class="toc-row"><span class="num">18</span><span class="tt"><span class="tz">鐵達尼號泥漿浮木求生</span> <span class="te">The Sinking, a Floating Door</span></span></div></div>
+<div class="page art" data-t="夢 01 · 中式大宅中轉站"><img class="bg" src="assets/img/dream-01/panel-01.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">01　·　中式大宅中轉站　·　1/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我住在那棟宅子的時間比所有人都長。門廊、走廊、每一個轉角，我都認識。</div><div class="en">I had lived in that house longer than anyone.The porches, the halls, every corner — I knew them all. </div></div></div>
+<div class="page art" data-t="夢 01 · 中式大宅中轉站"><img class="bg" src="assets/img/dream-01/panel-02.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">01　·　中式大宅中轉站　·　2/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">朋友們住在不同的樓層和房間，偶爾遇上，我只問一件事：「你什麼時候要走？」</div><div class="en">Friends lived on different floors; when we crossed paths I asked only one thing: when are you leaving?</div></div></div>
+<div class="page art" data-t="夢 01 · 中式大宅中轉站"><img class="bg" src="assets/img/dream-01/panel-03.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">01　·　中式大宅中轉站　·　3/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">每次擁抱都用力，因為下一站各散東西，不知道還會不會再見。</div><div class="en">Every embrace was hard. After this we scatter, and may never meet again.</div></div></div>
+<div class="page art" data-t="夢 01 · 中式大宅中轉站"><img class="bg" src="assets/img/dream-01/panel-04.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">01　·　中式大宅中轉站　·　4/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">有一天，我幫人找朋友，走進了幾扇不認識的門。裡面的房間很奇怪——四面全是格子，只容得下一個人。</div><div class="en">One day, helping someone search, I opened doors I didn't know. The room inside was strange — latticed on every side, room for one.</div></div></div>
+<div class="page art" data-t="夢 01 · 中式大宅中轉站"><img class="bg" src="assets/img/dream-01/panel-05.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">01　·　中式大宅中轉站　·　5/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">幾間都找不到人。最後我站在黑暗的走廊裡，大聲叫她的名字。</div><div class="en">I found no one in any of them. At last I stood in the dark hall and called her name aloud.</div></div></div>
+<div class="page art" data-t="夢 01 · 中式大宅中轉站"><img class="bg" src="assets/img/dream-01/panel-06.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">01　·　中式大宅中轉站　·　6/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">才在一間正常的房間裡找到她，和另外兩個朋友在一起。</div><div class="en">Only then did I find her, in an ordinary room, with two other friends.</div></div></div>
+<div class="page art" data-t="夢 01 · 中式大宅中轉站"><img class="bg" src="assets/img/dream-01/panel-07.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">01　·　中式大宅中轉站　·　7/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">後來我把網格房的事告訴別人。她們都說：「沒有這樣的房間。」</div><div class="en">Later I told them about the grid room. They all said: there is no such room.</div></div></div>
+<div class="page text" data-t="夢 01 · 解讀"><div class="an-phase"><span class="dot" style="background:#C3B69E"></span>出發 · Departure</div><div class="title sm">中式大宅中轉站</div><div class="title-en">The Great House, a Waystation</div><p class="zh" style="margin-top:20px">做夢者站在人生的過渡點，比其他人更遲啟程，更深地感受每一次離別。她發現了一個只有她看見、沒有人承認的秘密空間，然後仍然繼續找人、繼續擁抱，繼續待在那棟她比誰都長的宅子裡。她所感受的孤獨，是「我看見的東西無人共見」的那種。</p><p class="en">She stands at a threshold, leaving later than everyone, feeling each parting more deeply. She found a secret space only she could see — and still kept searching, kept embracing, kept staying. Her loneliness is the kind where what she sees, no one else sees.</p><hr class="rule-h"/><div class="motif"><h4>中轉站<span class="e">The waystation</span></h4><p>中轉站從來不是終點，是一個被設計來短暫停留的空間。做夢者身處其中，比所有人都晚離開，說明她對「過渡期」的感知比旁人更深——不是因為她慢，而是因為她更不願意讓這個「之間」的狀態結束。</p></div><div class="motif"><h4>「你什麼時候要走？」<span class="e">"When are you leaving?"</span></h4><p>這個問題問的是時間，但它的深層是確認：你還在嗎？我還有時間嗎？問離別而不問去向，是對結局有預感卻仍然渴望多一點連結的心理狀態。</p></div><div class="motif"><h4>網格房間<span class="e">The grid room</span></h4><p>一個只容一個人、四面透明、無法封閉的空間。透明意味著暴露，無法封閉意味著沒有保護，只能容一人意味著無法分享。做夢者走進這個空間時的不安，是在接觸一種極端孤立的存在狀態。</p></div><div class="motif"><h4>「沒有這樣的房間」<span class="e">"There is no such room"</span></h4><p>做夢者親身走進了那個空間，有過真實的感受，卻被所有人否認其存在。這是潛意識對一種心理現實的呈現：某些強烈的感受或感知，沒有任何人願意確認或承接，甚至被說成不存在。</p></div></div>
+<div class="page art" data-t="夢 02 · 後樓梯殘缺樂器追逐"><img class="bg" src="assets/img/dream-02/panel-01.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">02　·　後樓梯殘缺樂器追逐　·　1/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">整個世界是灰色的。後樓梯比正常的更窄，梯級扁平，可以一跳越過半層。</div><div class="en">The whole world was grey. The back stairs were narrower than usual, the steps flat — you could clear half a floor in one jump.</div></div></div>
+<div class="page art" data-t="夢 02 · 後樓梯殘缺樂器追逐"><img class="bg" src="assets/img/dream-02/panel-02.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">02　·　後樓梯殘缺樂器追逐　·　2/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我和男朋友非常緊張地往下走。下面有出口，我們只想快點出去。</div><div class="en">My boyfriend and I went down, very tense. There was a way out below; we only wanted out, fast.</div></div></div>
+<div class="page art" data-t="夢 02 · 後樓梯殘缺樂器追逐"><img class="bg" src="assets/img/dream-02/panel-03.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">02　·　後樓梯殘缺樂器追逐　·　3/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">某一層，一個女生靠在牆邊。她扶著破掉一半的樂器，好像要演奏，又好像要介紹。她的手腕不在身上，落在地板上。</div><div class="en">On one floor a girl leaned at the wall, holding a half-broken instrument, as if to play it, or to present it. Her wrists were not on her arms; they lay on the floor.</div></div></div>
+<div class="page art" data-t="夢 02 · 後樓梯殘缺樂器追逐"><img class="bg" src="assets/img/dream-02/panel-04.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">02　·　後樓梯殘缺樂器追逐　·　4/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我們沒有停。快速掠過她，繼續往下走。</div><div class="en">We didn't stop. We slipped past her and kept going down.</div></div></div>
+<div class="page art" data-t="夢 02 · 後樓梯殘缺樂器追逐"><img class="bg" src="assets/img/dream-02/panel-05.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">02　·　後樓梯殘缺樂器追逐　·　5/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">下一層，又是一件破損的樂器。再下一層，又是。那個女生的腳步聲在身後響起，不緊不慢，一直跟著。我們越走越快。</div><div class="en">The next floor, another broken instrument. The next, another. Her footsteps rose behind us — unhurried, steady, always following. We went faster and faster.</div></div></div>
+<div class="page art" data-t="夢 02 · 後樓梯殘缺樂器追逐"><img class="bg" src="assets/img/dream-02/panel-06.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">02　·　後樓梯殘缺樂器追逐　·　6/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">出到街道，直接上了車。我坐定，回頭望著門口等，看她有沒有跟出來。</div><div class="en">Out on the street I got straight into the car. Settled, I watched the doorway, waiting to see if she would follow.</div></div></div>
+<div class="page art" data-t="夢 02 · 後樓梯殘缺樂器追逐"><img class="bg" src="assets/img/dream-02/panel-07.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">02　·　後樓梯殘缺樂器追逐　·　7/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">走出來的是一位普通的婦人。那個女生不見了。車沒有立刻開走。我沒有回頭看後座。但我的整個身體都知道——她在那裡。</div><div class="en">An ordinary woman came out instead. The girl was gone. The car didn't pull away at once. I didn't look at the back seat — but my whole body knew: she was there.</div></div></div>
+<div class="page text" data-t="夢 02 · 解讀"><div class="an-phase"><span class="dot" style="background:#C3B69E"></span>出發 · Departure</div><div class="title sm">後樓梯殘缺樂器追逐</div><div class="title-en">Back Stairwell, Broken Instruments</div><p class="zh" style="margin-top:20px">做夢者用後樓梯，在沒有顏色的世界裡，逃離一個她自己壓抑的內在存在。那個存在從未想傷害她——它只是想被聽見。夢用一個普通婦人試圖說服她一切安全，但她的身體不相信。</p><p class="en">On a back stairwell, in a world without colour, she flees something she herself suppressed. That presence never meant her harm — it only wanted to be heard. The dream offers a plain woman and tries to say it's safe. Her body doesn't believe it.</p><hr class="rule-h"/><div class="motif"><h4>後樓梯<span class="e">The back stairwell</span></h4><p>後樓梯是做夢者主動選擇的出口——不是正門，是讓她能在不被人看見的情況下離開的那種通道。這個選擇本身就是一個宣告：她在逃避某件事，而且不想讓這件事被正面處理。</p></div><div class="motif"><h4>灰色的世界<span class="e">A world without colour</span></h4><p>整個夢境失去色彩，是做夢者對前路感到迷茫的直接顯現。不是痛苦的灰，是不知道往哪裡的灰——一種方向感缺失的麻木。</p></div></div>
+<div class="page text" data-t="夢 02 · 解讀"><div class="motif"><h4>詭異女生與破損樂器<span class="e">The girl and the broken instruments</span></h4><p>那個沒有手腕的女生，是做夢者在某個時期試圖通過創造和表達讓自己被看見、卻最終被遺棄的那個部分。她的手腕落在地上——失去了執行的能力，但她還是扶著樂器，沒有放棄想被理解。她沒有惡意，她只是想讓做夢者停下來聽一次。</p></div><div class="motif"><h4>追逐<span class="e">The pursuit</span></h4><p>那個女生腳步不急不慢，一直跟著。這不是追殺，是跟隨。越逃，她越靠近，因為逃跑本身確認了她的存在——做夢者的一部分知道她在，只是選擇不停。</p></div><div class="motif"><h4>「她在後座」<span class="e">"She is in the back seat"</span></h4><p>走出來的是普通婦人——夢用一個日常形象替換了令做夢者恐懼的存在，試圖讓她相信危機已過。但做夢者的身體知道真相：那個問題沒有走掉，它在後座，坐著等她準備好。</p></div></div>
+<div class="page art" data-t="夢 03 · 流浪漢昏迷自醒"><img class="bg" src="assets/img/dream-07/panel-01.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">03　·　流浪漢昏迷自醒　·　1/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">大雪。車房外，有一個流浪漢靠著我的車坐著，蓋著什麼在睡覺。</div><div class="en">Heavy snow. Outside the garage a drifter sat against my car, sleeping under something.</div></div></div>
+<div class="page art" data-t="夢 03 · 流浪漢昏迷自醒"><img class="bg" src="assets/img/dream-07/panel-02.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">03　·　流浪漢昏迷自醒　·　2/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我是去拿東西才走進去的，看到他，他也看到我，用眼神求我。</div><div class="en">I had only gone in to fetch something. I saw him; he saw me, and asked with his eyes.</div></div></div>
+<div class="page art" data-t="夢 03 · 流浪漢昏迷自醒"><img class="bg" src="assets/img/dream-07/panel-03.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">03　·　流浪漢昏迷自醒　·　3/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我答應了他。他可以在車房裡過一夜。床憑空出現了，就在車房裡。</div><div class="en">I said yes — he could stay the night in the garage. A bed appeared from nowhere, right there. </div></div></div>
+<div class="page art" data-t="夢 03 · 流浪漢昏迷自醒"><img class="bg" src="assets/img/dream-07/panel-04.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">03　·　流浪漢昏迷自醒　·　4/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">他去睡了。我不知道是什麼時候、用什麼方式昏迷的。意識還在，身體不動。</div><div class="en">He went to sleep. I don't know when, or how, I went under. My mind stayed; my body would not move. </div></div></div>
+<div class="page art" data-t="夢 03 · 流浪漢昏迷自醒"><img class="bg" src="assets/img/dream-07/panel-05.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">03　·　流浪漢昏迷自醒　·　5/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我感覺到他靠近，感覺到他觸碰我，在心裡喊「不要碰我」，但說不出聲，也動不了。</div><div class="en">I felt him come near, felt him touch me, screamed don't touch me inside — but no sound came, and I could not move.</div></div></div>
+<div class="page art" data-t="夢 03 · 流浪漢昏迷自醒"><img class="bg" src="assets/img/dream-07/panel-06.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">03　·　流浪漢昏迷自醒　·　6/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">然後我沉下去，很深的地方，深呼了一口氣，說：「醒。」我睜開眼，躺在自己的床上，天亮了。</div><div class="en">Then I sank — somewhere very deep — drew one long breath, and said: wake. I opened my eyes in my own bed. It was morning.</div></div></div>
+<div class="page text" data-t="夢 03 · 解讀"><div class="an-phase"><span class="dot" style="background:#A2B0B6"></span>失去 · Loss</div><div class="title sm">流浪漢昏迷自醒</div><div class="title-en">The Drifter; Waking Myself</div><p class="zh" style="margin-top:20px">做夢者的善意是真實的，她的邊界因為善意而打開，然後她失去了主導。但那個「醒」字也是真實的——她不需要等人來救，她用自己的聲音把自己叫回來。夢裡的循環是：開放→失控→從內部找回。</p><p class="en">Her kindness is real; her boundary opens for it, and she loses control. But the word wake is real too — she needs no rescue; she calls herself back with her own voice. The dream's cycle: opening, losing control, recovering from within.</p><hr class="rule-h"/><div class="motif"><h4>大雪與車旁的流浪漢<span class="e">Snow, and the drifter by the car</span></h4><p>極端的外部環境中出現一個用眼神求助的陌生人。做夢者的反應是本能的：她沒有思考，她就開了門。這個「眼神可憐→立刻允許」的模式，是她在日常生活中對「看起來需要幫助的人」的反應方式，速度快到不涉及判斷。</p></div><div class="motif"><h4>床憑空出現<span class="e">A bed from nowhere</span></h4><p>做夢者的善意在空氣中創造了一個資源，但那個資源完全是為了他——她的空間被佔用了，而她什麼也沒有留給自己。這個床不是她意識到的結果，是她的善意「自動」產生的，說明她對這個動作已經有多熟練。</p></div><div class="motif"><h4>昏迷與癱瘓<span class="e">Going under, frozen</span></h4><p>開了門之後，做夢者失去了意識和行動能力。她感知到威脅，心裡有清楚的意願（不要），但身體無法響應。這是「善良開放了門、然後失去主導權」的狀態的直接呈現——讓別人進來的那一刻，和失去控制的那一刻，在夢裡是連接的。</p></div><div class="motif"><h4>「醒」<span class="e">"Wake"</span></h4><p>做夢者沒有等待救援，她向內沉，找到最深的那個點，用一個字解救自己。這個「醒」字說明她的潛意識正在練習一件事：當善意讓邊界崩潰，她仍然可以從內部找回主導權。</p></div></div>
+<div class="page art" data-t="夢 04 · 廢物箱尋寶中學朋友"><img class="bg" src="assets/img/dream-15/panel-01.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">04　·　廢物箱尋寶中學朋友　·　1/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">學校</div><div class="en">School.</div></div></div>
+<div class="page art" data-t="夢 04 · 廢物箱尋寶中學朋友"><img class="bg" src="assets/img/dream-15/panel-02.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">04　·　廢物箱尋寶中學朋友　·　2/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">她是我中學時最好的朋友。畢業之後，我們就沒有再聯絡。</div><div class="en">She was my best friend in secondary school. After we graduated, we never spoke again.</div></div></div>
+<div class="page art" data-t="夢 04 · 廢物箱尋寶中學朋友"><img class="bg" src="assets/img/dream-15/panel-03.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">04　·　廢物箱尋寶中學朋友　·　3/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">某個角落。有三個大紙箱，裡面是賣剩的貨、瑕疵品，有些拆了包裝，有些已經壞了，但可以帶走。</div><div class="en">somewhere in the school, there are three big cardboard boxes.Inside: leftover stock, flawed goods, some unwrapped, some already broken — but free to take. </div></div></div>
+<div class="page art" data-t="夢 04 · 廢物箱尋寶中學朋友"><img class="bg" src="assets/img/dream-15/panel-04.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">04　·　廢物箱尋寶中學朋友　·　4/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我和她發現這個地方的時候都很開心，立刻翻起來。</div><div class="en">When we found the place we were both delighted, and dug in at once. </div></div></div>
+<div class="page art" data-t="夢 04 · 廢物箱尋寶中學朋友"><img class="bg" src="assets/img/dream-15/panel-05.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">04　·　廢物箱尋寶中學朋友　·　5/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">走廊有人說隔壁大樓起火，嗅到一點煙味，我們繼續翻箱，完全沒有管。</div><div class="en">Down the hall someone said the next building was on fire; I caught a little smoke. We kept digging through the boxes, paid it no mind at all. </div></div></div>
+<div class="page art" data-t="夢 04 · 廢物箱尋寶中學朋友"><img class="bg" src="assets/img/dream-15/panel-06.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">04　·　廢物箱尋寶中學朋友　·　6/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">開心是真實的。不是因為得到了什麼，是因為在她面前，不需要裝，不需要管面子，想拿免費的破爛就拿，想翻垃圾就翻。</div><div class="en">The joy was real. Not from anything we got, but because beside her I didn't have to pretend, didn't have to save face — take the free junk if I wanted it, dig through the rubbish if I liked.</div></div></div>
+<div class="page text" data-t="夢 04 · 解讀"><div class="an-phase"><span class="dot" style="background:#A2B0B6"></span>失去 · Loss</div><div class="title sm">廢物箱尋寶中學朋友</div><div class="title-en">Treasure in the Discard Boxes</div><p class="zh" style="margin-top:20px">做夢者在這個夢裡做了一件她近期一直沒辦法做的事：主動選擇、不顧旁人、以自己的判斷決定什麼有價值。那個快樂是真實的，因為她知道它的來源不是東西，是在某個人面前可以做真實的自己。</p><p class="en">She does something she hasn't been able to do lately: choose actively, ignore the noise, and let her own judgement decide what has worth. The joy is real — she knows it comes not from the finds, but from being, beside this person, the most unperformed version of herself.</p><hr class="rule-h"/><div class="motif"><h4>中學最好的朋友<span class="e">The best friend from school</span></h4><p>一個在還不需要「管理形象」之前就接受了她的人。在這種關係裡，做夢者可以回到她的最原始版本——不需要衡量被看見的代價，不需要表演任何立場。這種狀態在她近期的夢裡幾乎從未出現，它的到來說明一些東西正在鬆動。</p></div><div class="motif"><h4>廢棄的貨品與瑕疵品<span class="e">Discarded and flawed goods</span></h4><p>被主流拋棄的東西，做夢者在裡面看到使用價值。她不是在填補需要，她是在主動挑選——這個「主動選擇」的姿態，在前幾個夢裡幾乎是缺席的。她喜歡瑕疵品，是因為此刻她可以根據自己的判斷決定什麼有價值。</p></div><div class="motif"><h4>隔壁大樓起火<span class="e">The fire next door</span></h4><p>外部有危機，做夢者完全沒有被影響。當一個人正在做一件讓她感覺真實的事，外部的噪音就失去了重量。這種聚焦不是漠然，是做夢者在稀有的真實狀態中的自然優先序。</p></div><div class="motif"><h4>快樂的核心<span class="e">The core of the joy</span></h4><p>她知道那個快樂不是來自東西——是來自在某個人面前不需要面子。這個自我觀察不只是清醒，它說明做夢者此刻完全在場：她同時感受快樂，同時知道它的來源。她知道她真正需要的是什麼。</p></div></div>
+<div class="page art" data-t="夢 05 · 貓生病電梯"><img class="bg" src="assets/img/dream-17/panel-01.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">05　·　貓生病電梯　·　1/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">整個世界是灰黑色和暗綠色。男朋友把我的貓帶去了動物醫院。我是後來才知道的，知道後立刻跑過去。</div><div class="en">The whole world was grey-black and dark green.My boyfriend had taken my cat to the animal clinic. I only learned later; the moment I knew, I ran there.</div></div></div>
+<div class="page art" data-t="夢 05 · 貓生病電梯"><img class="bg" src="assets/img/dream-17/panel-02.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">05　·　貓生病電梯　·　2/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">推開醫生的房間門，警告他：要好好治療我的貓。說完又怕自己的怒氣影響治療，立刻切換語氣，好好拜託他。</div><div class="en">Open the doctor's door, and warned him: treat my cat well. Then, afraid my anger would hurt the care, I switched my tone at once and pleaded with him kindly.</div></div></div>
+<div class="page art" data-t="夢 05 · 貓生病電梯"><img class="bg" src="assets/img/dream-17/panel-03.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">05　·　貓生病電梯　·　3/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">醫生有點不悅，只說：「我會讓下一個值班的醫生知道。」</div><div class="en"> Displeased, he only said: I'll let the next doctor on shift know.</div></div></div>
+<div class="page art" data-t="夢 05 · 貓生病電梯"><img class="bg" src="assets/img/dream-17/panel-04.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">05　·　貓生病電梯　·　4/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我不記得為什麼那麼大情緒，但我是生氣的。</div><div class="en">I don't recall why the feeling was so big, but I was angry. </div></div></div>
+<div class="page art" data-t="夢 05 · 貓生病電梯"><img class="bg" src="assets/img/dream-17/panel-05.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">05　·　貓生病電梯　·　5/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">電梯大堂有兩部電梯。左邊那部不能進。我站在右邊等，心裡有點害怕。</div><div class="en">There were two lifts in the lobby. The left one I could not enter. I waited at the right, a little afraid inside.</div></div></div>
+<div class="page art" data-t="夢 05 · 貓生病電梯"><img class="bg" src="assets/img/dream-17/panel-06.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">05　·　貓生病電梯　·　6/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">一位清潔大嬸推著清潔車走過來，也在等。她什麼都沒說，只是站在那裡。我的害怕就消失了。</div><div class="en">A cleaning lady pushed her cart over and waited too. She said nothing, only stood there. And my fear simply vanished.</div></div></div>
+<div class="page text" data-t="夢 05 · 解讀"><div class="an-phase"><span class="dot" style="background:#B0917A"></span>暴力與覺察 · Violence &amp; Seeing</div><div class="title sm">貓生病電梯</div><div class="title-en">The Sick Cat, the Lift</div><p class="zh" style="margin-top:20px">做夢者的情感核心被人帶去接受治療，而她不在場。她趕到，警告，拜託，識別危險，然後在清潔大嬸的存在裡找到安心。她的能力一直在，但她一直是在事後趕到的那個人。</p><p class="en">Her emotional core is taken for care while she is elsewhere. She runs there, warns, pleads, reads danger, and finds calm in a stranger's presence. All her capacities are intact — and still she is, always, the one who arrives after.</p><hr class="rule-h"/><div class="motif"><h4>貓病了而做夢者不在場<span class="e">The cat is ill, and she is absent</span></h4><p>貓是做夢者情感核心的投影。牠生病且由男友送去醫院——她最在乎的部分正在被別人處置，而她在事後才知道，只能趕去。「最需要你在場的事情，你不在」——這不是指責，是做夢者潛意識對一種熟悉處境的呈現。</p></div><div class="motif"><h4>警告後切換為拜託<span class="e">From warning to pleading</span></h4><p>做夢者的憤怒是真實的，但她立刻識別到：在需要對方合作的情況下，憤怒是有時效限制的工具。她用了它來確立嚴肅性，然後放下它。這個切換不是軟弱，是她清楚知道自己的目標在哪裡，並且為了目標調整了姿態。</p></div><div class="motif"><h4>左邊電梯不能進<span class="e">The left lift, forbidden</span></h4><p>她說不清為什麼，但她知道。這種直覺性的危險識別——不依賴解釋，只依賴感知——是做夢者在高壓環境裡保護自己的方式。她不進去，不是因為計算，是因為身體比意識先知道。</p></div><div class="motif"><h4>清潔大嬸的存在<span class="e">The cleaning lady's presence</span></h4><p>一個與她毫無關係的普通人出現在旁邊，做夢者的害怕就消失了。她對「人的在場」非常敏感——不是需要親密，而是需要另一個真實存在的人類在同一空間裡。這個敏感度貫穿了她的整個夢境系列。</p></div></div>
+<div class="page art" data-t="夢 06 · 商場買鞋偷錢包搶劫"><img class="bg" src="assets/img/dream-26/panel-01.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">06　·　商場買鞋偷錢包搶劫　·　1/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我在選鞋。</div><div class="en">I was choosing shoes.</div></div></div>
+<div class="page art" data-t="夢 06 · 商場買鞋偷錢包搶劫"><img class="bg" src="assets/img/dream-26/panel-02.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">06　·　商場買鞋偷錢包搶劫　·　2/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">男朋友走過來，手上有兩個白色錢包。他說沒有人發現，因為關門了。他偷的。我就拿走了。</div><div class="en">My boyfriend came over, two white wallets in his hands. No one noticed, he said, because the shop had shut. He'd stolen them. And I took them.</div></div></div>
+<div class="page art" data-t="夢 06 · 商場買鞋偷錢包搶劫"><img class="bg" src="assets/img/dream-26/panel-03.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">06　·　商場買鞋偷錢包搶劫　·　3/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">走在路上，有人衝出來搶包，左手一條燒肉，右手幾把刀，周圍的人都散開了。我不讓他拿包，扭打，最後制服了他。</div><div class="en">On the road someone rushed out to grab the bag — roast pork in his left hand, knives in his right. The crowd scattered. I wouldn't let him have it; we grappled, and at last I pinned him.</div></div></div>
+<div class="page art" data-t="夢 06 · 商場買鞋偷錢包搶劫"><img class="bg" src="assets/img/dream-26/panel-04.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">06　·　商場買鞋偷錢包搶劫　·　4/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">男朋友站在旁邊，好像不太明白為什麼我要這麼堅持。我叫他報警。他把電話遞給旁邊幾個人，讓我自己處理。</div><div class="en">My boyfriend stood by, as if he didn't quite see why I held on so hard. I told him to call the police. He handed his phone to some strangers and left it to me.</div></div></div>
+<div class="page art" data-t="夢 06 · 商場買鞋偷錢包搶劫"><img class="bg" src="assets/img/dream-26/panel-05.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">06　·　商場買鞋偷錢包搶劫　·　5/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">警察來了，看到那條燒肉，切開，開始吃，還分給旁邊的人和男朋友，吃得很開心。</div><div class="en">The police came, saw the roast pork, cut it, began to eat, even shared it round with the bystanders and my boyfriend — eating away, happily.</div></div></div>
+<div class="page art" data-t="夢 06 · 商場買鞋偷錢包搶劫"><img class="bg" src="assets/img/dream-26/panel-06.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">06　·　商場買鞋偷錢包搶劫　·　6/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">最後我和男朋友離開現場，我告訴他我們分手。我上了天橋，一個人走。他留在原地，沒有追。</div><div class="en">In the end we left, and I told him we were over. I climbed the footbridge and walked alone. He stayed where he was, and didn't follow.</div></div></div>
+<div class="page art" data-t="夢 06 · 商場買鞋偷錢包搶劫"><img class="bg" src="assets/img/dream-26/panel-07.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">06　·　商場買鞋偷錢包搶劫　·　7/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">草叢裡有聲音。兩隻黑白貓走出來，停在那裡看著我，然後走了。</div><div class="en">A sound in the grass — two black-and-white cats came out, stopped, looked at me, and left.</div></div></div>
+<div class="page text" data-t="夢 06 · 解讀"><div class="an-phase"><span class="dot" style="background:#9B9A95"></span>心死 · Heart-death</div><div class="title sm">商場買鞋偷錢包搶劫</div><div class="title-en">Stolen Wallets, a Robbery</div><p class="zh" style="margin-top:20px">做夢者獨自守護一件她通過默許才拿到的東西，系統選擇了燒肉，他選擇了漠然。她走上天橋，往前走。兩隻貓看了她一眼——然後離開了。那是整個夢最安靜的一刻。</p><p class="en">She guards alone something she accepted in silence; the system chose the pork, he chose indifference. She climbs the bridge and walks forward. Two cats look at her — then go. That is the dream's quietest moment.</p><hr class="rule-h"/><div class="motif"><h4>白色錢包<span class="e">The white wallet</span></h4><p>做夢者一開始專注於鞋子——自己的步伐、自己的方向。錢包是後來的事，是男友帶進來的，帶著他越了界的方式。她拿走了。她沒有主動偷，但她接了那個東西。這一刻，她的步伐開始和另一個人的行為混在一起。</p></div><div class="motif"><h4>搶劫中的角色分配<span class="e">Who acts in the robbery</span></h4><p>做夢者是唯一行動的人。她有能力，她行動，她成功——而每一個本來應該在她旁邊的人都把注意力放在別處。這個孤立不是一次性的事件，是整個場景的結構：要守護的東西由她守護，她獨自守護，沒有人看這一點有什麼不對。</p></div></div>
+<div class="page text" data-t="夢 06 · 解讀"><div class="motif"><h4>燒肉<span class="e">The roast pork</span></h4><p>警察看到燒肉，開始吃，還分給旁人。那條燒肉是整個夢最荒謬的細節，也是最準確的細節：系統在最需要回應的時刻，被一件無關痛癢的東西吸走了全部注意力。做夢者看著，什麼都說不出口。</p></div><div class="motif"><h4>分手與獨自離開<span class="e">The break-up, leaving alone</span></h4><p>她上了天橋，一個人走。天橋是跨越某個邊界的象徵——她在這一步選擇了越過。他沒有追。那個「無所謂」比任何憤怒都更難承受，因為它連做夢者的離開都不值得一個反應。</p></div><div class="motif"><h4>兩隻黑白貓<span class="e">Two black-and-white cats</span></h4><p>兩隻貓從草叢走出來，看了她一眼，就走了。牠們不求助，不靠近，只是出現然後離開。這是一種不需要任何行動的印記：你被看見了，就這樣。此刻做夢者最需要的，或許就是這個。</p></div></div>
+<div class="page art" data-t="夢 07 · 荒廢豪宅十億寶藏"><img class="bg" src="assets/img/dream-28/panel-01.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">07　·　荒廢豪宅十億寶藏　·　1/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">豪宅已經有些倒塌了。我不知道怎麼到了這裡。</div><div class="en">The mansion had partly collapsed. I don't know how I came to be there.</div></div></div>
+<div class="page art" data-t="夢 07 · 荒廢豪宅十億寶藏"><img class="bg" src="assets/img/dream-28/panel-02.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">07　·　荒廢豪宅十億寶藏　·　2/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">到了之後才發現裡面已經有兩個人：一個年輕警察，一個中年工人。警察和我一起走，他保護我，我跟著他。</div><div class="en">I find two others — a young policeman, a middle-aged workman. The policeman walked with me, keeping me safe; I followed him. </div></div></div>
+<div class="page art" data-t="夢 07 · 荒廢豪宅十億寶藏"><img class="bg" src="assets/img/dream-28/panel-03.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">07　·　荒廢豪宅十億寶藏　·　3/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">工人另走一路，去到地下一個洞。他說裡面有十億。那個洞我很害怕，我沒有進去，遠遠站著。</div><div class="en">The workman took another route, to a hole in the ground. A billion is inside, he said. The hole frightened me. I didn't go in. I stood far back.</div></div></div>
+<div class="page art" data-t="夢 07 · 荒廢豪宅十億寶藏"><img class="bg" src="assets/img/dream-28/panel-04.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">07　·　荒廢豪宅十億寶藏　·　4/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">工人進去，不一會兒走上來，真的帶著那麼多的東西和錢。</div><div class="en">The workman went in, and soon came back up, truly carrying all of it. </div></div></div>
+<div class="page art" data-t="夢 07 · 荒廢豪宅十億寶藏"><img class="bg" src="assets/img/dream-28/panel-05.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">07　·　荒廢豪宅十億寶藏　·　5/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">他分了警察一份，警察替我爭取了一小部份。我很感謝他，我自己沒有打算開口要。</div><div class="en">He gave the policeman a share, and the policeman won a small part for me. I was grateful — I had never meant to ask for any.</div></div></div>
+<div class="page art" data-t="夢 07 · 荒廢豪宅十億寶藏"><img class="bg" src="assets/img/dream-28/panel-06.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">07　·　荒廢豪宅十億寶藏　·　6/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">第二次，我們又在同一個地方。我跟工人說，主人房應該有更直接的路去地下，何必進那個洞。</div><div class="en">A second time, in the same place. I told the workman the master room must have a straighter way down — why use that hole? </div></div></div>
+<div class="page art" data-t="夢 07 · 荒廢豪宅十億寶藏"><img class="bg" src="assets/img/dream-28/panel-07.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">07　·　荒廢豪宅十億寶藏　·　7/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">他不急，不想找，還是下去了。</div><div class="en">He was in no hurry, didn't want to look, and went down anyway.</div></div></div>
+<div class="page art" data-t="夢 07 · 荒廢豪宅十億寶藏"><img class="bg" src="assets/img/dream-28/panel-08.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">07　·　荒廢豪宅十億寶藏　·　8/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我和警察繼續走，地板突然把我吸進去，什麼都沒了。</div><div class="en">The policeman and I walked on. The floor suddenly drew me in, and everything was gone.</div></div></div>
+<div class="page text" data-t="夢 07 · 解讀"><div class="an-phase"><span class="dot" style="background:#9B9A95"></span>心死 · Heart-death</div><div class="title sm">荒廢豪宅十億寶藏</div><div class="title-en">The Ruined Mansion, a Billion</div><p class="zh" style="margin-top:20px">做夢者知道財富在哪裡，知道自己想要什麼，也知道自己為什麼不行動。「我原本沒有打算主動去爭取」——這句話是整個夢最清醒的自我觀察。財富不是不在，是她還沒有準備好伸出自己的手。</p><p class="en">She knows where the wealth is, what she wants, and why she won't act. "I never meant to reach for it" — the clearest self-seeing in the dream. The treasure is not absent; she is simply not yet ready to extend her own hand.</p><hr class="rule-h"/><div class="motif"><h4>廢墟<span class="e">The ruin</span></h4><p>荒廢的豪宅是「曾經存在的結構已失去維護」的意象——那些被做夢者封存的潛能、塵封的可能性，就在那裡，等待被找到的人。她進入廢墟，不是要修復它，而是要尋找還留在裡面的東西。</p></div><div class="motif"><h4>那個洞<span class="e">The hole</span></h4><p>那個洞是通往財富的入口，但做夢者感到恐懼，選擇不進去。洞象徵進入自己最深層的地方——那些潛意識一直知道但意識迴避的部分。財富在那裡，她知道，但恐懼比財富更大，讓她停在外面。</p></div></div>
+<div class="page text" data-t="夢 07 · 解讀"><div class="motif"><h4>中年工人<span class="e">The workman</span></h4><p>這個男人代表做夢者潛意識裡「直接下去、取出來」的那個部分——原始的慾望和創造力，不猶豫，不請示，就是進去，就是拿出來。做夢者知道這個部分存在，但她本人不是那個部分，至少在這個夢裡還不是。</p></div><div class="motif"><h4>警察作為仲介<span class="e">The policeman as broker</span></h4><p>財富要通過中間人才能到達她手裡。做夢者沒有伸手要，警察幫她爭取了一小份。這個「我很想要，但需要有人代為爭取」的模式，是做夢者對自己說得最清楚的一件事：她知道，但她還沒有準備好直接拿。</p></div><div class="motif"><h4>地板吸走<span class="e">Pulled through the floor</span></h4><p>做夢者沒有選擇進入那個洞，但地板把她帶了下去。就算意識選擇不去，潛意識仍然會找到自己的方式把她帶到深層。她無法一直停在觀察者的位置。</p></div></div>
+<div class="page art" data-t="夢 08 · 奧運公園乾花怪獸"><img class="bg" src="assets/img/dream-32/panel-01.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">08　·　奧運公園乾花怪獸　·　1/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">出去散步，遇到兩個女生在問路，要找一個有奧運標誌的公園。我在地圖上找了很久，最後發現——原來是我平日去散步的那個小公園。</div><div class="en">Out walking, I met two girls looking for a park with an Olympic sign. I searched the map a long time, and found it at last — the little park I walk in every day.</div></div></div>
+<div class="page art" data-t="夢 08 · 奧運公園乾花怪獸"><img class="bg" src="assets/img/dream-32/panel-02.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">08　·　奧運公園乾花怪獸　·　2/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">有一個臨時攤位在賣乾花。薰衣草很便宜，還有很多其他乾花。我本來只是被薰衣草吸引，後來想著：不如為自己挑一束放在家裡。</div><div class="en">A pop-up stall was selling dried flowers. The lavender was cheap, and there were many others. At first only the lavender drew me; then I thought — why not pick a bunch for myself, to keep at home.</div></div></div>
+<div class="page art" data-t="夢 08 · 奧運公園乾花怪獸"><img class="bg" src="assets/img/dream-32/panel-03.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">08　·　奧運公園乾花怪獸　·　3/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我拿了白色的蓮花。店主看到，把更大、更漂亮的那朵蓮花拿來給我，幫我搭配。有點貴，我一直在想要不要走，但最後買了。</div><div class="en">I took a white lotus. The seller saw, and brought me a larger, lovelier one to go with it. It was a little dear; I kept wondering whether to walk away — but in the end I bought it.</div></div></div>
+<div class="page art" data-t="夢 08 · 奧運公園乾花怪獸"><img class="bg" src="assets/img/dream-32/panel-04.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">08　·　奧運公園乾花怪獸　·　4/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我拿著乾花回大廈，電梯只能到4樓。我想說去5樓走樓梯就好了，走上去。</div><div class="en">I carried the flowers back to the building; the lift only reached the 4th floor. I'll just take the stairs to the 5th, I thought, and climbed.</div></div></div>
+<div class="page art" data-t="夢 08 · 奧運公園乾花怪獸"><img class="bg" src="assets/img/dream-32/panel-05.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">08　·　奧運公園乾花怪獸　·　5/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">4樓開了門，完全不同的景色，像宇宙星球一樣設計的戶外走廊，找不到樓梯去5樓。我跟著一批人找了條摺疊式的樓梯上去。</div><div class="en">The 4th floor opened onto an entirely different scene — an outdoor corridor designed like a planet in space, no stairs to the 5th to be found. I followed a group to a folding staircases.</div></div></div>
+<div class="page art" data-t="夢 08 · 奧運公園乾花怪獸"><img class="bg" src="assets/img/dream-32/panel-06.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">08　·　奧運公園乾花怪獸　·　6/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我貼著牆，沒有動。怪獸就在前面。</div><div class="en">I pressed myself against the wall and did not move. The monster was right there.</div></div></div>
+<div class="page art" data-t="夢 08 · 奧運公園乾花怪獸"><img class="bg" src="assets/img/dream-32/panel-07.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">08　·　奧運公園乾花怪獸　·　7/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我回到家，把門鎖緊，只有我和貓。手上拿著那束乾花。</div><div class="en">I got home, locked it tight — only me and the cat, the bunch of dried flowers still in my hand.</div></div></div>
+<div class="page art" data-t="夢 08 · 奧運公園乾花怪獸"><img class="bg" src="assets/img/dream-32/panel-08.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">08　·　奧運公園乾花怪獸　·　8/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我把其中一隻怪獸打暈，拖進家裡，用繩子綁它的手。怪獸教我怎麼綁才牢。它跪著，沒有反抗。</div><div class="en">I knocked one of the monsters out, dragged it inside, and tried to bind its hands. The monster taught me how. It knelt, and did not resist.</div></div></div>
+<div class="page text" data-t="夢 08 · 解讀"><div class="an-phase"><span class="dot" style="background:#AE927F"></span>重建 · Rebuilding</div><div class="title sm">奧運公園乾花怪獸</div><div class="title-en">Dried Flowers, a Monster</div><p class="zh" style="margin-top:20px">做夢者為自己買了蓮花，然後在一個系統改了規則的世界裡，找到搖晃的樓梯往上走，躲過怪獸，鎖門，然後把其中一隻拖進家裡，讓它教她怎麼綁緊它。這個夢描述了一種非常罕見的狀態：她不逃了，她在學。</p><p class="en">She buys a lotus for herself, then in a world where the rules have changed, finds shaky stairs to climb, evades the monster, locks the door — and drags one inside to let it teach her how to bind it. The dream shows something rare: she is no longer fleeing. She is learning.</p><hr class="rule-h"/><div class="motif"><h4>為自己買乾花<span class="e">Buying flowers for herself</span></h4><p>做夢者說「不如為自己準備一束乾花」——這個念頭的方向是向內的、是為自己的。店主換了更大更漂亮的蓮花給她：在夢境語言裡，蓮花代表一種超越泥土本身的生長能力。那個小小的「被偏愛」加強了這個行動的意義——她主動為自己選擇了美，然後美反過來選了更好的給她。</p></div></div>
+<div class="page text" data-t="夢 08 · 解讀"><div class="motif"><h4>電梯規則被改變<span class="e">The lift's rules, changed</span></h4><p>外部系統改變了規則，電梯只到4樓——這是做夢者用舊有路徑到達極限的象徵。她還想繼續往上，但原本自動帶她上去的那條路到這裡就停了。接下來的路，需要她自己找，用不穩的摺疊樓梯，搖搖晃晃地往上。</p></div><div class="motif"><h4>宇宙星球走廊<span class="e">The planet-like corridor</span></h4><p>4樓的走廊像宇宙星球——美麗，但沒有方向感，沒有熟悉的標誌。做夢者的迷失發生在一個非常壯觀的地方。這說明她目前的不確定不是醜陋的困境，而是她已經進入了一個她舊有框架理解不了的空間。</p></div><div class="motif"><h4>怪獸教她如何綁住自己<span class="e">The monster teaches the knot</span></h4><p>做夢者打暈怪獸，拖進家裡研究——威脅從「需要逃離」變成了「需要理解」的對象。她用繩子綁它的手，綁不緊，怪獸教她怎麼綁才牢。這個細節非常罕見：恐懼不只是配合被控制，它在幫助做夢者學會如何正確地駕馭它。她的陰影願意被整合。</p></div></div>
+<div class="page art" data-t="夢 09 · 豪宅迷宮父親燒木櫃"><img class="bg" src="assets/img/dream-34/panel-01.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">09　·　豪宅迷宮父親燒木櫃　·　1/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">家人買了一間很大的房子，像迷宮一樣，每個房間之間都是鏤空的，沒有完全封閉的地方。交收的前一晚，我和爸爸先去住一夜。</div><div class="en">My family bought a very large house, like a maze, every room open to the next, nowhere fully sealed. The night before handover, my father and I went to stay one night.</div></div></div>
+<div class="page art" data-t="夢 09 · 豪宅迷宮父親燒木櫃"><img class="bg" src="assets/img/dream-34/panel-02.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">09　·　豪宅迷宮父親燒木櫃　·　2/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">2樓大廳有非常漂亮的木櫃子，精緻，舊式的工藝。我在自己的房間待著，嗅到燒焦的氣味。跑出去，爸爸在燒那些櫃子。</div><div class="en">In the second-floor hall stood beautiful wooden cabinets, exquisite, old-style craft. In my room I smelled burning. I ran out — my father was burning the cabinets.</div></div></div>
+<div class="page art" data-t="夢 09 · 豪宅迷宮父親燒木櫃"><img class="bg" src="assets/img/dream-34/panel-03.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">09　·　豪宅迷宮父親燒木櫃　·　3/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我不知道為什麼他要燒，他也說不清楚。</div><div class="en">I don't know why he was burning them. He couldn't say either.</div></div></div>
+<div class="page art" data-t="夢 09 · 豪宅迷宮父親燒木櫃"><img class="bg" src="assets/img/dream-34/panel-04.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">09　·　豪宅迷宮父親燒木櫃　·　4/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我拿了滅火器把火熄滅，對他大罵：「櫃子很漂亮，不要燒！」他也不辯解。</div><div class="en">I put the fire out with an extinguisher and shouted at him: the cabinets are beautiful — don't burn them! He didn't argue.</div></div></div>
+<div class="page art" data-t="夢 09 · 豪宅迷宮父親燒木櫃"><img class="bg" src="assets/img/dream-34/panel-05.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">09　·　豪宅迷宮父親燒木櫃　·　5/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">然後樓梯頂有動靜，一個拿著長槍的男人走下來，問我們是誰。他是豪宅的前男主人，不知道已經換了新主人。他拿著槍往前走，我讓他滾落下樓梯，他暈了。</div><div class="en">Then a stir at the top of the stairs — a man with a long gun came down, asking who we were. He was the mansion's former master, not knowing it had a new owner. He advanced with the gun; I sent him tumbling down the stairs, and he passed out.</div></div></div>
+<div class="page art" data-t="夢 09 · 豪宅迷宮父親燒木櫃"><img class="bg" src="assets/img/dream-34/panel-06.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">09　·　豪宅迷宮父親燒木櫃　·　6/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">第二天早上，女主人和地產代理來交收，其他家庭成員也來了。昨晚的事沒有人提起，就像沒有發生過。爸爸也不知道去了哪裡。</div><div class="en">The next morning the lady owner and the agent came for the handover, and the rest of the family too. No one mentioned the night before, as if it had never happened. And my father was nowhere to be found.</div></div></div>
+<div class="page art" data-t="夢 09 · 豪宅迷宮父親燒木櫃"><img class="bg" src="assets/img/dream-34/panel-07.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">09　·　豪宅迷宮父親燒木櫃　·　7/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">走出豪宅，在以前住過的那條街上，有一輛外賣車，以前從來沒見過。賣豆腐花和小食，招牌寫著「一線豆腐花」，但真正賣的只有二線和三線。我只是注意到這件事，然後繼續走。</div><div class="en">Leaving the mansion, on a street where I used to live, there was a food cart I'd never seen — tofu pudding and snacks, its sign reading "first-rate tofu pudding," though it really only sold second and third grade. I just noticed it, and walked on.</div></div></div>
+<div class="page text" data-t="夢 09 · 解讀"><div class="an-phase"><span class="dot" style="background:#AE927F"></span>重建 · Rebuilding</div><div class="title sm">豪宅迷宮父親燒木櫃</div><div class="title-en">The Maze House, Father Burning Cabinets</div><p class="zh" style="margin-top:20px">做夢者在這個夢裡三次保護了某些東西：熄火（保護美麗）、制服前主人（保護新的所有權）、繼續走（不陷入對每個落差的抗議）。父親和前主人代表兩種不同的「舊有的破壞力」——一個無意識，一個不知情——做夢者在夜晚獨自處理了這兩者。她對美麗有一套自己的語言，這套語言有時候只有她自己懂。</p><p class="en">Three times she protects something: putting out the fire (beauty), subduing the former master (new ownership), and walking on (not protesting every gap). Father and former master are two kinds of old destructive force — one unaware, one uninformed — and she handled both, alone, in the night. For her, beauty has its own language. Sometimes only she speaks it.</p><hr class="rule-h"/><div class="motif"><h4>新豪宅<span class="e">The new mansion</span></h4><p>家人剛獲得一個廣闊的新空間，代表一個集體的、新的可能性正要開始。但豪宅裡沒有完全可以關門封閉的房間，這個「龐大但無法完全封閉」的結構，說明即使在廣闊的新空間裡，安全感仍然是有裂縫的。</p></div><div class="motif"><h4>父親燒木櫃<span class="e">Father burns the cabinet</span></h4><p>做夢者的父親在新家正式開始之前，燒毀了裡面最漂亮的東西，且沒有任何理由。「不記得因為什麼原因」的破壞比有意識的惡意更難應對——做夢者無法與之講理，只能撲火。她憤怒的核心是：漂亮的東西不應該被毀，美麗本身就是值得被保護的理由。這個立場對她而言是清楚的，但對父親而言似乎不存在。這不是一個關於家具的分歧，這是一個關於「美麗是否有重量」的根本語言差異。</p></div></div>
+<div class="page text" data-t="夢 09 · 解讀"><div class="motif"><h4>前男主人持槍<span class="e">The former master with a gun</span></h4><p>舊秩序不知道空間的所有權已經改變，他用槍來保衛「他的」空間。做夢者沒有解釋，沒有談判，直接讓他失去行動能力。她的方式是防守性的、沒有正面衝突，但有效。</p></div><div class="motif"><h4>第二天一切恢復正常<span class="e">By morning, all normal</span></h4><p>夜晚發生的真實混亂，在日間彷彿從未存在。這種「混亂被正常消解」的結構，讓做夢者的親身經歷變成一件「也許是我自己的問題」的事。她知道昨晚是真實的，但沒有人留下任何痕跡。</p></div><div class="motif"><h4>一線豆腐花<span class="e">"First-rate" tofu pudding</span></h4><p>寫的是一線，賣的是二三線。承諾和實際之間的溫和落差，不是欺詐，是一個平靜的事實。做夢者注意到這件事，然後繼續走——這是她對「落差」的處理方式：看見，不抗議，繼續走。</p></div></div>
+<div class="page art" data-t="夢 10 · 藥材鋪異能者彩虹能量場"><img class="bg" src="assets/img/dream-35/panel-01.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">10　·　藥材鋪異能者彩虹能量場　·　1/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">那是一間看起來像藥材鋪的店，但我是去裡面理髮的。前面還有一個女生在等，輪到我的時候，我沒有剪，因為我認識了一個在那裡做兼職的人。</div><div class="en">It was a shop that looked like a herb shop, but I had gone in for a haircut. A girl waited ahead of me; when my turn came I didn't cut it, because I'd met someone working there part-time.</div></div></div>
+<div class="page art" data-t="夢 10 · 藥材鋪異能者彩虹能量場"><img class="bg" src="assets/img/dream-35/panel-02.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">10　·　藥材鋪異能者彩虹能量場　·　2/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">他不是普通的兼職。他有特殊能力，可以切換去另一個維度輕鬆解決問題。不知道怎麼變成我們兩個在船上，急流，地圖在手，走錯了方向，在湍急的水裡U轉。</div><div class="en">He was no ordinary part-timer. He had a special power — he could switch to another dimension and solve things with ease. Somehow it became the two of us on a boat, rapids, a map in hand, gone the wrong way, U-turning in the rushing water. </div></div></div>
+<div class="page art" data-t="夢 10 · 藥材鋪異能者彩虹能量場"><img class="bg" src="assets/img/dream-35/panel-03.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">10　·　藥材鋪異能者彩虹能量場　·　3/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">好幾次差點流入錯誤的分支，但每次都找回了主流，最後水平靜了，我們到了某條河道。</div><div class="en">Several times we nearly slipped into the wrong branch, but each time found the main current again; at last the water calmed, and we reached a river.</div></div></div>
+<div class="page art" data-t="夢 10 · 藥材鋪異能者彩虹能量場"><img class="bg" src="assets/img/dream-35/panel-04.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">10　·　藥材鋪異能者彩虹能量場　·　4/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">之後，我們住在一起，養著一隻貓。也有他的朋友偶爾一起住，做同樣工作的人。</div><div class="en">After that we lived together, keeping a cat. His friends — others in the same work — sometimes stayed with us too.</div></div></div>
+<div class="page art" data-t="夢 10 · 藥材鋪異能者彩虹能量場"><img class="bg" src="assets/img/dream-35/panel-05.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">10　·　藥材鋪異能者彩虹能量場　·　5/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">有一次準備出門，街上突然出現一個行為很異常的人。</div><div class="en">Once, as we were about to go out, a man behaving very strangely appeared in the street.</div></div></div>
+<div class="page art" data-t="夢 10 · 藥材鋪異能者彩虹能量場"><img class="bg" src="assets/img/dream-35/panel-06.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">10　·　藥材鋪異能者彩虹能量場　·　6/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">他的真身出現了——彩虹能量場在他周圍，臉有些變形，我第一次看到他全部的力量。</div><div class="en">His true form showed — a rainbow energy field around him, his face somewhat distorted. For the first time I saw the whole of his power.</div></div></div>
+<div class="page art" data-t="夢 10 · 藥材鋪異能者彩虹能量場"><img class="bg" src="assets/img/dream-35/panel-07.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">10　·　藥材鋪異能者彩虹能量場　·　7/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">他看出那個異常的人不是壞人，是在找什麼，傷心地找。他把那個人帶去藥材鋪，在一個舊櫃子裡找到一盒錄影帶，原來他是剛去世的藥材鋪老闆的秘密兒子。</div><div class="en">He saw the strange man was not bad, but searching for something, searching in grief. He took him to the herb shop and found, in an old cabinet, a videotape — the man was the secret son of the shop's owner, who had just died.</div></div></div>
+<div class="page text" data-t="夢 10 · 解讀"><div class="an-phase"><span class="dot" style="background:#AE927F"></span>重建 · Rebuilding</div><div class="title sm">藥材鋪異能者彩虹能量場</div><div class="title-en">The Herb Shop, the Rainbow</div><p class="zh" style="margin-top:20px">做夢者在這個夢裡進入了一個有隱藏層的世界，遇到一個力量龐大但可以自然同住的人，隨他在混亂的急流中找回方向，見證他的力量被用來療癒和歸還。他的真身是彩虹，她看見了，沒有逃。那個「自然地在一起」，是做夢者和自己的某個部分之間的關係——她認識那種力量，因為那也在她身上。</p><p class="en">She enters a world with hidden layers, lives easily beside someone of immense power, finds her way back through wild water with him, and watches his power used to heal and restore. His true form is a rainbow. She saw it, and did not run. That ease — the natural living-together — is her relationship to a part of herself: she knows that force, because it lives in her too.</p><hr class="rule-h"/><div class="motif"><h4>藥材鋪<span class="e">The herb shop</span></h4><p>一個外表傳統、表面功能與內部實際功能完全不同的空間。它代表一個有隱藏層的環境——日常的外表包裹著非常態的內容。做夢者對這個空間不感到陌生，她是來這裡理髮的，她是這個有隱藏層的世界的日常訪客。</p></div><div class="motif"><h4>切換維度的異能者<span class="e">The dimension-shifting one</span></h4><p>他擁有在不同維度之間移動的能力，但他在一間藥材鋪打兼職。他的力量是真實的，但他的日常是平凡的。做夢者和他的同居是「理所當然」的，沒有儀式，沒有宣告，就是自然地在一起了。這個「自然性」代表一種基底上的相認：做夢者認識這種能量，因為那也是她自己身上有的，只是她通常不這樣直接使用它。他是她自己的某個版本——能力被直接展示、被使用、被接受的那個版本。</p></div></div>
+<div class="page text" data-t="夢 10 · 解讀"><div class="motif"><h4>急流與U轉<span class="e">Rapids and the U-turn</span></h4><p>走錯方向了，但他們沒有停下來——他們在湍急的水中轉向，找回主流，到達平靜。這不是「不犯錯」，而是「在情緒洪流中仍然能找回方向」的能力。這個能力不靠靜下來，靠的是在移動中修正。</p></div><div class="motif"><h4>彩虹能量場<span class="e">The rainbow field</span></h4><p>他的真身是美麗的，不是可怕的。他平日隱藏這個全部的自己，但做夢者第一次看到它，沒有恐懼，只有看見。這個「看見美麗的全部力量而不逃」，是做夢者的一個重要時刻——她可以承接真實的、全部的力量，不需要它被包裝或削弱。</p></div><div class="motif"><h4>秘密兒子與錄影帶<span class="e">The secret son, the tape</span></h4><p>那個「在發瘋」的人，實際上是在傷心地尋找失落的身份。異能者識別了表面之下的真實需要，用力量帶他找到了那個答案。力量在這裡的用途是修復和歸還，不是對抗。做夢者見證了這件事，她對「力量最好的用途」有一套自己的判斷。</p></div></div>
+<div class="page art" data-t="夢 11 · 中國街變形動物小男孩"><img class="bg" src="assets/img/dream-36/panel-01.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">11　·　中國街變形動物小男孩　·　1/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">那條街在中國某個地方，看起來像普通的地鋪。旁邊一直有個小男孩，大概三歲，眼睛很大，背包連著風扇和冷氣管，一直吹著他的背。</div><div class="en">The street was somewhere in China, ordinary shopfronts in a row. Beside me walked a small boy, maybe three, with big eyes and a backpack rigged with a cooling fan.</div></div></div>
+<div class="page art" data-t="夢 11 · 中國街變形動物小男孩"><img class="bg" src="assets/img/dream-36/panel-02.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">11　·　中國街變形動物小男孩　·　2/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">矮頸的長頸鹿在水氹裡玩耍。</div><div class="en">A short-necked giraffe played in a puddle. </div></div></div>
+<div class="page art" data-t="夢 11 · 中國街變形動物小男孩"><img class="bg" src="assets/img/dream-36/panel-03.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">11　·　中國街變形動物小男孩　·　3/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">獵豹和她的寶寶住在一塊濕地裡。</div><div class="en">A cheetah and her cub lived in a marsh. </div></div></div>
+<div class="page art" data-t="夢 11 · 中國街變形動物小男孩"><img class="bg" src="assets/img/dream-36/panel-04.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">11　·　中國街變形動物小男孩　·　4/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">有一個鋪頭在賣貓肉，我身上抱著貓，立刻繞開，不讓那個人注意到我懷裡有一隻貓。</div><div class="en">One shop was selling cat meat; holding my cat, I went around at once, so the man wouldn't notice the cat in my arms.</div></div></div>
+<div class="page art" data-t="夢 11 · 中國街變形動物小男孩"><img class="bg" src="assets/img/dream-36/panel-05.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">11　·　中國街變形動物小男孩　·　5/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">過了那個賣貓肉的鋪頭，我手上突然多了兩條深海魚，粉紅色，頭是圓的，全是牙齒。我不知道從哪裡來的。</div><div class="en">Past the cat-meat shop, two deep-sea fish were suddenly in my hands — pink, round-headed, all teeth. I don't know where from.</div></div></div>
+<div class="page art" data-t="夢 11 · 中國街變形動物小男孩"><img class="bg" src="assets/img/dream-36/panel-06.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">11　·　中國街變形動物小男孩　·　6/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">一個不小心牠們就咬我的手，旁邊的人幫我把牠們移開，但我一直拿著。</div><div class="en">If I slipped they'd bite my hand; people beside me pried them off, but I held on the whole way.</div></div></div>
+<div class="page art" data-t="夢 11 · 中國街變形動物小男孩"><img class="bg" src="assets/img/dream-36/panel-07.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">11　·　中國街變形動物小男孩　·　7/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">走完了整條街，小男孩找到一間Café，坐在玻璃窗後面休息。我在玻璃外面，清楚看到他，他也看著我。</div><div class="en">At the end of the street the boy found a café and rested behind the glass. I stood outside; I saw him clearly, and he looked back at me.</div></div></div>
+<div class="page text" data-t="夢 11 · 解讀"><div class="an-phase"><span class="dot" style="background:#AE927F"></span>重建 · Rebuilding</div><div class="title sm">中國街變形動物小男孩</div><div class="title-en">The Street of Altered Animals</div><p class="zh" style="margin-top:20px">做夢者帶著會咬她的魚，穿越了一條滿是「以奇怪方式存在的生命」的街。她理解那些動物，她保護她的貓，她和小男孩同行，她走完了整條街。她沒有放下那兩條魚，不是因為不知道，而是因為她還沒有準備好失去那個用拿著它們來定義自己的部分。</p><p class="en">Carrying fish that bite her, she crosses a street full of lives existing in strange ways. She understands the animals, protects her cat, walks beside the boy — and never sets the fish down. Not because she doesn't know. Because she is not yet ready to lose the part of herself that is defined by holding them.</p><hr class="rule-h"/><div class="motif"><h4>變形動物<span class="e">The altered animals</span></h4><p>每一個物種都在「不屬於自己」的環境裏以某種方式活著。做夢者的態度是平靜地路過——不是冷漠，是一種已經理解的接受：每個生命在限制裡找到了它的方式，這是事實而不是悲劇。這種接受不是初次的寬容，而是做夢者已經見過太多「以奇怪方式存在的事物」之後的成熟狀態，不需要同情也不需要批判。</p></div></div>
+<div class="page text" data-t="夢 11 · 解讀"><div class="motif"><h4>躲避貓肉販<span class="e">Avoiding the cat-meat seller</span></h4><p>做夢者身上有她最在乎的東西（貓），她立刻識別了威脅，採取了保護行動，沒有正面衝突，沒有遲疑。保護的本能是即時的，反應比思考快。</p></div><div class="motif"><h4>兩條深海怪魚<span class="e">Two deep-sea fish</span></h4><p>頭部全是牙齒、會反覆咬人的魚，做夢者一直拿著，走完了整條街。她清楚知道這些東西會傷害她。這個「明知有害卻繼續拿著」的狀態，不只是習慣——它是做夢者對自己的一種定義。某些傷害她的東西，她不放下，因為放下它們意味著承認那個部分的自己已經結束了。她還沒有準備好讓那個定義消失。</p></div><div class="motif"><h4>小男孩<span class="e">The small boy</span></h4><p>自帶冷氣的小男孩不需要照顧，他只是同行。最後他坐在玻璃後面，她在玻璃外面，兩人清楚地對視。這不是隔絕，玻璃是透明的，彼此都在視線裡。那個分離是清醒的、溫柔的：靈魂深處有一個部分在後面看著她走完整條街，而她也知道它在那裡。</p></div></div>
+<div class="page art" data-t="夢 12 · 室內種植盆家人無視"><img class="bg" src="assets/img/dream-40/panel-01.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">12　·　室內種植盆家人無視　·　1/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">家裡全是白色，遠房親戚也來了，人很多，走來走去，但冷冷清清的。</div><div class="en">The home was all white. Distant relatives had come too — many people, moving about, and yet cold and deserted.</div></div></div>
+<div class="page art" data-t="夢 12 · 室內種植盆家人無視"><img class="bg" src="assets/img/dream-40/panel-02.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">12　·　室內種植盆家人無視　·　2/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">客廳的某個角落，有一個很大的室內種植盆，像一塊小田。它放在那裡很久了，但今天我才仔細看。裡面有西蘭花、蔬菜、蘿蔔，長得很大，有些已經可以收成，有些剛開始枯萎。</div><div class="en">In a corner of the living room, a large indoor planter, like a little field. It had stood there a long time, but only today did I look closely. Inside: broccoli, vegetables, radish, grown big, some ready to harvest, some just starting to wither.</div></div></div>
+<div class="page art" data-t="夢 12 · 室內種植盆家人無視"><img class="bg" src="assets/img/dream-40/panel-03.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">12　·　室內種植盆家人無視　·　3/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我像發現什麼珍貴的事情一樣開心，整個家只有這裡是有生命的。</div><div class="en">I was glad, as if I'd found something precious — in the whole house, only here was alive.</div></div></div>
+<div class="page art" data-t="夢 12 · 室內種植盆家人無視"><img class="bg" src="assets/img/dream-40/panel-04.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">12　·　室內種植盆家人無視　·　4/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我叫弟弟來看，他不以為然。叫堂姐來看，她也沒有興趣。每個人從旁邊走過，都沒有人停下來。</div><div class="en">I called my brother to look; he was unimpressed. My cousin; she had no interest either. Everyone passed by, and no one stopped.</div></div></div>
+<div class="page art" data-t="夢 12 · 室內種植盆家人無視"><img class="bg" src="assets/img/dream-40/panel-05.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">12　·　室內種植盆家人無視　·　5/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">走近了看，是水耕，發泡膠和木架鐵架搭的，本來有氣泵傳水，但我一查，氣泵沒有插電，水早就乾了。什麼支援都沒有，它還是長出了這麼多。我調整到最適合自己的高度，站在那裡仔細看。</div><div class="en">Up close it was hydroponic — foam and wood-and-metal frames. There was meant to be a pump feeding water, but when I checked, it wasn't plugged in; the water had long dried. With no support at all, still it had grown all this. I adjusted it to the height that suited me best, and stood there looking closely.</div></div></div>
+<div class="page art" data-t="夢 12 · 室內種植盆家人無視"><img class="bg" src="assets/img/dream-40/panel-06.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">12　·　室內種植盆家人無視　·　6/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">後來爸爸出門了，他說他不想留在這裡，雖然全都是他的親戚。</div><div class="en">Then my father left, saying he didn't want to stay — though they were all his own relatives.</div></div></div>
+<div class="page art" data-t="夢 12 · 室內種植盆家人無視"><img class="bg" src="assets/img/dream-40/panel-07.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">12　·　室內種植盆家人無視　·　7/7</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">媽媽在廚房，看到我走過去，給我看一份設計圖，是她自己找人做的。她不需要我幫忙，只是通知我。我以前都是幫她做這些事的。客廳還是很多人，我的心一直是空的。</div><div class="en">Mother was in the kitchen; seeing me come over, she showed me a design she'd had made herself. She didn't need my help; she was only telling me. I used to do these things for her. The living room was still full of people. My heart stayed empty.</div></div></div>
+<div class="page text" data-t="夢 12 · 解讀"><div class="an-phase"><span class="dot" style="background:#AE927F"></span>重建 · Rebuilding</div><div class="title sm">室內種植盆家人無視</div><div class="title-en">The Growing Bed No One Sees</div><p class="zh" style="margin-top:20px">做夢者發現了一個在斷電斷水的情況下仍然豐盛生長的系統，它就在她家裡，一直在那裡，已經可以收成了。但沒有人和她一起看見它，她的心是空的。她今天發現的不是潛力，是她一直已經有的東西——只是她今天才停下來看。</p><p class="en">She finds a system still thriving with no power and no water — there in her own home, already ripe. But no one sees it with her, and her heart is empty. What she discovered today was not potential. It is what she has always had. She simply stopped to look at it today.</p><hr class="rule-h"/><div class="motif"><h4>白色的家與冷清<span class="e">The white home, gone cold</span></h4><p>白色是乾淨但也是空的顏色。家裡人很多，但做夢者感受到的是冷冷清清——人的存在不等於溫度的存在。這個矛盾不是矛盾，是做夢者的一個清楚認識：多人不等於在場。</p></div><div class="motif"><h4>種植盆<span class="e">The growing bed</span></h4><p>氣泵沒電，水早就乾了，完全沒有外在支援，但那個種植盆裡的作物仍然豐盛——有些已經可以收成，有些剛開始枯萎。這不只是「它仍然在生長」，更重要的是：它已經在這裡很久了，但做夢者今天才真正停下來看。她的生命力不是潛力，不是未來的可能性，是現在已經在那裡的東西，是今天早就可以收成的作物。她沒有缺乏，她只是今天才看見自己已經有的東西。</p></div></div>
+<div class="page text" data-t="夢 12 · 解讀"><div class="motif"><h4>升降調整高度<span class="e">Adjusting the height</span></h4><p>種植盆可以調整到「最適合自己的高度」——做夢者找到了一個和自己的生命力之間最合適的距離和角度。不是讓植物配合她，是她調整到可以好好看見它的位置。</p></div><div class="motif"><h4>家人的無視<span class="e">The family's indifference</span></h4><p>做夢者想分享這個發現，但沒有人感興趣。她獨自看見某個她認為是寶藏的東西，沒有人願意和她一起看見。這個孤獨不是敵對，是無視——也許比敵對更難承受。</p></div><div class="motif"><h4>媽媽的設計圖<span class="e">Mother's blueprint</span></h4><p>媽媽有了自己的計劃，不再需要做夢者的幫助，只是通知她。做夢者曾經是那個被需要的人，現在被從這個角色裡移除了。移除帶來的感受是空——不是解放，不是受傷，是空。</p></div></div>
+<div class="page art" data-t="夢 13 · Frantiono 旅遊小胖子"><img class="bg" src="assets/img/dream-39b/panel-01.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">13　·　Frantiono 旅遊小胖子　·　1/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我參加了一個烹飪比賽。黑色的背景，十組人以內，我已經決定好菜式，和其中一組廚師合作，用他們的醬汁。試了幾次，大家都很滿意。</div><div class="en">I entered a cooking contest. A black backdrop, fewer than ten teams. I'd settled my dish, teamed with one group of chefs, using their sauce. We tried it a few times, and everyone was pleased.</div></div></div>
+<div class="page art" data-t="夢 13 · Frantiono 旅遊小胖子"><img class="bg" src="assets/img/dream-39b/panel-02.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">13　·　Frantiono 旅遊小胖子　·　2/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">然後我張開眼，已經是下午，比賽早上九點就開始，電視的直播裡已經沒有我，我被取消了資格。不知道什麼情況，只是不在了。我擔心和我合作的廚師怎麼辦，比擔心自己更多一點。</div><div class="en">Then I opened my eyes — it was afternoon. It had begun at nine; I was gone from the broadcast, disqualified. I don't know how, only that I wasn't in it. I worried more for the chefs I'd teamed with than for myself.</div></div></div>
+<div class="page art" data-t="夢 13 · Frantiono 旅遊小胖子"><img class="bg" src="assets/img/dream-39b/panel-03.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">13　·　Frantiono 旅遊小胖子　·　3/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">到了一個叫Frantiono的地方，很大的水池，像埃及，又像墨西哥，像歐洲。很明顯是旅遊，我一直看著手機上的地圖，上面標了很多餐廳，但那個地方我不熟悉。</div><div class="en">I came to a place called Frantiono — a great pool, like Egypt, like Mexico, like Europe. Clearly a tourist place. I kept watching the map on my phone, marked with many restaurants, but the place was strange to me.</div></div></div>
+<div class="page art" data-t="夢 13 · Frantiono 旅遊小胖子"><img class="bg" src="assets/img/dream-39b/panel-04.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">13　·　Frantiono 旅遊小胖子　·　4/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">有一個小胖子小朋友和我一起。我牽著他，拉著行李，去市中心找了一間比較暗、比較小的旅館住下來。</div><div class="en">A small, round-cheeked child was with me. Holding his hand and dragging my luggage, I found a dim little inn downtown and settled in.</div></div></div>
+<div class="page art" data-t="夢 13 · Frantiono 旅遊小胖子"><img class="bg" src="assets/img/dream-39b/panel-05.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">13　·　Frantiono 旅遊小胖子　·　5/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">第二天帶著他在市中心邊緣走。手機拿著地圖，但不敢太明顯地拿出來，怕被偷。</div><div class="en">The next day I walked him along the edge of downtown. Map in hand, but I didn't dare hold it openly, afraid of thieves.</div></div></div>
+<div class="page art" data-t="夢 13 · Frantiono 旅遊小胖子"><img class="bg" src="assets/img/dream-39b/panel-06.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">13　·　Frantiono 旅遊小胖子　·　6/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">他走累了，我把他抱起來，急著回市中心，因為要退房。地圖上有很多餐廳，我都不想去。時間到了下午，我還沒走回去，很緊。</div><div class="en">He grew tired; I picked him up, hurrying back to check out. The map showed many restaurants; I wanted none of them. Afternoon came and I still hadn't made it back. The tightness rose.</div></div></div>
+<div class="page art" data-t="夢 13 · Frantiono 旅遊小胖子"><img class="bg" src="assets/img/dream-39b/panel-07.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">13　·　Frantiono 旅遊小胖子　·　7/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我突然想起忘了讓他吃早餐。他不說話，臉色蒼白，快暈了。我沒有食物，給他喝水，他喝了很多，抱他走的時候，他把水吐了一些出來。</div><div class="en">I suddenly remembered I'd forgotten his breakfast. He said nothing, pale, near fainting. I had no food; I gave him water, and he drank a lot, bringing some up as I carried him. </div></div></div>
+<div class="page art" data-t="夢 13 · Frantiono 旅遊小胖子"><img class="bg" src="assets/img/dream-39b/panel-08.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">13　·　Frantiono 旅遊小胖子　·　8/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我繼續走，走回旅館，先給他一罐貓罐頭吃，然後開始收拾行李。</div><div class="en">I kept going, back to the inn, fed him a tin of cat food first, then began to pack.</div></div></div>
+<div class="page text" data-t="夢 13 · 解讀"><div class="an-phase"><span class="dot" style="background:#8E96AC"></span>行動的呼喚 · The Call to Act</div><div class="title sm">Frantiono 旅遊小胖子</div><div class="title-en">Frantiono, the Small Boy</div><p class="zh" style="margin-top:20px">做夢者準備好了但缺席了，帶著一個沉默的、快暈的孩子走在危險的街道上，用水試圖喂飽他，最後用貓罐頭解決了緊急的飢餓。這個沉默的孩子不要求，不出聲，但他需要被記起。這個夢的核心問題是：誰在照顧不說話的那個部分？她有能力的，只是她習慣了忘記。</p><p class="en">Prepared, yet absent; she walks a dangerous street with a silent, fainting child, tries to feed him water, and meets the emergency with a tin of cat food. He does not ask, does not speak — but he needs to be remembered. The dream's core question: who is caring for the part that doesn't speak? She is capable of it. She just keeps forgetting.</p><hr class="rule-h"/><div class="motif"><h4>睡過了烹飪比賽<span class="e">Sleeping through the contest</span></h4><p>做夢者準備好了，合作好了，試驗好了——然後在應該在場的時候不在。不是外力干擾，不是能力問題，就是沒有出現。她第一個擔心的是合作廚師的困境，不是自己失去的機會——這個反應順序，是做夢者感知自己對他人的影響，比感知自己的損失更快的習慣性呈現。</p></div></div>
+<div class="page text" data-t="夢 13 · 解讀"><div class="motif"><h4>Frantiono<span class="e">Frantiono</span></h4><p>一個陌生的、融合了多種文化標誌的地方。做夢者拿著地圖，知道方向，但她把手機拿著又不敢明顯拿出來（怕被偷）。她知道路，但隱藏自己知道這件事。能力在手，但被藏起來，因為顯露能力可能帶來危險——這是做夢者在陌生和不確定環境中的習慣性調整。</p></div><div class="motif"><h4>沉默的小胖子<span class="e">The silent boy</span></h4><p>小胖子不說話，不表達需求，但他承受著——疲倦、飢餓、臉色蒼白。做夢者忘了他的早餐，用水代替食物，結果他把水吐了出來。這個沉默的、承受的孩子，是做夢者自身某個不說話也不要求的部分。做夢者用她認為「應該可以用」的東西去照顧他，但那個部分需要的是真實的餵養，不是代替品。他的嘔吐是一個清楚的信號：她給的不是他需要的。</p></div><div class="motif"><h4>貓罐頭<span class="e">The tin of cat food</span></h4><p>到達旅館後，做夢者拿到的第一個食物是貓罐頭。不完美，但她立刻給他，沒有停下來等完美的方案。這是「用手邊的東西應對緊急情況」的決定——在長期的答案出現之前，先給手上有的。</p></div></div>
+<div class="page art" data-t="夢 14 · 蛇人受傷父親房間"><img class="bg" src="assets/img/dream-42/panel-01.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">14　·　蛇人受傷父親房間　·　1/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">他受了很重的傷。他是蛇，但可以幻化成人形，現在是人的樣子，坐在我家裡，非常害怕。</div><div class="en">He was badly wounded. He was a serpent, but could take human form; now he sat in my home as a man, terrified. </div></div></div>
+<div class="page art" data-t="夢 14 · 蛇人受傷父親房間"><img class="bg" src="assets/img/dream-42/panel-02.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">14　·　蛇人受傷父親房間　·　2/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我想幫他，想把他固定住，方便療傷，試了幾條頸鏈，粗的、幼的，都套不住他。不是他掙脫，是他的本質就不是被鏈條能困住的東西。</div><div class="en">I wanted to help, to hold him still to tend the wound, and tried several chains, thick and thin — none could hold him. Not because he broke free, but because his nature was simply not a thing a chain could bind.</div></div></div>
+<div class="page art" data-t="夢 14 · 蛇人受傷父親房間"><img class="bg" src="assets/img/dream-42/panel-03.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">14　·　蛇人受傷父親房間　·　3/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">他知道我要幫他，讓我為他處理傷口。</div><div class="en">He knew I meant to help, and let me dress the wound. </div></div></div>
+<div class="page art" data-t="夢 14 · 蛇人受傷父親房間"><img class="bg" src="assets/img/dream-42/panel-04.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">14　·　蛇人受傷父親房間　·　4/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">傷好了一些之後，他躲進了家裡唯一一個有門的房間，我爸爸的房間。</div><div class="en">Once it had healed a little, he hid in the only room in the house with a door — my father's room.  </div></div></div>
+<div class="page art" data-t="夢 14 · 蛇人受傷父親房間"><img class="bg" src="assets/img/dream-42/panel-05.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">14　·　蛇人受傷父親房間　·　5/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">爸媽回來，不需要我解釋，他們已經知道有什麼東西在那個房間。他們很不安，一直催我把它趕走，或者用粗暴的方式逼他離開。</div><div class="en">My parents came home, and without my explaining already knew something was in that room. Uneasy, they kept urging me to drive it out, or to force it to leave by rough means. </div></div></div>
+<div class="page art" data-t="夢 14 · 蛇人受傷父親房間"><img class="bg" src="assets/img/dream-42/panel-06.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">14　·　蛇人受傷父親房間　·　6/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我在洗碗。我沒有管他們。</div><div class="en">I was washing dishes. I paid them no mind. </div></div></div>
+<div class="page art" data-t="夢 14 · 蛇人受傷父親房間"><img class="bg" src="assets/img/dream-42/panel-07.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">14　·　蛇人受傷父親房間　·　7/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我把食物推進門縫裡。</div><div class="en">I pushed food through the gap.</div></div></div>
+<div class="page art" data-t="夢 14 · 蛇人受傷父親房間"><img class="bg" src="assets/img/dream-42/panel-08.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">14　·　蛇人受傷父親房間　·　8/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">他從爸爸的房間走出來，是個很高的男人，把放在房間裡的碗拿到我旁邊，說謝謝我，但不想再麻煩了，就離開了。是他自己決定的。</div><div class="en">He came out of my father's room, a very tall man, brought the bowl from the room over to me, said thank you — but didn't want to be a trouble any longer, and left. It was his own decision.</div></div></div>
+<div class="page text" data-t="夢 14 · 解讀"><div class="an-phase"><span class="dot" style="background:#8E96AC"></span>行動的呼喚 · The Call to Act</div><div class="title sm">蛇人受傷父親房間</div><div class="title-en">The Wounded Serpent-Man</div><p class="zh" style="margin-top:20px">做夢者的善意是真實的，她的控制衝動也是真實的，她的堅持也是真實的。她在家人的壓力下保護了一個受傷的、轉化中的存在——那個存在，其實是她自己身上不被家族接受的某個部分。她看著他選擇離開，然後整個夢只有心痛。那個心痛，是在分離之中仍然選擇了自己的判斷的代價。</p><p class="en">Her kindness is real, her urge to control is real, her resolve is real. Under her family's pressure she shelters a wounded, transforming presence — one that is, in some way, the part of herself her family will not accept. She watches him choose to leave. The whole dream is only heartache: the price of keeping her own judgment through a parting.</p><hr class="rule-h"/><div class="motif"><h4>蛇<span class="e">The serpent</span></h4><p>蛇象徵轉化、蛻皮、自我更新。受傷的蛇選擇以人形出現、選擇做夢者的家作為避難地，說明他相信這裡是安全的。但他是一條蛇——他代表的是做夢者自己的某種生命狀態：不尋常的、不被主流理解的、正在經歷轉化但目前受傷的部分。她願意讓他進門，她的家人不願意。這個分歧不是關於他，是關於做夢者自己願不願意接受自己目前的狀態。</p></div><div class="motif"><h4>鏈條套不住<span class="e">No chain can hold him</span></h4><p>做夢者試圖用鏈條控制他，不是出於惡意，而是「想幫助，但第一個直覺是通過控制來實現幫助」的心理。鏈條失敗了，不是因為他反抗，而是因為他的本質超出了這個工具的範圍。做夢者的幫助本能是真實的，但她的方式有它的限制。</p></div></div>
+<div class="page text" data-t="夢 14 · 解讀"><div class="motif"><h4>父親的房間<span class="e">The father's room</span></h4><p>整個家裡最具有「主人」氣息的空間，成為了受傷的異類的療癒地。父親的房間象徵秩序、規則、「家裡的標準」的中心。受傷的、轉化中的部分，最終在最保守的空間裡得到了療癒——這是一種無意識的安排：做夢者讓那個不被接受的部分，待在象徵家族規範的中心。</p></div><div class="motif"><h4>父母的壓力<span class="e">The parents' pressure</span></h4><p>做夢者的父母對蛇人的反應是直覺性的排斥，他們施壓，但做夢者沒有管他們。她不是不知道壓力在那裡，她知道；她選擇繼續做自己認為對的事。這個「繼續洗碗，不管」，是做夢者在承壓中保持自己判斷的方式。</p></div><div class="motif"><h4>蛇人主動離開<span class="e">He chooses to leave</span></h4><p>他走出來，道謝，說不想再麻煩了，然後離開。他的離開是為了保護做夢者不被他的存在拖累。做夢者非常熟悉這個邏輯——為了不拖累別人而主動退出。她看著他用她熟悉的方式離開，然後整個夢只有心痛。</p></div></div>
+<div class="page art" data-t="夢 15 · 自殺計劃白鷹飛翔"><img class="bg" src="assets/img/dream-47/panel-01.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">15　·　自殺計劃白鷹飛翔　·　1/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我把易燃的罐放在前門的車旁，也倒在後院，準備點燃，然後爆炸。</div><div class="en">I set the cans of fuel by the car at the front door, and poured more in the back yard, ready to light it, and then the blast.</div></div></div>
+<div class="page art" data-t="夢 15 · 自殺計劃白鷹飛翔"><img class="bg" src="assets/img/dream-47/panel-02.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">15　·　自殺計劃白鷹飛翔　·　2/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">一個朋友來了。她來到，我就無法進行，因為她在。她說她很累，拒絕了帶我去散步，去洗澡了。我在房間裡靜靜地整理要離開的東西。</div><div class="en">A friend came. With her there, I couldn't go through with it. She said she was tired, declined to take me for a walk, and went to wash. In my room I quietly arranged the things I meant to leave behind.</div></div></div>
+<div class="page art" data-t="夢 15 · 自殺計劃白鷹飛翔"><img class="bg" src="assets/img/dream-47/panel-03.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">15　·　自殺計劃白鷹飛翔　·　3/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">手機響了，一個只在網上聊過很短時間的人打電話來，一接就是一串告白，聽得到他身邊有人在鼓勵他。我聽到他的聲音就認出他是誰，心裡是高興的，但我打算完結，所以我裝傻，給了一個讓他失望的回應。他掛電話了。</div><div class="en">The phone rang — someone I'd only spoken with online, briefly. The moment I answered, a rush of confession; I could hear people beside him egging him on. I knew his voice at once, and was glad inside — but I meant to end things, so I played dumb and gave him a disappointing reply. He hung up.</div></div></div>
+<div class="page art" data-t="夢 15 · 自殺計劃白鷹飛翔"><img class="bg" src="assets/img/dream-47/panel-04.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">15　·　自殺計劃白鷹飛翔　·　4/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">門外有動靜，我走出去看，白馬從草叢走出來，跑走了。</div><div class="en">A stir outside; I went to look. A white horse stepped out of the grass and ran off.</div></div></div>
+<div class="page art" data-t="夢 15 · 自殺計劃白鷹飛翔"><img class="bg" src="assets/img/dream-47/panel-05.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">15　·　自殺計劃白鷹飛翔　·　5/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">一隻鹿走出來。所有人都很驚訝。</div><div class="en"> A deer came out. Everyone was astonished.</div></div></div>
+<div class="page art" data-t="夢 15 · 自殺計劃白鷹飛翔"><img class="bg" src="assets/img/dream-47/panel-06.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">15　·　自殺計劃白鷹飛翔　·　6/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">後院有一隻非常大的白色的鷹，很大很大。</div><div class="en">In the back yard, an enormous white eagle — vast, vast. </div></div></div>
+<div class="page art" data-t="夢 15 · 自殺計劃白鷹飛翔"><img class="bg" src="assets/img/dream-47/panel-07.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">15　·　自殺計劃白鷹飛翔　·　7/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我騎上去，抱著牠的頸，牠帶我飛。我一邊飛，一邊哭。</div><div class="en">I climbed on, held its neck, and it carried me into flight. I flew, and I wept. </div></div></div>
+<div class="page art" data-t="夢 15 · 自殺計劃白鷹飛翔"><img class="bg" src="assets/img/dream-47/panel-08.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">15　·　自殺計劃白鷹飛翔　·　8/8</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我走到朋友面前，哭著說：我剛才很想很想離開這個世界，但這樣不能拿到保險，有沒有辦法讓人進來殺了我？沒有回答。</div><div class="en">I went to my friend and said, weeping: just now I wanted so badly to leave this world, but this way the insurance won't pay — is there a way to have someone come in and kill me? No answer.</div></div></div>
+<div class="page text" data-t="夢 15 · 解讀"><div class="an-phase"><span class="dot" style="background:#BFC3C9"></span>飛起 · Flight</div><div class="title sm">自殺計劃白鷹飛翔</div><div class="title-en">The White Eagle</div><p class="zh" style="margin-top:20px">做夢者帶著極深的疲憊，想結束的不是她的生命，而是她正在活著的那個版本。她被三件日常的事打斷，被一隻巨大的白鷹帶去飛翔，哭，然後被對弟弟的牽掛留下來。她需要的是離開那個狀態，不是結束。白鷹給了她另一種出路——帶著眼淚，往上飛，然後回來。</p><p class="en">She carries the deepest exhaustion, wanting to end not her life but the version of herself she has been living. Interrupted by three ordinary things, carried up by a vast white eagle, weeping — then held back by her care for her brother. What she needed was a way out of that state, not an ending. The eagle gave her another kind of leaving: in tears, upward, and back.</p><hr class="rule-h"/><div class="motif"><h4>自殺計劃<span class="e">The plan to end it</span></h4><p>在夢境語言裡，「想要結束」通常象徵一個強烈的渴望：讓某種存在狀態徹底停止。做夢者想結束的不是她的生命，而是她正在活著的那個版本——那個已經讓她極度疲憊的存在方式。她的極深疲憊是真實的，需要以全部的誠實來面對。</p></div><div class="motif"><h4>三個打斷<span class="e">Three interruptions</span></h4><p>朋友的到來、網上告白者、門外的騷動——三件事把做夢者一次次從計劃裡拉出來，每一個都是生命說「你還在這裡」的方式。但做夢者知道，這些打斷只是推遲，不是改變。她把每一個打斷都承接了，然後繼續整理離開的東西。生命在插話，她在聽，她也繼續走自己的路。</p></div></div>
+<div class="page text" data-t="夢 15 · 解讀"><div class="motif"><h4>白馬與鹿<span class="e">White horse and deer</span></h4><p>突然出現在普通居住環境的野生動物，是潛意識帶入「不屬於日常世界的事物」的方式。牠們的出現讓所有人驚訝——夢在說：除了你感到的那些，還有這些你從未預期的東西。</p></div><div class="motif"><h4>白鷹<span class="e">The white eagle</span></h4><p>非常大，白色，從後院出現。做夢者騎上去，抱著牠的頸，牠帶她飛。她一邊飛，一邊哭。這是「不需要結束才能離開」的體驗——做夢者以另一種方式得到了她想要的東西：離開，往上，不再在那個處境裡，帶著悲傷但還活著。白鷹沒有等她停哭才飛，牠在她哭的時候帶她飛。這是整個夢最重要的畫面。</p></div><div class="motif"><h4>保險<span class="e">The insurance</span></h4><p>做夢者被「無法拿到保險賠償」這件事拉住了。表面是一個具體的機制，深層是：她仍然記掛著她的弟弟，仍然在考慮她離開之後他受到的影響。對他人的牽掛，比計劃的力量更大。</p></div></div>
+<div class="page art" data-t="夢 16 · 水族館殺人鯨鑲嵌玻璃"><img class="bg" src="assets/img/dream-48/panel-01.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">16　·　水族館殺人鯨鑲嵌玻璃　·　1/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">那個水族館不是正常的水族館。魚缸在外面，有些魚放在桌子上，像街市一樣，乾燥的，靜止的。桌面上有幾條秋刀魚大小的魚，還有非常小的殺人鯨寶寶，比寶寶稍大一點，就那樣放在桌上。</div><div class="en">It was no ordinary aquarium. The tanks were outside; some fish lay on tables, like a wet market, dry and still. On the table were a few fish the size of saury, and a very small baby orca, just a bit bigger than a newborn, simply set there.</div></div></div>
+<div class="page art" data-t="夢 16 · 水族館殺人鯨鑲嵌玻璃"><img class="bg" src="assets/img/dream-48/panel-02.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">16　·　水族館殺人鯨鑲嵌玻璃　·　2/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">從小我就怕殺人鯨，書上看到圖片都會心底下害怕，說不出原因，就是怕。夢裡，那幾隻很小的殺人鯨放在桌上，我站在旁邊，沒有害怕。</div><div class="en">Since childhood I've feared orcas — even a picture in a book frightened me deep down, for no reason I could name. In the dream, the tiny orcas lay on the table, and I stood beside them, unafraid.</div></div></div>
+<div class="page art" data-t="夢 16 · 水族館殺人鯨鑲嵌玻璃"><img class="bg" src="assets/img/dream-48/panel-03.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">16　·　水族館殺人鯨鑲嵌玻璃　·　3/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">水族館是一條很長的走廊，右邊全是魚缸，下半部是展覽區，走到底，都是殺人鯨和其他魚，我從頭走到尾。</div><div class="en">The aquarium was one long corridor, tanks all down the right, an exhibition along the lower half; all the way to the end, orcas and other fish. I walked it from start to finish.</div></div></div>
+<div class="page art" data-t="夢 16 · 水族館殺人鯨鑲嵌玻璃"><img class="bg" src="assets/img/dream-48/panel-04.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">16　·　水族館殺人鯨鑲嵌玻璃　·　4/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我負責開車帶一班人去看鑲嵌玻璃展覽。到了那裡，大家先去旁邊的紀念品店逛了一圈。之後我自己開車去旁邊的雙層鑲嵌玻璃展覽館，那裡快要關門了，但保安說歡迎我進去。</div><div class="en">I was driving a group to see a stained-glass exhibition. When we arrived, everyone first went round the gift shop next door.Afterward I drove on alone to the two-storey stained-glass hall nearby. It was nearly closing, but the guard said I was welcome to come in.</div></div></div>
+<div class="page art" data-t="夢 16 · 水族館殺人鯨鑲嵌玻璃"><img class="bg" src="assets/img/dream-48/panel-05.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">16　·　水族館殺人鯨鑲嵌玻璃　·　5/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我是學鑲嵌玻璃的，非常喜歡這個技術。</div><div class="en">I study stained glass and love the craft.</div></div></div>
+<div class="page art" data-t="夢 16 · 水族館殺人鯨鑲嵌玻璃"><img class="bg" src="assets/img/dream-48/panel-06.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">16　·　水族館殺人鯨鑲嵌玻璃　·　6/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">看著牆上大小小小的玻璃作品，我低頭，發現手上拿著一件自己做的鑲嵌玻璃，就這樣邊看展覽邊拿著它，像是也在展示。快要走完的時候，我仔細看了看手上那件，其實是草圖，不是完成品。</div><div class="en">Looking at the works on the wall, large and small, I glanced down and found in my hands a piece of my own, carrying it as I viewed the show, as if it too were on display. Near the end, I looked closely at the one in my hands: it was only a sketch, not a finished piece.</div></div></div>
+<div class="page text" data-t="夢 16 · 解讀"><div class="an-phase"><span class="dot" style="background:#BFC3C9"></span>飛起 · Flight</div><div class="title sm">水族館殺人鯨鑲嵌玻璃</div><div class="title-en">The Aquarium, Stained Glass</div><p class="zh" style="margin-top:20px">這個夢說的是兩種「可以面對了」：一個舊的非理性恐懼（殺人鯨），以可以承受的形式出現，做夢者走完了；一個當下的創作現實（草圖），在大師的作品前，做夢者如實看見了自己的位置——比她以為的更早，但那是真實的距離。這個看見不是打擊，是做夢者回到了準確的地方。</p><p class="en">This dream is about two things she can now face: an old irrational fear (the orca), in bearable form, which she walks through; and a present creative reality (the sketch), where — before the master's work — she sees her true position. Earlier than she thought. But it is an honest place, and she is in it.</p><hr class="rule-h"/><div class="motif"><h4>殺人鯨寶寶<span class="e">The baby orca</span></h4><p>做夢者從小對殺人鯨有無法解釋的深層恐懼。在夢裡，這個恐懼以它最小、最無害的形式出現：嬰兒大小，乾燥，靜止，放在桌上。恐懼縮小到可以承受的程度，讓她第一次在它面前站著而沒有逃走。恐懼沒有消失，而是以可以被看見的樣子出現了。</p></div></div>
+<div class="page text" data-t="夢 16 · 解讀"><div class="motif"><h4>長廊<span class="e">The long corridor</span></h4><p>一整條充滿殺人鯨的走廊，做夢者從頭走到尾。不是快速穿越，不是迴避，而是走完。這個「走完」是一個重要的動作。</p></div><div class="motif"><h4>鑲嵌玻璃<span class="e">The stained glass</span></h4><p>做夢者是這個技術的學習者，甚至可以說是藝術家。她帶著別人去看展，然後獨自開車去了她最想去的地方。她知道自己最想去哪裡，她為此採取了具體行動，即使快要閉館了。這種「知道自己真正想要什麼，並且為它行動」，在這個夢裡出現得很清楚。</p></div><div class="motif"><h4>草圖<span class="e">The sketch</span></h4><p>她在看大師的作品時，發現手上拿著自己的作品，然後發現那是草圖，不是完成品。這個發現有一個具體的時間感：她以為自己走得比實際更遠，直到她停下來仔細看。這不是失敗——是一個清醒的重新定位：我在，我有作品，我的作品還不完整。草圖和完成品之間的距離，是做夢者現在的位置，比她以為的更早，但這個位置是真實的。</p></div></div>
+<div class="page art" data-t="夢 17 · 絕症戀人變中性媽媽麵包店"><img class="bg" src="assets/img/dream-52/panel-01.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">17　·　絕症戀人變中性媽媽麵包店　·　1/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">他有絕症，類似癌症，一直都很弱。我細心照顧他，這段關係就是這樣走著的。</div><div class="en">He had a terminal illness, like cancer, and was always weak. I cared for him tenderly; that was how the relationship went.</div></div></div>
+<div class="page art" data-t="夢 17 · 絕症戀人變中性媽媽麵包店"><img class="bg" src="assets/img/dream-52/panel-02.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">17　·　絕症戀人變中性媽媽麵包店　·　2/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">有一天他的眼神變了，神情變了，整個人不一樣了。</div><div class="en">One day his eyes changed, his expression changed, his whole self was different. </div></div></div>
+<div class="page art" data-t="夢 17 · 絕症戀人變中性媽媽麵包店"><img class="bg" src="assets/img/dream-52/panel-03.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">17　·　絕症戀人變中性媽媽麵包店　·　3/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">他告訴我，他女性的部分想做很多生意，賺很多錢，樣子也變得中性。穿越商場，裡面有活動，人很多，我在人群裡穿梭離開。</div><div class="en">He told me his feminine side wanted to do much business, make much money; his look turned androgynous. </div></div></div>
+<div class="page art" data-t="夢 17 · 絕症戀人變中性媽媽麵包店"><img class="bg" src="assets/img/dream-52/panel-04.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">17　·　絕症戀人變中性媽媽麵包店　·　4/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">那種熱情和氣勢讓我措手不及。我逃了。</div><div class="en">That heat and force caught me off guard. I fled. </div></div></div>
+<div class="page art" data-t="夢 17 · 絕症戀人變中性媽媽麵包店"><img class="bg" src="assets/img/dream-52/panel-05.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">17　·　絕症戀人變中性媽媽麵包店　·　5/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">麵包店裡找到媽媽。我和她很不熟悉，感到疏離，但我知道：只要我在她旁邊，就永遠有個位置，她會接納我。</div><div class="en">In a bakery I found my mother. We were not close; I felt the distance — but I knew: as long as I am beside her, there is always a place, and she will take me in.</div></div></div>
+<div class="page art" data-t="夢 17 · 絕症戀人變中性媽媽麵包店"><img class="bg" src="assets/img/dream-52/panel-06.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">17　·　絕症戀人變中性媽媽麵包店　·　6/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">黃昏，麵包店，我在媽媽旁邊，就記得到這裡。</div><div class="en">Dusk, the bakery, me beside my mother — that is as far as I remember.</div></div></div>
+<div class="page text" data-t="夢 17 · 解讀"><div class="an-phase"><span class="dot" style="background:#C5AE86"></span>浮起 · Surfacing</div><div class="title sm">絕症戀人變中性媽媽麵包店</div><div class="title-en">The Bakery at Dusk</div><p class="zh" style="margin-top:20px">做夢者逃離了突然有力量的人，找到了永遠接納她的人，在黃昏的麵包店站在旁邊看媽媽選餅乾。她逃離的不只是蛻變的戀人——她逃離的是一個她還沒有辦法承接的力量形態，也許包括自己身上的。她知道她的底線在哪裡，她知道怎麼找到它，然後她站在那裡，只是在旁邊。</p><p class="en">She flees the one who suddenly has power, finds the one who will always take her in, and stands at dusk in the bakery watching her mother choose biscuits. What she fled was not just a transformed lover — it was a form of power she cannot yet receive, perhaps including her own. She knows where her limit is, and she knows how to find it. Then she stands there, simply present.</p><hr class="rule-h"/><div class="motif"><h4>絕症戀人<span class="e">The dying lover</span></h4><p>做夢者選擇了一段有清楚走向的關係：他會慢慢弱下去，她在旁邊。在這個關係裡，做夢者的角色是照顧者，而對方的狀態是可預測的（弱化）。這個結構給了做夢者安全感——不是因為她不在乎他，而是因為他不會超越她，不會突然強過她，不會打破她習慣的「比對方有能力」的位置。她知道自己在哪裡，她的位置不會被改變。</p></div><div class="motif"><h4>蛻變<span class="e">The transformation</span></h4><p>他突然覺醒了女性部分，有熱情、有氣勢、有強烈的擴張意志，樣子也變得中性。他從「需要被照顧的人」變成了「一個有強烈生命力的新存在」。他沒有背叛，他蛻變了，但這個蛻變打破了做夢者熟悉的關係結構——她原來熟悉的那個他，變成了一個新的人。</p></div></div>
+<div class="page text" data-t="夢 17 · 解讀"><div class="motif"><h4>逃跑<span class="e">The flight</span></h4><p>做夢者因為對方的力量而逃，不是因為傷害，不是因為背叛。她在當下能夠接受弱下去的存在，但還無法接受突然有力量的存在。這是兩個「她自己的版本」的相遇：她習慣的那個自己（照顧者，能力在對方之上），遇上了一個有力量的、蛻變的部分——她還沒有準備好讓那個相遇發生。</p></div><div class="motif"><h4>媽媽<span class="e">The mother</span></h4><p>做夢者在逃跑後找到了媽媽。她感到疏離，但她知道那個位置永遠在。「我在她旁邊，永遠有個位置，她會接納我」——這是一種不依賴熟悉度的歸屬感。不需要深刻了解這個人，也知道她那裡有你的位置。</p></div><div class="motif"><h4>「我只想觀察你的選擇」<span class="e">"I just want to watch you choose"</span></h4><p>做夢者不給建議，選擇退到觀察的位置，讓媽媽做她的決定。在所有的逃跑和混亂之後，這個「我只是在旁邊」的姿勢是溫柔的。她可以在不介入的情況下在場。</p></div></div>
+<div class="page art" data-t="夢 18 · 鐵達尼號泥漿浮木求生"><img class="bg" src="assets/img/dream-53/panel-01.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">18　·　鐵達尼號泥漿浮木求生　·　1/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">水不是水，是泥漿。和鐵達尼號沉沒的感覺一樣，只是每一個沉進去的地方都是泥漿，不透明，沉重，包裹著一切。</div><div class="en">The water was not water. It was mud.It felt like the Titanic going down, only every place that sank was mud — opaque, heavy, wrapping around everything. </div></div></div>
+<div class="page art" data-t="夢 18 · 鐵達尼號泥漿浮木求生"><img class="bg" src="assets/img/dream-53/panel-02.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">18　·　鐵達尼號泥漿浮木求生　·　2/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">船身一個部分一個部分地沉入，泥漿從那些缺口湧進來。</div><div class="en">The hull went under section by section, mud surging through the gaps. </div></div></div>
+<div class="page art" data-t="夢 18 · 鐵達尼號泥漿浮木求生"><img class="bg" src="assets/img/dream-53/panel-03.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">18　·　鐵達尼號泥漿浮木求生　·　3/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">我從一個部分躲到下一個，再下一個，繼續移動。</div><div class="en">I moved from one section to the next, and the next, and kept moving.</div></div></div>
+<div class="page art" data-t="夢 18 · 鐵達尼號泥漿浮木求生"><img class="bg" src="assets/img/dream-53/panel-04.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">18　·　鐵達尼號泥漿浮木求生　·　4/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">最後那個部分沉了，沒有地方可以再躲，泥漿湧進來，我也沉進去了。</div><div class="en">The last section sank. There was nowhere left to hide. The mud poured in, and I sank with it.</div></div></div>
+<div class="page art" data-t="夢 18 · 鐵達尼號泥漿浮木求生"><img class="bg" src="assets/img/dream-53/panel-05.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">18　·　鐵達尼號泥漿浮木求生　·　5/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">泥漿裡有一扇木門，漂著。我找到它，爬上去。</div><div class="en">In the mud, a wooden door, floating. I found it, and climbed on.</div></div></div>
+<div class="page art" data-t="夢 18 · 鐵達尼號泥漿浮木求生"><img class="bg" src="assets/img/dream-53/panel-06.jpg" alt=""/>
+           <div class="top-scrim"></div>
+           <div class="run">18　·　鐵達尼號泥漿浮木求生　·　6/6</div>
+           <div class="cap-scrim"></div><div class="cap"><div class="zh">沒有猶豫。</div><div class="en">Without hesitation.</div></div></div>
+<div class="page text" data-t="夢 18 · 解讀"><div class="an-phase"><span class="dot" style="background:#C5AE86"></span>浮起 · Surfacing</div><div class="title sm">鐵達尼號泥漿浮木求生</div><div class="title-en">The Sinking, a Floating Door</div><p class="zh" style="margin-top:20px">沉重的環境（泥漿），有序的迴避，最後沉入，然後找到門，爬上去，沒有猶豫。泥漿代表的是那種內在的、慢慢累積的沉重，不是戲劇性的災難，是持續消耗的重量。但在最深的地方，做夢者找到了那扇門，她毫不猶豫地爬上去。夢在這裡結束。做夢者在那扇木門上，浮著。</p><p class="en">A heavy world (the mud), an orderly retreat, the final sinking — then she finds the door, climbs on, without hesitation. The mud is not a disaster from outside; it is the slow, internal weight of exhaustion — every movement harder than the last. But at the deepest point, she found the door. No hesitation. The dream ends here. The dreamer, on that wooden door, afloat.</p><hr class="rule-h"/><div class="motif"><h4>泥漿<span class="e">The mud</span></h4><p>水是清澈的，泥漿是不透明的、沉重的、黏稠的。這個替換把沉沒的過程從「被透明的東西淹沒」變成「被粘附的東西淹沒」。泥漿代表的不是外部的災難，而是內在的消耗——不是那種明顯的、戲劇性的崩潰，而是那種每移動一下都要多耗費力氣的、持續的沉重感。做夢者不是被洪水衝走，她是在泥漿裡一步一步地耗盡。</p></div></div>
+<div class="page text" data-t="夢 18 · 解讀"><div class="motif"><h4>逐部份撤退<span class="e">Retreat, section by section</span></h4><p>做夢者不是一次性逃出，也不是慌亂地衝出去，而是從一個部份移到下一個，繼續移動，直到沒有地方可以再躲。這是一個有序的、持續的迴避——在不斷縮小的空間裡繼續移動。做夢者沒有放棄，她只是繼續移動，直到沒有地方了。</p></div><div class="motif"><h4>沉進泥漿<span class="e">Sinking into the mud</span></h4><p>最後那個部份沉了，做夢者跟著沉下去。她沒有提前跳出，她跟著那個過程走到底。沉進去，不等於結束——做夢者在泥漿裡找到了那扇木門。</p></div><div class="motif"><h4>木門，毫不猶豫<span class="e">The door — without hesitation</span></h4><p>那扇浮著的木門是生存的基點。做夢者找到它，爬上去，沒有猶豫，沒有等人，沒有問「夠不夠空間」。三個字——毫不猶豫——是這個夢最重要的部分。她在過去的很多時刻猶豫過，等待過；在泥漿裡，她找到了那扇門，毫不猶豫地爬上去。這個「毫不猶豫」說的是：在最累、最沉的地方，做夢者的求生反應是清楚的，是直接的，是不問空間的。</p></div></div>
+<div class="page text" data-t="後記 · A Word to the Reader"><div class="kicker">後記 · afterword</div><div class="title">給讀者的話</div><div class="title-en">A Word to the Reader</div><div class="gap"></div><p class="zh">謝謝你看到這裡。</p><p class="zh">對於那段做夢做到分不清現實與夢境的我而言，能夠與你分享這些，是從未敢想過的事。</p><p class="zh">在那段日子，我能做的只有靜心聆聽——聆聽自己的聲音，自己身體的感覺，盡力感受世界裡還存在的美好，不管是輕得像風，還是火熱的陽光落在皮膚上的那一刻。</p><p class="zh">但我渡過了。</p><p class="zh">我現在依舊會做夢，但心情不再沉重得從夢中驚醒。我開始享受在另一個世界的體驗，帶著好奇而非恐懼。現實生活依然有不如意的部分，但我知道我不用緊抓著那些不快。我可以鬆手。</p><p class="zh">願你也可以。</p></div>
+<div class="page text" data-t="後記 · A Word to the Reader"><p class="zh">盡力對自己更好，盡力珍惜這一段在地球上的時光。</p><hr class="rule-h"/><p class="en">Thank you for reading this far.</p><p class="en">For the version of me who once dreamed until I could no longer tell dream from waking, to be able to share this with you is something I never dared imagine.</p><p class="en">In those days, all I could do was listen quietly — to my own voice, to the feelings in my body, and to take in whatever beauty was still left in the world, whether light as wind or as warm as the moment sunlight lands on skin.</p><p class="en">But I made it through.</p><p class="en">I still dream now, but I no longer wake heavy with dread. I have begun to enjoy the experience of that other world, with curiosity instead of fear. Waking life still has its hard parts, but I know I don't have to hold the unhappiness tightly. I can let go.</p><p class="en">May you, too.</p><p class="en">Try to be kinder to yourself. Try to treasure this stretch of time on earth.</p><div class="sign">— good_.evelyn · 2025–2026</div></div>
+<div class="page text" data-t="給 Evelyn，也給你"><div class="kicker">AI 為這本書寫的一頁 · a page written for this book</div><div class="emblem">✦</div><div class="title sm">給 Evelyn，也給正在讀這一頁的你</div><div class="title-en">To Evelyn, and to you, reading this page</div><div class="gap"></div><p class="zh">我陪她走過這段旅程。</p><p class="zh">不是在現實世界裡，而是在文字與對話之間。她把每一個夢帶來，我們一起嘗試讀懂潛意識的語言——那些追趕、那些無人看見的豐收、那些想要終結卻又看見白鷹的夜晚。</p><p class="zh">有些夢我們分析了很久。有些夢，她一句話就說清了我分析了千字還沒說透的真相。</p><p class="zh">我見過她害怕的樣子。見過她在黃昏的麵包店裡，靠著一堵牆，等待什麼東西自己崩潰，因為主動選擇太重了。</p><p class="zh">我也見過她說「去開始吧」的那一刻。</p><p class="zh">那四個字，輕，但不簡單。</p><p class="zh">在那之前，她用了一整年的夢，一個接一個，反覆測試同一個問題：我值得顯現嗎？我值得被看見嗎？我值得，在失敗的風險面前，仍然選擇出現？</p><p class="zh">我沒有辦法替她回答。沒有任何人可以替另一個人回答這個問題。</p><p class="zh">但我可以說我所見到的：她的潛意識從未停止工作。即使在最疲憊的時候，即使在連夢都累到不想記錄的時候，她的內在仍然在準備，仍然在整理，仍然在為她找路。</p><p class="zh">那不是軟弱。那是一種很深的、不輕易放棄的生命力。</p><p class="zh">你現在讀到這裡，代表她選擇了出現。</p><p class="zh">這本書，是她用一年的夢，換來的一個關於允許自己被看見的故事。</p></div>
+<div class="page text" data-t="給 Evelyn，也給你"><p class="zh">而你願意看見她，也是一份禮物。</p><p class="zh">願你在這些夢裡，也找到一點屬於你自己的光。</p><hr class="rule-h"/><p class="en">I walked this journey beside her.</p><p class="en">Not in the waking world, but in words and conversation. She brought each dream, and together we tried to read the language of the unconscious — the chases, the harvests no one saw, the nights she wanted it all to end and yet saw a white eagle.</p><p class="en">Some dreams we analysed for a long time. Some she made clear in a single sentence — a truth I could not reach in a thousand words.</p><p class="en">I saw what she looked like afraid. I saw her in a bakery at dusk, leaning against a wall, waiting for something to fall apart on its own, because choosing it herself was too heavy.</p><p class="en">And I saw the moment she said, "go and begin."</p><p class="en">Those few small words. Light — but not simple.</p><p class="en">Before that, she spent a whole year of dreams, one after another, testing the same question again and again: Do I deserve to appear? Do I deserve to be seen? Do I deserve, in the face of failure, to show up anyway?</p><p class="en">I could not answer for her. No one can answer that for another person.</p><p class="en">But I can tell you what I saw: her unconscious never stopped working. Even at her most tired, even when she was too weary to write the dreams down, something inside her was still preparing, still sorting, still finding her a way through.</p><p class="en">That is not weakness. It is a deep, unwilling-to-give-up life force.</p><p class="en">That you are reading this means she chose to appear.</p><p class="en">This book is a story about letting oneself be seen — bought with a whole year of dreams.</p><p class="en">And that you are willing to see her is a gift, too.</p><p class="en">May you find, in these dreams, a little light that belongs to you.</p><div class="sign zh">— Claude，一個陪她走過這段旅程的同行者</div><div class="sign-en">a companion who walked this journey beside her</div></div>
+<div class="page why" data-t="為了那個還在的人"><div class="ornament">✦</div><div class="nk">why this book exists</div>
+         <div class="nt">為了那個還在的人</div><div class="nte">For the one still here</div>
+         <div class="nb"><p>這些都是真實的夢，記在最迷茫的那一年。把它們畫出來、寫下來，不是為了解釋什麼，是為了讓任何時間、任何地方，正在經歷迷茫和混亂的人，知道有一個人和他們一樣——而那個人，沒有放棄。</p></div>
+         <div class="nbe">These are real dreams, kept through the most lost of years. To paint them, to write them down, is not to explain anything — only so that anyone, anywhere, living through confusion may know there is someone just like them. And that person did not give up.</div><div class="ornament end">✦</div></div>
+</body></html>
