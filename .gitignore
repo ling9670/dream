@@ -22,3 +22,4 @@
 # Temp
 *.tmp
 .tmp/
+.claude/
